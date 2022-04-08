@@ -8,10 +8,11 @@ SCI-G and GEMC software to build CLAS12 systems
 
   `update.sh`
 
-- to run coatjava to create system volume parameters:
+- to run coatjava to create systemName volume parameters:
 
   `cd groovyFactories` 
-  `runFactories.sh` systemName
+  
+  `runFactories.sh systemName`
 
 ## Includes 
 
