@@ -1,0 +1,27 @@
+[DB] --->  open connection with : mysql://clas12reader@clasdb.jlab.org/clas12
+[DB] --->  database variation   : rga_fall2018
+[DB] --->  database run number  : 11
+[DB] --->  database time stamp  : Fri Apr 08 15:38:23 EDT 2022
+[DB] --->  database connection  : success
+[DB LOAD] ---> loading data table : /geometry/ftof/panel1a/paddles
+[DB LOAD] ---> number of columns  : 4
+
+[DB LOAD] ---> loading data table : /geometry/ftof/panel1a/panel
+[DB LOAD] ---> number of columns  : 7
+
+[DB LOAD] ---> loading data table : /geometry/ftof/panel1b/paddles
+[DB LOAD] ---> number of columns  : 4
+
+[DB LOAD] ---> loading data table : /geometry/ftof/panel1b/panel
+[DB LOAD] ---> number of columns  : 8
+
+[DB LOAD] ---> loading data table : /geometry/ftof/panel2/paddles
+[DB LOAD] ---> number of columns  : 4
+
+[DB LOAD] ---> loading data table : /geometry/ftof/panel2/panel
+[DB LOAD] ---> number of columns  : 7
+
+[DB LOAD] ---> loading data table : /geometry/ftof/alignment
+[DB LOAD] ---> number of columns  : 9
+
+[DB] --->  database disconnect  : success

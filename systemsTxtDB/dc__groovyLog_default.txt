@@ -1,0 +1,27 @@
+[DB] --->  open connection with : mysql://clas12reader@clasdb.jlab.org/clas12
+[DB] --->  database variation   : default
+[DB] --->  database run number  : 11
+[DB] --->  database time stamp  : Fri Apr 08 15:38:06 EDT 2022
+[DB] --->  database connection  : success
+[DB LOAD] ---> loading data table : /geometry/dc/dc
+[DB LOAD] ---> number of columns  : 2
+
+[DB LOAD] ---> loading data table : /geometry/dc/region
+[DB LOAD] ---> number of columns  : 9
+
+[DB LOAD] ---> loading data table : /geometry/dc/superlayer
+[DB LOAD] ---> number of columns  : 8
+
+[DB LOAD] ---> loading data table : /geometry/dc/layer
+[DB LOAD] ---> number of columns  : 2
+
+[DB LOAD] ---> loading data table : /geometry/dc/alignment
+[DB LOAD] ---> number of columns  : 9
+
+[DB LOAD] ---> loading data table : /geometry/dc/ministagger
+[DB LOAD] ---> number of columns  : 4
+
+[DB LOAD] ---> loading data table : /geometry/dc/endplatesbow
+[DB LOAD] ---> number of columns  : 4
+
+[DB] --->  database disconnect  : success

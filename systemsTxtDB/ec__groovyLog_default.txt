@@ -1,0 +1,36 @@
+[DB] --->  open connection with : mysql://clas12reader@clasdb.jlab.org/clas12
+[DB] --->  database variation   : default
+[DB] --->  database run number  : 11
+[DB] --->  database time stamp  : Fri Apr 08 15:38:28 EDT 2022
+[DB] --->  database connection  : success
+[DB LOAD] ---> loading data table : /geometry/pcal/pcal
+[DB LOAD] ---> number of columns  : 15
+
+[DB LOAD] ---> loading data table : /geometry/pcal/Uview
+[DB LOAD] ---> number of columns  : 2
+
+[DB LOAD] ---> loading data table : /geometry/pcal/Vview
+[DB LOAD] ---> number of columns  : 2
+
+[DB LOAD] ---> loading data table : /geometry/pcal/Wview
+[DB LOAD] ---> number of columns  : 2
+
+[DB LOAD] ---> loading data table : /geometry/pcal/alignment
+[DB LOAD] ---> number of columns  : 9
+
+[DB LOAD] ---> loading data table : /geometry/ec/ec
+[DB LOAD] ---> number of columns  : 16
+
+[DB LOAD] ---> loading data table : /geometry/ec/uview
+[DB LOAD] ---> number of columns  : 4
+
+[DB LOAD] ---> loading data table : /geometry/ec/vview
+[DB LOAD] ---> number of columns  : 3
+
+[DB LOAD] ---> loading data table : /geometry/ec/wview
+[DB LOAD] ---> number of columns  : 3
+
+[DB LOAD] ---> loading data table : /geometry/ec/alignment
+[DB LOAD] ---> number of columns  : 9
+
+[DB] --->  database disconnect  : success

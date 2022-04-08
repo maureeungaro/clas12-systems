@@ -1,0 +1,209 @@
+[DB] --->  open connection with : mysql://clas12reader@clasdb.jlab.org/clas12
+[DB] --->  database variation   : default
+[DB] --->  database run number  : 11
+[DB] --->  database time stamp  : Fri Apr 08 15:38:00 EDT 2022
+[DB] --->  database connection  : success
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/svt
+[DB LOAD] ---> number of columns  : 21
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/region
+[DB LOAD] ---> number of columns  : 6
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/support
+[DB LOAD] ---> number of columns  : 2
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/fiducial
+[DB LOAD] ---> number of columns  : 6
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/material/box
+[DB LOAD] ---> number of columns  : 4
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/material/tube
+[DB LOAD] ---> number of columns  : 6
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/material/faradaycage
+[DB LOAD] ---> number of columns  : 8
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/material/peeksupport
+[DB LOAD] ---> number of columns  : 6
+
+[DB LOAD] ---> loading data table : /geometry/cvt/svt/alignment
+[DB LOAD] ---> number of columns  : 8
+
+[DB LOAD] ---> loading data table : /geometry/target
+[DB LOAD] ---> number of columns  : 5
+
+LAYERGAPTHK (CCDB)      =    3.166
+layerGapThk (MATERIALS) =    3.162
+set LAYERGAPTHK to layerGapThk
+NREGIONS           4
+NMODULES           2
+NLAYERS            8
+NSENSORS           3
+NSTRIPS          256
+NFIDUCIALS         3
+NPADS              9
+
+SVT READ Z SHIFT VALUE 0.0
+ a Region 0 aSector 0 RSI 0
+ a Region 0 aSector 1 RSI 1
+ a Region 0 aSector 2 RSI 2
+ a Region 0 aSector 3 RSI 3
+ a Region 0 aSector 4 RSI 4
+ a Region 0 aSector 5 RSI 5
+ a Region 0 aSector 6 RSI 6
+ a Region 0 aSector 7 RSI 7
+ a Region 0 aSector 8 RSI 8
+ a Region 0 aSector 9 RSI 9
+ a Region 1 aSector 0 RSI 10
+ a Region 1 aSector 1 RSI 11
+ a Region 1 aSector 2 RSI 12
+ a Region 1 aSector 3 RSI 13
+ a Region 1 aSector 4 RSI 14
+ a Region 1 aSector 5 RSI 15
+ a Region 1 aSector 6 RSI 16
+ a Region 1 aSector 7 RSI 17
+ a Region 1 aSector 8 RSI 18
+ a Region 1 aSector 9 RSI 19
+ a Region 1 aSector 10 RSI 20
+ a Region 1 aSector 11 RSI 21
+ a Region 1 aSector 12 RSI 22
+ a Region 1 aSector 13 RSI 23
+ a Region 2 aSector 0 RSI 24
+ a Region 2 aSector 1 RSI 25
+ a Region 2 aSector 2 RSI 26
+ a Region 2 aSector 3 RSI 27
+ a Region 2 aSector 4 RSI 28
+ a Region 2 aSector 5 RSI 29
+ a Region 2 aSector 6 RSI 30
+ a Region 2 aSector 7 RSI 31
+ a Region 2 aSector 8 RSI 32
+ a Region 2 aSector 9 RSI 33
+ a Region 2 aSector 10 RSI 34
+ a Region 2 aSector 11 RSI 35
+ a Region 2 aSector 12 RSI 36
+ a Region 2 aSector 13 RSI 37
+ a Region 2 aSector 14 RSI 38
+ a Region 2 aSector 15 RSI 39
+ a Region 2 aSector 16 RSI 40
+ a Region 2 aSector 17 RSI 41
+ a Region 3 aSector 0 RSI 42
+ a Region 3 aSector 1 RSI 43
+ a Region 3 aSector 2 RSI 44
+ a Region 3 aSector 3 RSI 45
+ a Region 3 aSector 4 RSI 46
+ a Region 3 aSector 5 RSI 47
+ a Region 3 aSector 6 RSI 48
+ a Region 3 aSector 7 RSI 49
+ a Region 3 aSector 8 RSI 50
+ a Region 3 aSector 9 RSI 51
+ a Region 3 aSector 10 RSI 52
+ a Region 3 aSector 11 RSI 53
+ a Region 3 aSector 12 RSI 54
+ a Region 3 aSector 13 RSI 55
+ a Region 3 aSector 14 RSI 56
+ a Region 3 aSector 15 RSI 57
+ a Region 3 aSector 16 RSI 58
+ a Region 3 aSector 17 RSI 59
+ a Region 3 aSector 18 RSI 60
+ a Region 3 aSector 19 RSI 61
+ a Region 3 aSector 20 RSI 62
+ a Region 3 aSector 21 RSI 63
+ a Region 3 aSector 22 RSI 64
+ a Region 3 aSector 23 RSI 65
+Reading alignment shifts from database
+NSECTORS STATUS Z0ACTIVE REFRADIUS SUPPORTRADIUS LAYERRADIUS (U,V)
+      10      1 -219.826    65.447        65.403   65.287   68.769
+      14      1 -180.380    93.047        93.005   92.887   96.369
+      18      1 -141.206   120.482       120.435  120.322  123.804
+      24      0  -83.405   161.362       161.315  161.202  164.684
+
+NTOTALSECTORS     66
+NTOTALFIDUCIALS  198
+PHI0             270.000
+SECTOR0           90.000
+STEREOANGLE        3.000
+READOUTPITCH       0.156
+STRIPOFFSETWID     0.048
+STRIPLENMAX      333.429
+LAYERPOSFAC        0.500
+PHYSSENLEN       111.625
+SILICONTHK         0.320
+PHYSSENWID        42.000
+ACTIVESENLEN     109.955
+ACTIVESENWID      40.032
+DEADZNLEN          0.835
+DEADZNWID          0.984
+MICROGAPLEN        0.112
+MODULEWID         42.000
+MODULELEN        335.099
+LAYERGAPTHK        3.162
+PASSIVETHK         0.331
+SECTORLEN        418.255
+FIDCUX            17.350
+FIDPKX             3.500
+FIDORIGINZ        62.130
+FIDCUZ             3.750
+FIDPKZ0          402.624
+FIDPKZ1            2.500
+fidXDist    34.700
+fidZDist   408.874
+fidZDist0  409.405
+fidZDist1  409.109
+heatSink                         box     40.700    2.880   65.330 
+heatSinkCu                       box     40.700    2.550   65.330 
+heatSinkRidge                    box     40.700    0.380   15.600 
+rohacell                         box     41.000    2.500  352.925 
+rohacellCu                       box     41.000    2.500  338.425 
+plastic                          box     20.000    2.500   14.500 
+plasticPk                        box     12.000    0.380   12.500 
+carbonFiber                      box     42.000    0.190  401.640 
+carbonFiberCu                    box     36.750    0.190   46.580 
+carbonFiberPk                    box     41.000    0.190  355.060 
+busCable                         box     42.000    0.078  401.640 
+busCableCu                       box     36.750    0.078   46.580 
+busCablePk                       box     41.000    0.059  355.060 
+pitchAdaptor                     box     41.500    0.320    4.000 
+pcBoardAndChips                  box     36.730    1.000   41.440 
+pcBoard                          box     36.730    0.500   41.440 
+chip                             box      7.500    0.500    5.000 
+epoxyAndRailAndPads              box     41.000    0.063  401.640 
+epoxyMajorCu                     box     22.875    0.063   46.580 
+epoxyMinorCu                     box     10.875    0.063   46.580 
+epoxyMajorPk                     box     25.000    0.063  355.060 
+epoxyMinorPk                     box     13.000    0.063  355.060 
+rail                             box      0.127    0.003  370.985 
+wirebond                         box      0.000    0.000    0.000 
+kaptonWrapTapeSide               box      0.013    3.061  352.930 
+kaptonWrapTapeCap                box      4.832    0.013  352.930 
+kaptonWrapGlueSide               box      0.013    3.036  352.930 
+kaptonWrapGlueCap                box      4.819    0.013  352.930 
+pad                              tube     0.000    1.500    0.061    0.000  360.000 
+factory: generating geometry with the following parameters
+  variation: ideal
+  layer [1:6] region [1:3] module [1:2] sector [1:10][1:14][1:18][1:24]
+  build passive materials ? true
+  include physical sensors ? true
+  include sensor active and dead zones ? false
+region= 0
+rcen=  67.028
+rthk=   6.964
+rmin=  57.800
+rmax=  73.992
+len=  418.255
+
+region= 1
+rcen=  94.628
+rthk=   6.964
+rmin=  84.700
+rmax= 101.592
+len=  418.255
+
+region= 2
+rcen= 122.063
+rthk=   6.964
+rmin= 110.700
+rmax= 129.027
+len=  418.255
+
+factory: populating HashMap with parameters
