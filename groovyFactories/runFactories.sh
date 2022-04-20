@@ -3,6 +3,7 @@
 # log eye candy
 green=`tput setaf 2`
 yellow=`tput setaf 3`
+reset=`tput sgr0`
 
 # variation dictionary
 declare -A variations
