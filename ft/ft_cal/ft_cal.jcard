@@ -20,11 +20,6 @@
 
 	"+goutput": [
 		{
-			"format": "ROOT",
-			"name": "events.root",
-			"type": "event"
-		},
-		{
 			"format": "JLABSRO",
 			"name": "stream.dat",
 			"type": "stream"
@@ -37,9 +32,9 @@
 	],
 
 	"digitizationVariation": "rga_spring2018_mc",
-	"n": 100,
+	"n": 200,
 	"eventTimeSize": "2*us",
-	"checkOverlaps": 1,
+	"checkOverlaps": 0,
 	"+gparticle": [
 		{ "pname": "e-",  "multiplicity": 10, "p": 2100},
 		{ "pname": "pi0", "multiplicity": 1,  "p": 300,  "theta": 3.0, "delta_phi": 180.0, "vz": -2.0}
