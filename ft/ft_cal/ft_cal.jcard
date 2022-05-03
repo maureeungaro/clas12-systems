@@ -20,6 +20,11 @@
 
 	"+goutput": [
 		{
+			"format": "ROOT",
+			"name": "events.root",
+			"type": "event"
+		},
+		{
 			"format": "JLABSRO",
 			"name": "stream.dat",
 			"type": "stream"

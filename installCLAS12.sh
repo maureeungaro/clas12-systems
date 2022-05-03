@@ -7,7 +7,6 @@ GPLUGIN_PATH=$startDir/systemsTxtDB
 
 # Native API detectors
 
-
 # FT
 
 cd ft/ft_cal/
