@@ -19,7 +19,7 @@ public:
 	bool loadTT(int runno, string variation);
 
 	// digitized the hit
-	GDigitizedData* digitizeHit(GHit *ghit, int hitn);
+	GDigitizedData* digitizeHit(GHit *ghit, size_t hitn);
 
 private:
 

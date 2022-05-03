@@ -4,7 +4,7 @@
 #include "G4Poisson.hh"
 #include "Randomize.hh"
 
-GDigitizedData* FT_CAL_Plugin::digitizeHit(GHit *ghit, int hitn)
+GDigitizedData* FT_CAL_Plugin::digitizeHit(GHit *ghit, size_t hitn)
 {
 	vector<GIdentifier> identity = ghit->getGID();
 	int IDX = identity[0].getValue();
@@ -62,7 +62,7 @@ GDigitizedData* FT_CAL_Plugin::digitizeHit(GHit *ghit, int hitn)
 	gdata->includeVariable("time",      timeR); // time in ns
 	gdata->includeVariable("ped",       0);
 
-	gdata->includeVariable("hitn",      hitn);
+	gdata->includeVariable("hitn",      (int) hitn);
 
 	// mandatory for streaming
 	// first argument: gemc hit
