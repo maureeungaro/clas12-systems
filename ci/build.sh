@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-set -e
 
 # Purpose: runs the geometry building scripts for the selected detector
 # Assumptions:
@@ -11,6 +10,11 @@ set -e
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -d ft/ft_cal
 
+# load environment if we're on the container
+FILE=/etc/profile.d/jlab.sh
+
+# notice the extra argument to the source command
+test -f $FILE && source $FILE keepmine
 
 Help()
 {
@@ -21,27 +25,22 @@ Help()
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
-	echo "-b <System>: build geometry and plugin for <System>"
+	echo "-s <System>: build geometry and plugin for <System>"
 	echo
 }
-
-
-# load environment if we're on the container
-test -f /etc/profile.d/jlab.sh && source /etc/profile.d/jlab.sh
 
 if [ $# -eq 0 ]; then
 	Help
 	exit
 fi
 
-# stay away from d and s
-while getopts ":hb:" option; do
+while getopts ":hs:" option; do
    case $option in
       h) # display Help
          Help
          exit
          ;;
-      b)
+      s)
          detector=$OPTARG
          ;;
      \?) # Invalid option
@@ -52,9 +51,10 @@ done
 
 
 ScriptName() {
-	subDir=$(basename $1)
+	subDir=$(basename $detector)
 	script="./"$subDir".py"
 }
+
 
 createAndCopyDetectorTXTs() {
 	$script
@@ -79,7 +79,6 @@ compileAndCopyPlugin() {
 startDir=`pwd`
 GPLUGIN_PATH=$startDir/systemsTxtDB
 script=no
-
 
 ScriptName $detector
 
