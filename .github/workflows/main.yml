@@ -35,4 +35,4 @@ jobs:
         uses: actions/checkout@main
       - name: Run build.sh
         run: |
-          ./ci/build.sh -b ${{ matrix.detector }}
+          ./ci/build.sh -s ${{ matrix.detector }}

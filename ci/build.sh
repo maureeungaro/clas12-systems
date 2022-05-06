@@ -8,9 +8,10 @@
 # Container run example:
 # docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
-# ./ci/build.sh -d ft/ft_cal
+# ./ci/build.sh -s ft/ft_cal
 
 # load environment if we're on the container
+TERM=xterm # source script use tput for colors, TERM needs to be specified
 FILE=/etc/profile.d/jlab.sh
 
 # notice the extra argument to the source command
