@@ -11,6 +11,12 @@ set -e
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -d ft/ft_cal
 
+# load environment if we're on the container
+FILE=/etc/profile.d/jlab.sh
+if test -f "$FILE"; then
+    source "$FILE"
+fi
+
 Help()
 {
 	# Display Help
@@ -53,7 +59,6 @@ ScriptName() {
 	script="./"$subDir".py"
 }
 
-
 createAndCopyDetectorTXTs() {
 	$script
 	filesToCopy=$(git status -s | grep \? | awk '{print $2}' | grep -v \/ | grep \.txt)
@@ -74,11 +79,6 @@ compileAndCopyPlugin() {
 	cd -
 }
 
-# load environment if we're on the container
-FILE=/etc/profile.d/jlab.sh
-if test -f "$FILE"; then
-    source "$FILE"
-fi
 
 ScriptName $detector
 

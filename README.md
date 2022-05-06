@@ -21,8 +21,19 @@ SCI-G scripts and digitization plugins for the CLAS12 detectors.
 
 ## Validation
 
+<!---
+Obtained by Action > Job > ... > Create status badge
+
+TODO:
+
 - overlap
-- run gemc tests
-- build geometry
+- tests
 - validate geometry against gemc2
+
+
+-->
+
+[![clas12-system](https://github.com/gemc/clas12-systems/actions/workflows/main.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/main.yml)
+
+
 
