@@ -19,3 +19,10 @@ SCI-G and GEMC software to build CLAS12 systems
 SCI-G scripts and digitization plugins for the CLAS12 detectors.
 
 
+## Validation
+
+- overlap
+- run gemc tests
+- build geometry
+- validate geometry against gemc2
+

@@ -2,7 +2,7 @@
 
 # Purpose: install geometry and plugins onto systemsTxtDB ($GPLUGIN_PATH)
 
-export startDir=`pwd`
+startDir=`pwd`
 GPLUGIN_PATH=$startDir/systemsTxtDB
 
 # Native API detectors
