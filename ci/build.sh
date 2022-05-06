@@ -11,37 +11,37 @@ set -e
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -d ft/ft_cal
 
-# load environment if we're on the container
-FILE=/etc/profile.d/jlab.sh
-if test -f "$FILE"; then
-    source "$FILE"
-fi
 
 Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: $0 [-h|d]"
+	echo "Syntax: $0 [-h|s]"
 	echo
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
-	echo "-d <Detector>: build geometry and plugin for <Detector>"
+	echo "-b <System>: build geometry and plugin for <System>"
 	echo
 }
+
+
+# load environment if we're on the container
+test -f /etc/profile.d/jlab.sh && source /etc/profile.d/jlab.sh
 
 if [ $# -eq 0 ]; then
 	Help
 	exit
 fi
 
-while getopts ":hd:" option; do
+# stay away from d and s
+while getopts ":hb:" option; do
    case $option in
       h) # display Help
          Help
          exit
          ;;
-      d)
+      b)
          detector=$OPTARG
          ;;
      \?) # Invalid option
@@ -50,9 +50,6 @@ while getopts ":hd:" option; do
    esac
 done
 
-startDir=`pwd`
-GPLUGIN_PATH=$startDir/systemsTxtDB
-script=no
 
 ScriptName() {
 	subDir=$(basename $1)
@@ -78,6 +75,10 @@ compileAndCopyPlugin() {
 	rm -rf .sconsign.dblite
 	cd -
 }
+
+startDir=`pwd`
+GPLUGIN_PATH=$startDir/systemsTxtDB
+script=no
 
 
 ScriptName $detector
