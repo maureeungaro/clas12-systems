@@ -1,25 +1,34 @@
 #!/usr/bin/env zsh
-set -e
 
 # Purpose:
-# this script assumes the existance of a 'tests' and 'overlaps' directory inside each detector
-# containing various test jcards 
+# runs gemc using the gcards inside 'tests' and 'overlaps' directory (if existing)
+# inside each detector subdirs
+# Assumptions: the names of the tests and overlaps directories.
 
-# Purpose:
-# Assumptions:
+# Container run example:
+# docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
+# git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
+# ./ci/tests.sh -s ft/ft_cal
 
+# load environment if we're on the container
+TERM=xterm # source script use tput for colors, TERM needs to be specified
+FILE=/etc/profile.d/jlab.sh
+
+# notice the extra argument to the source command
+test -f $FILE && source $FILE keepmine
 
 Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: $0 [-h|t|o]"
+	echo "Syntax: tests.sh [-h|t|o|s]"
 	echo
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
-	echo "-t runs test (other than overlaps)"
+	echo "-t: runs detector test"
 	echo "-o: runs overlaps test"
+	echo "-s <System>: build geometry and plugin for <System>"
 	echo
 }
 
@@ -28,18 +37,19 @@ if [ $# -eq 0 ]; then
 	exit
 fi
 
-while getopts ":hto" option; do
+while getopts ":htos:" option; do
    case $option in
       h)
          Help
          exit;;
-      f)
-         flag=yes
-         echo flag: $flag
+      t)
+         testType=tests
          ;;
       o)
-         option=$OPTARG
-         echo option: $option
+         testType=overlaps
+         ;;
+      s)
+         detector=$OPTARG
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
@@ -47,11 +57,17 @@ while getopts ":hto" option; do
    esac
 done
 
+TestTypeNotDefined() {
+	echo "Test type is not set. Exiting"
+	Help
+	exit
+}
 
-# load environment if we're on the container
-FILE=/etc/profile.d/jlab.sh
-if test -f "$FILE"; then
-    source "$FILE"
-fi
+[[ -v testType ]] && echo Running $testType tests || TestTypeNotDefined
 
+startDir=`pwd`
+GPLUGIN_PATH=$startDir/systemsTxtDB
+gcards=no
+
+./ci/build.sh -s $detector
 

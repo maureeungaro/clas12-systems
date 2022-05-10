@@ -21,7 +21,7 @@ Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: $0 [-h|s]"
+	echo "Syntax: build.sh [-h|s]"
 	echo
 	echo "Options:"
 	echo
@@ -50,29 +50,43 @@ while getopts ":hs:" option; do
    esac
 done
 
+DetectorNotDefined () {
+	echo "Detector is not set."
+	Help
+	exit
+}
 
-ScriptName() {
+[[ -v detector ]] && echo "Building $detector" || DetectorNotDefined
+
+DefineScriptName() {
 	subDir=$(basename $detector)
 	script="./"$subDir".py"
 }
 
 
-createAndCopyDetectorTXTs() {
+CreateAndCopyDetectorTXTs() {
 	ls -ltrh ./
+	echo
+	echo Running $script
 	$script
+	ls -ltrh ./
 	filesToCopy=$(git status -s | grep \? | awk '{print $2}' | grep -v \/ | grep \.txt)
-	echo moving $=filesToCopy to $GPLUGIN_PATH
-	ls -ltrh ./
+	echo
+	echo Moving $=filesToCopy to $GPLUGIN_PATH and cleaning up
+	echo
 	mv $=filesToCopy $GPLUGIN_PATH
-	ls -ltrh ./
 	# cleaning up
 	test -d __pycache__ && rm -rf __pycache__
+	ls -ltrh ./
+	echo
 }
 
-compileAndCopyPlugin() {
+CompileAndCopyPlugin() {
+	echo "Compiling plugin for "$detector
+	echo
 	cd plugin
 	scons -j4 OPT=1
-	echo moving plugins to $GPLUGIN_PATH
+	echo Moving plugins to $GPLUGIN_PATH
 	mv *.gplugin $GPLUGIN_PATH
 	scons -c
 	# cleaning up
@@ -84,13 +98,12 @@ startDir=`pwd`
 GPLUGIN_PATH=$startDir/systemsTxtDB
 script=no
 
-ScriptName $detector
+DefineScriptName $detector
 
 echo
-echo Building geometry for $detector, running $script
+echo Building geometry for $detector. GPLUGIN_PATH is $GPLUGIN_PATH
 echo
 cd $detector
-createAndCopyDetectorTXTs
-echo "compile plugin if exists"
-test -d plugin && compileAndCopyPlugin || echo "no plugin dir"
+CreateAndCopyDetectorTXTs
+test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
 
