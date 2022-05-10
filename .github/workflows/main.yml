@@ -18,7 +18,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Build the geometry and plugins, install them in systemsTxtDB
-  build:
+  build_geometry_and_plugins:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
@@ -40,7 +40,7 @@ jobs:
           ./ci/build.sh -s ${{ matrix.detector }}
 
   # Build the geometry and plugins, runs overlaps test
-  overlap:
+  overlap_test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
@@ -59,8 +59,8 @@ jobs:
         run: |
           ./ci/tests.sh -s ${{ matrix.detector }} -o
 
-  # Build the geometry and plugins, runs overlaps test
-  tests:
+  # Build the geometry and plugins, runs other tests
+  other_test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
