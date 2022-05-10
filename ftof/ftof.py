@@ -30,9 +30,9 @@ def main():
 
         basepath = os.environ["GPLUGIN_PATH"]
 
-        _logger.info(f"Building FTOF configuration for variation {var_key}")
+        _logger.info(f"Building ftof configuration for variation {var_key}")
         # Define GConfiguration name, factory and description. Initialize it.
-        configuration = GConfiguration('FTOF', 'TEXT', 'CLAS12 FTOF')
+        configuration = GConfiguration('ftof', 'TEXT', 'CLAS12 FTOF')
         configuration.setVariation(var_key)
         configuration.init_geom_file()
         configuration.init_mats_file()
