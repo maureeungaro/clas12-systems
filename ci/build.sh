@@ -64,6 +64,7 @@ createAndCopyDetectorTXTs() {
 	echo moving $=filesToCopy to $GPLUGIN_PATH
 	ls -ltrh ./
 	mv $=filesToCopy $GPLUGIN_PATH
+	ls -ltrh ./
 	# cleaning up
 	test -d __pycache__ && rm -rf __pycache__
 }
@@ -90,6 +91,6 @@ echo Building geometry for $detector, running $script
 echo
 cd $detector
 createAndCopyDetectorTXTs
-test -d plugin && compileAndCopyPlugin
-
+echo "compile plugin if exists"
+test -d plugin && compileAndCopyPlugin || echo "no plugin dir"
 
