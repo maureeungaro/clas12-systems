@@ -56,4 +56,4 @@ jobs:
         uses: actions/checkout@main
       - name: Overlaps test
         run: |
-          ./ci/test.sh -s ${{ matrix.detector }} -o
+          ./ci/tests.sh -s ${{ matrix.detector }} -o
