@@ -58,12 +58,15 @@ ScriptName() {
 
 
 createAndCopyDetectorTXTs() {
+	ls -ltrh ./
 	$script
 	filesToCopy=$(git status -s | grep \? | awk '{print $2}' | grep -v \/ | grep \.txt)
 	echo moving $=filesToCopy to $GPLUGIN_PATH
+	ls -ltrh ./
 	mv $=filesToCopy $GPLUGIN_PATH
+	ls -ltrh ./
 	# cleaning up
-	rm -rf __pycache__
+	test -d __pycache__ && rm -rf __pycache__
 }
 
 compileAndCopyPlugin() {
@@ -88,5 +91,6 @@ echo Building geometry for $detector, running $script
 echo
 cd $detector
 createAndCopyDetectorTXTs
-test -d plugin && compileAndCopyPlugin
+echo "compile plugin if exists"
+test -d plugin && compileAndCopyPlugin || echo "no plugin dir"
 
