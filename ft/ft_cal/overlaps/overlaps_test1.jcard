@@ -8,7 +8,6 @@
 		{ "system": "./ft_cal", "factory": "text", "variation": "default" }
 	],
 
-
 	"digitizationVariation": "rga_spring2018_mc",
 	"checkOverlaps": 1
 }

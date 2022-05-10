@@ -43,7 +43,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
-    name: Overlap Test ${{ matrix.detector }}
+    name: Overlap Tests ${{ matrix.detector }}
     strategy:
       fail-fast: false
       matrix:
@@ -54,6 +54,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-      - name: Overlaps test
+      - name: Overlap tests
         run: |
           ./ci/tests.sh -s ${{ matrix.detector }} -o
+
+  # Build the geometry and plugins, runs overlaps test
+  tests:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: jeffersonlab/gemc:3.0-clas12
+    name: Additional Tests ${{ matrix.detector }}
+    strategy:
+      fail-fast: false
+      matrix:
+        detector:
+          - ft/ft_cal
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Additional tests
+        run: |
+          ./ci/tests.sh -s ${{ matrix.detector }} -t
