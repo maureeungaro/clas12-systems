@@ -89,7 +89,7 @@ startDir=`pwd`
 GPLUGIN_PATH=$startDir/systemsTxtDB
 jcards=no
 
-#./ci/build.sh -s $detector
+./ci/build.sh -s $detector
 JcardsToRun
 
 # for some reason DYLD_LIBRARY_PATH is not passed to this script
