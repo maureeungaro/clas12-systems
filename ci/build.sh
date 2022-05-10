@@ -63,7 +63,7 @@ createAndCopyDetectorTXTs() {
 	echo moving $=filesToCopy to $GPLUGIN_PATH
 	mv $=filesToCopy $GPLUGIN_PATH
 	# cleaning up
-	rm -rf __pycache__
+	test -d __pycache__ && rm -rf __pycache__
 }
 
 compileAndCopyPlugin() {
@@ -89,4 +89,5 @@ echo
 cd $detector
 createAndCopyDetectorTXTs
 test -d plugin && compileAndCopyPlugin
+
 
