@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Purpose:
-# runs gemc using the gcards inside 'tests' and 'overlaps' directory (if existing)
+# runs gemc using the jcards inside 'tests' and 'overlaps' directory (if existing)
 # inside each detector subdirs
 # Assumptions: the names of the tests and overlaps directories.
 
@@ -26,8 +26,8 @@ Help()
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
-	echo "-t: runs detector test"
-	echo "-o: runs overlaps test"
+	echo "-t: runs detector test. 'tests' directory must contain jcards."
+	echo "-o: runs overlaps test. 'overlaps' directory must contain jcards."
 	echo "-s <System>: build geometry and plugin for <System>"
 	echo
 }
@@ -41,7 +41,8 @@ while getopts ":htos:" option; do
    case $option in
       h)
          Help
-         exit;;
+         exit
+         ;;
       t)
          testType=tests
          ;;
@@ -53,21 +54,56 @@ while getopts ":htos:" option; do
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
-         exit;;
+         exit
+         ;;
    esac
 done
 
 TestTypeNotDefined() {
 	echo "Test type is not set. Exiting"
 	Help
+	exit 2
+}
+
+TestTypeDirNotExisting() {
+	echo Test Type dir: $detector/$testType not existing
+	Help
 	exit
+}
+
+
+
+JcardsToRun () {
+
+	test -d $detector/$testType && echo Test Type dir: $detector/$testType || TestTypeDirNotExisting
+
+	jcards=`ls $detector/$testType/*.jcard`
+
+	echo
+	echo List of jcards in $testType: $=jcards
 }
 
 [[ -v testType ]] && echo Running $testType tests || TestTypeNotDefined
 
 startDir=`pwd`
 GPLUGIN_PATH=$startDir/systemsTxtDB
-gcards=no
+jcards=no
 
-./ci/build.sh -s $detector
+#./ci/build.sh -s $detector
+JcardsToRun
 
+# for some reason DYLD_LIBRARY_PATH is not passed to this script
+export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+# location of database
+export GEMCDB_ENV=systemsTxtDB
+
+for jc in $=jcards
+do
+	echo Running gemc for $jc
+	gemc $jc
+	exitCode=$?
+	if [[ $exitCode != 0 ]]; then
+		exit $exitCode
+	fi
+done

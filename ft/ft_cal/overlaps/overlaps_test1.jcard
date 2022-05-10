@@ -1,42 +1,14 @@
 {
-	# number of threads
-	# The checkOverlaps = 1 options cause random crash when nthreads is > 1,
-	# possibly due to geometry asked by the run manager to delete objects while in use.
-	"nthreads": 1,
+	# Run check overlaps for ft_cal
 
-	# verbosities
-	"verbosity": 0,
-	"gsystemv": 0,
-	"g4systemv": 0,
-	"grunv": 0,
-	"gsensitivityv": 0,
-	"eventDistributionv": 0,
-	"gframestreamv": 0,
+	# nthreads must be 1 to run checkOverlaps
+	"nthreads": 1,
 
 	"+gsystem": [
 		{ "system": "./ft_cal", "factory": "text", "variation": "default" }
 	],
 
-	"+goutput": [
-		{
-			"format": "ROOT",
-			"name": "events.root",
-			"type": "event"
-		},
-		{
-			"format": "JLABSRO",
-			"name": "stream.dat",
-			"type": "stream"
-		},
-		{
-			"format": "TEXT",
-			"name": "events.txt",
-			"type": "event"
-		}
-	],
 
 	"digitizationVariation": "rga_spring2018_mc",
-	"eventTimeSize": "2*us",
-	"checkOverlaps": 1,
-
+	"checkOverlaps": 1
 }

@@ -46,7 +46,8 @@ while getopts ":hs:" option; do
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
-         exit;;
+         exit
+         ;;
    esac
 done
 
