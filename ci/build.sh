@@ -58,9 +58,11 @@ ScriptName() {
 
 
 createAndCopyDetectorTXTs() {
+	ls -ltrh ./
 	$script
 	filesToCopy=$(git status -s | grep \? | awk '{print $2}' | grep -v \/ | grep \.txt)
 	echo moving $=filesToCopy to $GPLUGIN_PATH
+	ls -ltrh ./
 	mv $=filesToCopy $GPLUGIN_PATH
 	# cleaning up
 	test -d __pycache__ && rm -rf __pycache__
