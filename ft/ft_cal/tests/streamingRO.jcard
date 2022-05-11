@@ -1,4 +1,6 @@
 {
+	# Run simulation with 3 different outputs, including JLABSRO
+
 	"nthreads": 4,
 
 	# verbosities
