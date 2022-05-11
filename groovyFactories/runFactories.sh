@@ -26,7 +26,7 @@ if [ -z "$1" ]; then
 	echo
 	echo "No system supplied. "$availableLog
 	echo
-	exit
+	exit 1
 fi
 
 matchedSystem () {
@@ -49,7 +49,7 @@ matchedSystem () {
 		echo
 		echo "System $system not available. "$availableLog
 		echo
-		exit
+		exit 2
 	fi
 }
 
