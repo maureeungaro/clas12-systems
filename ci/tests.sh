@@ -11,10 +11,9 @@
 # ./ci/tests.sh -s ft/ft_cal
 
 # load environment if we're on the container
+# notice the extra argument to the source command
 TERM=xterm # source script use tput for colors, TERM needs to be specified
 FILE=/etc/profile.d/jlab.sh
-
-# notice the extra argument to the source command
 test -f $FILE && source $FILE keepmine
 
 Help()
@@ -34,7 +33,7 @@ Help()
 
 if [ $# -eq 0 ]; then
 	Help
-	exit
+	exit 1
 fi
 
 while getopts ":htos:" option; do
@@ -54,7 +53,7 @@ while getopts ":htos:" option; do
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
-         exit
+         exit 1
          ;;
    esac
 done
@@ -68,13 +67,10 @@ TestTypeNotDefined() {
 TestTypeDirNotExisting() {
 	echo Test Type dir: $detector/$testType not existing
 	Help
-	exit
+	exit 3
 }
 
-
-
 JcardsToRun () {
-
 	test -d $detector/$testType && echo Test Type dir: $detector/$testType || TestTypeDirNotExisting
 
 	jcards=`ls $detector/$testType/*.jcard`

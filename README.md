@@ -1,35 +1,34 @@
 # clas12-systems
 
-SCI-G and GEMC software to build CLAS12 systems 
+Software to build CLAS12 systems geometry and digitization plugins
 
 ## To Run
 
-- to download coatjava:
+- Download coatjava:
 
-  `update.sh`
+  `installClas12Coatjava.sh`
 
-- to run coatjava to create systemName volume parameters:
+- Run script to create volume parameters for a system:
 
   `cd groovyFactories` 
   
   `runFactories.sh systemName`
 
-## Includes 
-
-SCI-G scripts and digitization plugins for the CLAS12 detectors.
-
 
 ## Validation
+
+The validation performed for the CLAS12 systems includes:
+
+- Overlap test
+- Tests specific to each system
+- Validation against gemc2 geometry (in progress)
 
 <!---
 Obtained by Action > Job > ... > Create status badge
 
 TODO:
 
-- overlap
-- tests
 - validate geometry against gemc2
-
 
 -->
 

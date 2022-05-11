@@ -11,10 +11,9 @@
 # ./ci/build.sh -s ft/ft_cal
 
 # load environment if we're on the container
+# notice the extra argument to the source command
 TERM=xterm # source script use tput for colors, TERM needs to be specified
 FILE=/etc/profile.d/jlab.sh
-
-# notice the extra argument to the source command
 test -f $FILE && source $FILE keepmine
 
 Help()
@@ -32,7 +31,7 @@ Help()
 
 if [ $# -eq 0 ]; then
 	Help
-	exit
+	exit 1
 fi
 
 while getopts ":hs:" option; do
@@ -46,7 +45,7 @@ while getopts ":hs:" option; do
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
-         exit
+         exit 1
          ;;
    esac
 done
@@ -54,7 +53,7 @@ done
 DetectorNotDefined () {
 	echo "Detector is not set."
 	Help
-	exit
+	exit 2
 }
 
 [[ -v detector ]] && echo "Building $detector" || DetectorNotDefined
