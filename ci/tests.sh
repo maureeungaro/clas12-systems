@@ -87,6 +87,7 @@ JcardsToRun () {
 
 startDir=`pwd`
 GPLUGIN_PATH=$startDir/systemsTxtDB
+cp $GLIBRARY/lib/gstreamer*.gplugin $GPLUGIN_PATH
 jcards=no
 
 ./ci/build.sh -s $detector
