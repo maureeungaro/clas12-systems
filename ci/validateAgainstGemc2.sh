@@ -16,7 +16,9 @@ TERM=xterm # source script use tput for colors, TERM needs to be specified
 FILE=/etc/profile.d/jlab.sh
 test -f $FILE && source $FILE keepmine
 
-GEMC2_DATA_DIR=/jlab/clas12Tags/
+GEMC2_DATA_DIR=/jlab/clas12Tags
+
+ls -ltrh $GEMC2_DATA_DIR
 startDir=`pwd`
 GEMC3_DATA_DIR=$startDir/systemsTxtDB
 
@@ -106,7 +108,7 @@ function run_comparison {
 	local _gemc3_files_path="$GEMC3_DATA_DIR"
 
 	echo "gemc2 files directory is: $_gemc2_files_path"
-
+	
 	ls -ltrh $_gemc2_files_path
 
 	echo "gemc3 files directory is: $_gemc3_files_path"
