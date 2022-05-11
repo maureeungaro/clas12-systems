@@ -2,8 +2,8 @@
 
 # Purpose: runs the geometry building scripts for the selected detector
 # Assumptions:
-# 1. the python sci-g main filename has the same name as the containing dir
-# 2. the plugin directory is named 'plugin'
+# 1. The python sci-g main python filename must match the containing dir name
+# 2. The plugin directory, if existing, must be named 'plugin'
 
 # Container run example:
 # docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
@@ -56,6 +56,7 @@ DetectorNotDefined () {
 	exit 2
 }
 
+# exit if detector var is not defined
 [[ -v detector ]] && echo "Building $detector" || DetectorNotDefined
 
 DefineScriptName() {
@@ -79,6 +80,8 @@ CreateAndCopyDetectorTXTs() {
 	test -d __pycache__ && rm -rf __pycache__
 	ls -ltrh ./
 	echo
+	echo $GPLUGIN_PATH content:
+	ls -ltrh $GPLUGIN_PATH
 }
 
 CompileAndCopyPlugin() {

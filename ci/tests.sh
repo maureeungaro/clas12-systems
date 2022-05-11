@@ -1,14 +1,14 @@
 #!/usr/bin/env zsh
 
 # Purpose:
-# runs gemc using the jcards inside 'tests' and 'overlaps' directory (if existing)
-# inside each detector subdirs
+# Runs gemc using the jcards inside 'tests' and 'overlaps' directory (if existing)
+#   inside each detector subdirs
 # Assumptions: the names of the tests and overlaps directories.
 
 # Container run example:
 # docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
-# ./ci/tests.sh -s ft/ft_cal
+# ./ci/tests.sh -s ft/ft_cal -o
 
 # load environment if we're on the container
 # notice the extra argument to the source command
@@ -87,6 +87,8 @@ cp $GLIBRARY/lib/gstreamer*.gplugin $GPLUGIN_PATH
 jcards=no
 
 ./ci/build.sh -s $detector
+
+# sets the list of jcards to run
 JcardsToRun
 
 # for some reason DYLD_LIBRARY_PATH is not passed to this script
