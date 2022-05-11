@@ -18,7 +18,6 @@ test -f $FILE && source $FILE keepmine
 
 GEMC2_DATA_DIR=/jlab/clas12Tags
 
-ls -ltrh $GEMC2_DATA_DIR
 startDir=`pwd`
 GEMC3_DATA_DIR=$startDir/systemsTxtDB
 
@@ -104,7 +103,7 @@ function get_gemc2_data_for_comparison {
 
 function run_comparison {
 
-	local _gemc2_files_path="$GEMC2_DATA_DIR/5.1/experiments/clas12/$gemc2_files_dir"
+	local _gemc2_files_path="$GEMC2_DATA_DIR/5.0/experiments/clas12/$gemc2_files_dir"
 	local _gemc3_files_path="$GEMC3_DATA_DIR"
 
 	echo "gemc2 files directory is: $_gemc2_files_path"
