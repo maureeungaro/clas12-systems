@@ -479,7 +479,7 @@ def get_pairs_to_compare(
     }
 
     map_gemc2_to_gemc3_ft_cal = {
-        "default": "default",
+        "FTOff": "default",
     }
 
     map_sybsystem_to_map_gemc2_to_gemc3 = {
