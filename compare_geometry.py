@@ -514,7 +514,7 @@ def _create_argument_parser() -> argparse.ArgumentParser:
         "--template-subsystem",
         dest="template_subsystem",
         help="Detector subsystem used to populate the template",
-        choices=["target", "forward_carriage", "ftof"],
+        choices=["target", "forward_carriage", "ftof", "ft_cal"],
         default="target",
     )
     return parser
