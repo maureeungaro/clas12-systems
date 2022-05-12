@@ -478,10 +478,15 @@ def get_pairs_to_compare(
         "rga_fall2018": "rga_fall2018",
     }
 
+    map_gemc2_to_gemc3_ft_cal = {
+        "default": "default",
+    }
+
     map_sybsystem_to_map_gemc2_to_gemc3 = {
         "target": map_gemc2_to_gemc3_targets,
         "forward_carriage": map_gemc2_to_gemc3_forward_carriage,
         "ftof": map_gemc2_to_gemc3_ftof,
+        "ft_cal": map_gemc2_to_gemc3_ft_cal,
     }
 
     return [
