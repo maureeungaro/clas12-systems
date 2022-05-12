@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
     name: Overlap Tests ${{ matrix.detector }}
-    if: "false"
+    if: "true"
     strategy:
       fail-fast: false
       matrix:
