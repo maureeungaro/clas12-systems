@@ -16,7 +16,7 @@ def main():
     for target_key, builder in VARIATION_MAP.items():
         print(f"Building {target_key} target geometry")
         # Define GConfiguration name, factory and description. Initialize it.
-        configuration = GConfiguration('target', 'TEXT', 'CLAS12 Targets')
+        configuration = GConfiguration('clas12Target', 'TEXT', 'CLAS12 Targets')
         configuration.setVariation(target_key)
         configuration.init_geom_file()
         configuration.init_mats_file()

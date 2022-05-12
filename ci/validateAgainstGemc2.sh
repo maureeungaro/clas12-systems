@@ -69,7 +69,7 @@ case $detector in
 	targets)
 		subsystem_template_name="target"
 		gemc2_filename_prefix="target"
-		gemc3_filename_prefix="target"
+		gemc3_filename_prefix="clas12Target"
 		;;
 	fc)
 		subsystem_template_name="forward_carriage"
