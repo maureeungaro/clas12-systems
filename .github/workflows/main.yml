@@ -58,6 +58,7 @@ jobs:
       - name: Overlap tests
         run: |
           ./ci/tests.sh -s ${{ matrix.detector }} -o
+          ./ci/validateAgainstGemc2.sh -s ${{ matrix.detector }}
 
   # Build the geometry and plugins, runs other tests
   other_test:
