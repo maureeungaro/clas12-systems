@@ -1,4 +1,4 @@
-#include "ft_cal.h"
+#include "ftof.h"
 
 // ccdb
 #include <CCDB/Calibration.h>
@@ -12,7 +12,7 @@ unique_ptr<Calibration> calib(CalibrationGenerator::CreateCalibration(connection
 int icomponent;
 vector<vector<double> > data;
 
-bool FT_CAL_Plugin::loadTT(int runno, string variation)
+bool FTOF_Plugin::loadTT(int runno, string variation)
 {
 	translationTable = new GTranslationTable();
 

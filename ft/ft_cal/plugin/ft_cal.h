@@ -23,6 +23,9 @@ public:
 
 private:
 
+	// Calibration Constants
+	// ---------------------
+	
 	// noise
 	float pedestal[484];
 	float pedestal_rms[484];
@@ -53,9 +56,6 @@ private:
 
 	// crystal paramters
 	float light_speed;
-
-	//	voltage signal parameters, using float gaussian + delay (function DGauss, need documentation for it)
-	float vpar[4];
 
 };
 
