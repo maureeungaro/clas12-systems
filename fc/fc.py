@@ -18,7 +18,7 @@ def main():
     for mfield_key, builder in VARIATION_MAP.items():
         print(f"Building forward carriage geometry with {mfield_key} magnetic field")
         # Define GConfiguration name, factory and description. Initialize it.
-        configuration = GConfiguration('forwardCarriage', 'TEXT', 'CLAS12 Forward Carriage')
+        configuration = GConfiguration('clas12ForwardCarriage', 'TEXT', 'CLAS12 Forward Carriage')
         configuration.setVariation(mfield_key)
         configuration.init_geom_file()
 

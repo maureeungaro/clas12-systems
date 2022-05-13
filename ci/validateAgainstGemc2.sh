@@ -72,7 +72,7 @@ case $detector in
 	fc)
 		subsystem_template_name="forward_carriage"
 		gemc2_filename_prefix="forwardCarriage"
-		gemc3_filename_prefix="forwardCarriage"
+		gemc3_filename_prefix="clas12ForwardCarriage"
 		;;
 	ft/ft_cal)
 		subsystem_template_name="ft_cal"
