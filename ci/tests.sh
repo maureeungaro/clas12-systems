@@ -67,7 +67,7 @@ TestTypeNotDefined() {
 TestTypeDirNotExisting() {
 	echo Test Type dir: $detector/$testType not existing
 	Help
-	exit 3
+	exit 0
 }
 
 JcardsToRun () {
