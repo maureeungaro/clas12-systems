@@ -1,25 +1,16 @@
 {
-	# number of threads
-	# The checkOverlaps = 2 options cause random crash when nthreads is > 1,
-	# possibly due to geometry asked by the run manager to delete objects while in use.
-	# This is an issue open on sci-g until new geant4 versions can be checked.
-	"nthreads": 1,
+	# Run check overlaps for longitudinal target
 
-	# verbosities
-	"verbosity": 1,
-	"gsystemv": 0,
-	"g4systemv": 0,
+	# nthreads must be 1 to run checkOverlaps
+	"nthreads": 1,
 
 	# the target system
 	"+gsystem": [
 		{
-			"system":   "./clas12Target",
-			"factory": "text",
-			"variation": "longitudinal"
+			"system":   "./clas12Target", "factory": "text", "variation": "longitudinal"
 		}
 	],
 
-	"n": 100,
-	"checkOverlaps": 2
+	"checkOverlaps": 1
 
 }
