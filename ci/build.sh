@@ -20,12 +20,13 @@ Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: build.sh [-h|s]"
+	echo "Syntax: build.sh [-h|s|a]"
 	echo
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
 	echo "-s <System>: build geometry and plugin for <System>"
+	echo "-a: build geometry and plugin for all supported systems"
 	echo
 }
 
@@ -34,7 +35,10 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-while getopts ":hs:" option; do
+# available systems
+allSystems=(ft/ft_cal ftof targets)
+
+while getopts ":has:" option; do
    case $option in
       h) # display Help
          Help
@@ -43,6 +47,9 @@ while getopts ":hs:" option; do
       s)
          detector=$OPTARG
          ;;
+      a)
+         buildAll=yes
+         ;;
      \?) # Invalid option
          echo "Error: Invalid option"
          exit 1
@@ -50,17 +57,21 @@ while getopts ":hs:" option; do
    esac
 done
 
-DetectorNotDefined () {
-	echo "Detector is not set."
-	Help
-	exit 2
+CheckConditions () {
+	if [[ ! -v buildAll ]]; then
+		if [[ -v detector ]]; then
+			echo "Building $detector"
+		else
+			echo "Detector is not set."
+			Help
+			exit 2
+		fi
+	fi
 }
 
-# exit if detector var is not defined
-[[ -v detector ]] && echo "Building $detector" || DetectorNotDefined
-
 DefineScriptName() {
-	subDir=$(basename $detector)
+	system=$1
+	subDir=$(basename $system)
 	script="./"$subDir".py"
 }
 
@@ -77,9 +88,6 @@ CreateAndCopyDetectorTXTs() {
 	mv $=filesToCopy $GPLUGIN_PATH
 	# cleaning up
 	test -d __pycache__ && rm -rf __pycache__
-	echo
-	echo $GPLUGIN_PATH content:
-	ls -ltrh $GPLUGIN_PATH
 }
 
 CompileAndCopyPlugin() {
@@ -92,19 +100,33 @@ CompileAndCopyPlugin() {
 	scons -c
 	# cleaning up
 	rm -rf .sconsign.dblite
-	cd -
+}
+
+BuildSystem() {
+	system=$1
+	DefineScriptName $system
+	echo
+	echo Building geometry for $system. GPLUGIN_PATH is $GPLUGIN_PATH
+	echo
+	pwd
+	cd $system
+	CreateAndCopyDetectorTXTs
+	test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
+	echo $GPLUGIN_PATH content:
+	ls -ltrh $GPLUGIN_PATH
+	cd $startDir
+}
+
+BuildAllSystems() {
+	for s in $allSystems
+	do
+		BuildSystem $s
+	done
 }
 
 startDir=`pwd`
 GPLUGIN_PATH=$startDir/systemsTxtDB
 script=no
 
-DefineScriptName $detector
-
-echo
-echo Building geometry for $detector. GPLUGIN_PATH is $GPLUGIN_PATH
-echo
-cd $detector
-CreateAndCopyDetectorTXTs
-test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
+[[ -v buildAll ]] && BuildAllSystems || BuildSystem $detector
 

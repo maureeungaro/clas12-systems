@@ -1,0 +1,5 @@
+targetCell | root | G4Tubs | 0.0*mm, 10.0*mm, 146.63*mm, 0.0*deg, 360.0*deg | G4_He | 0*mm, 0*mm, 105.78*mm | 0*deg, 0*deg, 0*deg | na | 1 | 1 | 5511111 | na | na | na | na | na | na | 1 | Helium cell |
+testPbTarget | targetCell | G4Tubs | 0.0*mm, 5.0*mm, 0.0625*mm, 0.0*deg, 360.0*deg | G4_Pb | 0*mm, 0*mm, -105.78*mm | 0*deg, 0*deg, 0*deg | na | 1 | 1 | 004488 | na | na | na | na | na | na | 1 | Pb target |
+AlTargetFoilUpstream | targetCell | G4Tubs | 0.0*mm, 5.0*mm, 0.015*mm, 0.0*deg, 360.0*deg | G4_Al | 0*mm, 0*mm, -146.53*mm | 0*deg, 0*deg, 0*deg | na | 1 | 1 | aaaaaa | na | na | na | na | na | na | 1 | Aluminum Upstream Foil |
+AlTargetFoilDownstream | targetCell | G4Tubs | 0.0*mm, 5.0*mm, 0.015*mm, 0.0*deg, 360.0*deg | G4_Al | 0*mm, 0*mm, 146.53*mm | 0*deg, 0*deg, 0*deg | na | 1 | 1 | aaaaaa | na | na | na | na | na | na | 1 | Aluminum Downstream Foil |
+testFlux | root | G4Tubs | 0.0*mm, 45.0*mm, 0.015*mm, 0.0*deg, 360.0*deg | G4_AIR | 0*mm, 0*mm, 300.0*mm | 0*deg, 0*deg, 0*deg | na | 1 | 1 | 009900 | flux | id: 1 | na | na | na | na | 1 | Flux detector |
