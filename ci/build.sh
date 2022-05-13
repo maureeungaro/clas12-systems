@@ -66,7 +66,6 @@ DefineScriptName() {
 
 
 CreateAndCopyDetectorTXTs() {
-	ls -ltrh ./
 	echo
 	echo Running $script
 	$script
@@ -78,7 +77,6 @@ CreateAndCopyDetectorTXTs() {
 	mv $=filesToCopy $GPLUGIN_PATH
 	# cleaning up
 	test -d __pycache__ && rm -rf __pycache__
-	ls -ltrh ./
 	echo
 	echo $GPLUGIN_PATH content:
 	ls -ltrh $GPLUGIN_PATH

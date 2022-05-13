@@ -35,6 +35,7 @@ jobs:
       - name: Build geo
         run: |
           ./ci/build.sh -s ${{ matrix.detector }}
+          ./ci/validateAgainstGemc2.sh -s ${{ matrix.detector }}
 
   # Build the geometry and plugins, runs overlaps test
   overlap_test:
@@ -42,6 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
     name: Overlap Tests ${{ matrix.detector }}
+    if: "true"
     strategy:
       fail-fast: false
       matrix:
@@ -56,6 +58,7 @@ jobs:
       - name: Overlap tests
         run: |
           ./ci/tests.sh -s ${{ matrix.detector }} -o
+          ./ci/validateAgainstGemc2.sh -s ${{ matrix.detector }}
 
   # Build the geometry and plugins, runs other tests
   other_test:
@@ -63,6 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
     name: Additional Tests ${{ matrix.detector }}
+    if: "false"
     strategy:
       fail-fast: false
       matrix:
