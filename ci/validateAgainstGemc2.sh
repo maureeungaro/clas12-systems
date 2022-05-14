@@ -2,13 +2,11 @@
 set -e
 
 # Purpose: compares the geometry implemented in gemc3 to the geometry in gemc2 for selected detector
-# Assumptions:
-# 
 
 # Container run example:
 # docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
-# ./ci/build.sh -s ft/ft_cal
+# ./ci/validateAgainstGemc2.sh-s -s ftof
 
 # load environment if we're on the container
 # notice the extra argument to the source command
@@ -30,7 +28,7 @@ Help()
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
-	echo "-s <System>: build geometry and plugin for <System>"
+	echo "-s <System>: compare geometry for <System>"
 	echo
 }
 
@@ -74,7 +72,7 @@ case $detector in
 	fc)
 		subsystem_template_name="forward_carriage"
 		gemc2_filename_prefix="forwardCarriage"
-		gemc3_filename_prefix="forwardCarriage"
+		gemc3_filename_prefix="clas12ForwardCarriage"
 		;;
 	ft/ft_cal)
 		subsystem_template_name="ft_cal"
@@ -92,14 +90,6 @@ case $detector in
     	exit 1
         ;;
    esac
-
-
-function get_gemc2_data_for_comparison {
-
-	echo "Cloning GEMC2 repository $GEMC2_DATA_CLONE_URL to $GEMC2_DATA_CLONE_DIR to use for comparison"
-
-	git clone --quiet "$GEMC2_DATA_CLONE_URL" "$GEMC2_DATA_CLONE_DIR"
-}
 
 function run_comparison {
 
