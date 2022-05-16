@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "$GITHUB"
           echo "$GITHUB_BEFORE"
-          ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_EVENT_BEFORE
+          ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE
           echo "::set-output name=matrix::$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
