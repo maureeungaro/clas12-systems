@@ -17,8 +17,8 @@ on:
 
 whatChanged:
   steps:
-	- name: Checkout
-	  uses: actions/checkout@main
+    - name: Checkout
+      uses: actions/checkout@main
     - id: set-matrix
       run: |
         sudo apt-get install jq
