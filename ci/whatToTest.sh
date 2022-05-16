@@ -86,7 +86,7 @@ echo GITHUB_SHA $GITHUB_SHA
 CheckCommit
 
 # Pull Request
-if [ $GITHUB_BASE_REF != "no"]; then
+if [ $GITHUB_BASE_REF != "no" ]; then
 	git fetch origin $GITHUB_BASE_REF --depth=1
 	echo git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA
 	#GITDIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
