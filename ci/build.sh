@@ -36,7 +36,8 @@ if [ $# -eq 0 ]; then
 fi
 
 # available systems
-allSystems=(ft/ft_cal ftof targets)
+# ordered by z position
+allSystems=(targets fc ft/ft_cal ftof)
 
 while getopts ":has:" option; do
    case $option in
