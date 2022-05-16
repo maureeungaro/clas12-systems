@@ -93,7 +93,7 @@ if [ $GITHUB_BASE_REF != "no" ]; then
 else # Push
 	git fetch origin $LASTCOMMIT --depth=1
 	echo git diff --name-only $LASTCOMMIT $GITHUB_SHA
-	#GITDIFF=$( git diff --name-only ${{ $LASTCOMMIT }} $GITHUB_SHA )
+	#GITDIFF=$( git diff --name-only $$LASTCOMMIT $GITHUB_SHA )
 fi
  
 echo $GITDIFF
