@@ -1,0 +1,52 @@
+
+name: build
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on all pushes
+  push:
+  pull_request:
+    types:
+      # only run workflow when a commit is pushed to a PR branch
+      # instead of running for all other PR events
+      - synchronize
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+whatChanged:
+  steps:
+	- name: Checkout
+	  uses: actions/checkout@main
+    - id: set-matrix
+      run: |
+        sudo apt-get install jq
+        echo "::set-output name=matrix::$(ci/whatToTest.sh)"
+  outputs:
+    matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  needs: whatChanged
+  # Build the geometry and plugins, install them in systemsTxtDB
+  build_geometry_and_plugins:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: jeffersonlab/gemc:3.0-clas12
+    name: Build ${{ matrix.detector }}
+    strategy:
+      fail-fast: false
+      matrix:
+        detector: ${{ needs.whatChanged.outputs.matrix }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Build geo
+        run: |
+          ./ci/build.sh -s ${{ matrix.detector }}
+
+
