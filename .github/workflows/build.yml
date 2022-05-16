@@ -30,7 +30,7 @@ jobs:
     env:
       GITHUB_EVENT_BEFORE: ${{ github.event.before }}
       GITHUB_EVENT_AFTER: ${{ github.event.after }}
-      GITHUB_: ${{ github }}
+#      GITHUB: ${{ github }}
 
 #  # Build the geometry and plugins, install them in systemsTxtDB
 #  build_geometry_and_plugins:
