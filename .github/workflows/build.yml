@@ -24,7 +24,7 @@ jobs:
       - id: set-matrix
         run: |
           sudo apt-get install jq
-          echo "::set-output name=matrix::$(ci/whatToTest.sh)"
+          echo "::set-output name=matrix::$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.before )"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
