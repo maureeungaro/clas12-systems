@@ -30,7 +30,7 @@ jobs:
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
-	   run: echo "$GITHUB_CONTEXT"   outputs:
+      run: echo "$GITHUB_CONTEXT" 
 
 
 #  # Build the geometry and plugins, install them in systemsTxtDB
