@@ -85,16 +85,15 @@ echo GITHUB_SHA $GITHUB_SHA
 
 CheckCommit
 
-
 # Pull Request
-if [ $GITHUB_BASE_REF ]; then
+if [ $GITHUB_BASE_REF != "no"]; then
 	git fetch origin $GITHUB_BASE_REF --depth=1
 	echo git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA
-	GITDIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
+	#GITDIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
 else # Push
 	git fetch origin ${{ $LASTCOMMIT }} --depth=1
-	echo
-	GITDIFF=$( git diff --name-only ${{ $LASTCOMMIT }} $GITHUB_SHA )
+	echo git diff --name-only ${{ $LASTCOMMIT }} $GITHUB_SHA
+	#GITDIFF=$( git diff --name-only ${{ $LASTCOMMIT }} $GITHUB_SHA )
 fi
 
 echo $GITDIFF
