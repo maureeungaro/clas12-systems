@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@main
       - id: set-matrix
         run: |
-          ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.base_ref
+          ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_EVENT_BEFORE
           echo "::set-output name=matrix::$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.before )"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
