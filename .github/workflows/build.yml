@@ -25,11 +25,12 @@ jobs:
         run: |
           ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.before
           echo "::set-output name=matrix::$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.before )"
-    - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"   outputs:
+    outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+    - name: Dump GitHub context
+		env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+	   run: echo "$GITHUB_CONTEXT"   outputs:
 
 
 #  # Build the geometry and plugins, install them in systemsTxtDB
