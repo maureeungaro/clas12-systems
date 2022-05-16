@@ -23,30 +23,30 @@ jobs:
         uses: actions/checkout@main
       - id: set-matrix
         run: |
-          sudo apt-get install jq
+          ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.before
           echo "::set-output name=matrix::$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.before )"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
 
-  # Build the geometry and plugins, install them in systemsTxtDB
-  build_geometry_and_plugins:
-    needs: whatChanged
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    container: jeffersonlab/gemc:3.0-clas12
-    name: Build ${{ matrix.detector }}
-    strategy:
-      fail-fast: false
-      matrix:
-        detector: ${{ needs.whatChanged.outputs.matrix }}
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Checkout
-        uses: actions/checkout@main
-      - name: Build geo
-        run: |
-          ./ci/build.sh -s ${{ matrix.detector }}
-
+#  # Build the geometry and plugins, install them in systemsTxtDB
+#  build_geometry_and_plugins:
+#    needs: whatChanged
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#    container: jeffersonlab/gemc:3.0-clas12
+#    name: Build ${{ matrix.detector }}
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        detector: ${{ needs.whatChanged.outputs.matrix }}
+#
+#    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@main
+#      - name: Build geo
+#        run: |
+#          ./ci/build.sh -s ${{ matrix.detector }}
+#
 
