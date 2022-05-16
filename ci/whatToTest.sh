@@ -95,5 +95,5 @@ else # Push
 	echo git diff --name-only ${{ $LASTCOMMIT }} $GITHUB_SHA
 	#GITDIFF=$( git diff --name-only ${{ $LASTCOMMIT }} $GITHUB_SHA )
 fi
-
+ 
 echo $GITDIFF
