@@ -1,5 +1,5 @@
 
-name: build
+name: clas12-build
 
 # Controls when the workflow will run
 on:
@@ -14,24 +14,23 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-
-whatChanged:
-  steps:
-    - name: Checkout
-      uses: actions/checkout@main
-    - id: set-matrix
-      run: |
-        sudo apt-get install jq
-        echo "::set-output name=matrix::$(ci/whatToTest.sh)"
-  outputs:
-    matrix: ${{ steps.set-matrix.outputs.matrix }}
-
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  needs: whatChanged
+
+  whatChanged:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - id: set-matrix
+        run: |
+          sudo apt-get install jq
+          echo "::set-output name=matrix::$(ci/whatToTest.sh)"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+
   # Build the geometry and plugins, install them in systemsTxtDB
   build_geometry_and_plugins:
+    needs: whatChanged
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
