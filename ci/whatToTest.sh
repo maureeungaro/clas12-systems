@@ -1,4 +1,5 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
+# Using bash instead of zsh so we do not have to apt-get install zsh in ci
 
 # Purpose: echo the list of systems changed by the last commit
 # This could come from a push or a pull requrest.
@@ -9,7 +10,7 @@ Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: build.sh [-h|b|c|g]"
+	echo "Syntax: whatToTest.sh [-h|b|c|g]"
 	echo
 	echo "Options:"
 	echo
@@ -59,15 +60,28 @@ while getopts ":hb:c:g:" option; do
    esac
 done
 
+NoRef() {
+	echo One of -b or -g options must be used
+	Help
+	exit 2
+}
+
+NoCommit() {
+	echo The option -c is mandatory
+	Help
+	exit 2
+}
+
 # exit if both GITHUB_BASE_REF and LASTCOMMIT are not set
 CheckCommit() {
 	echo
-	[[ $GITHUB_BASE_REF=="no" && $GITHUB_BASE_REF=="no"  ]] && echo One of -b or -g options must be used
-	[[ $GITHUB_SHA=="no" ]] && echo The option -c is mandatory
-	Help
-	exit
+	[[ $GITHUB_BASE_REF == "no" && $LASTCOMMIT == "no" ]] && NoRef
+	[[ $GITHUB_SHA      == "no" ]]                        && NoCommit
 }
 
+echo GITHUB_BASE_REF $GITHUB_BASE_REF
+echo LASTCOMMIT $LASTCOMMIT
+echo GITHUB_SHA $GITHUB_SHA
 
 CheckCommit
 
@@ -83,3 +97,4 @@ else # Push
 	GITDIFF=$( git diff --name-only ${{ $LASTCOMMIT }} $GITHUB_SHA )
 fi
 
+echo $GITDIFF
