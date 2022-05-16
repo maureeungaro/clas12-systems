@@ -23,14 +23,14 @@ jobs:
         uses: actions/checkout@main
       - id: set-matrix
         run: |
+          run: echo "$GITHUB_CONTEXT"
           ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_EVENT_BEFORE
           echo "::set-output name=matrix::$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g github.event.before )"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     env:
-      GITHUB_EVENT_BEFORE: ${{ github.event.before }}
-      GITHUB_EVENT_AFTER: ${{ github.event.after }}
-#      GITHUB: ${{ github }}
+      GITHUB: ${{ toJson(github) }}
+
 
 #  # Build the geometry and plugins, install them in systemsTxtDB
 #  build_geometry_and_plugins:
