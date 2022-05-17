@@ -32,7 +32,10 @@ TODO:
 
 -->
 
-[![clas12-system](https://github.com/gemc/clas12-systems/actions/workflows/main.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/main.yml)
+[![build](https://github.com/maureeungaro/clas12-systems/actions/workflows/build.yml/badge.svg)](https://github.com/maureeungaro/clas12-systems/actions/workflows/build.yml)
 
+[![overlaps](https://github.com/maureeungaro/clas12-systems/actions/workflows/overlaps.yml/badge.svg)](https://github.com/maureeungaro/clas12-systems/actions/workflows/overlaps.yml)
 
+[![tests](https://github.com/maureeungaro/clas12-systems/actions/workflows/tests.yml/badge.svg)](https://github.com/maureeungaro/clas12-systems/actions/workflows/tests.yml)
 
+[![validate](https://github.com/maureeungaro/clas12-systems/actions/workflows/validate.yml/badge.svg)](https://github.com/maureeungaro/clas12-systems/actions/workflows/validate.yml)

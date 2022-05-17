@@ -29,12 +29,8 @@
 	],
 
 	"digitizationVariation": "rga_spring2018_mc",
-	"n": 200,
-	"eventTimeSize": "2*us",
-	"checkOverlaps": 0,
+	"n": 1000,
 	"+gparticle": [
 		{ "pname": "e-", "multiplicity": 1,  "p": 2300,  "theta": 23.0, "delta_phi": 180.0}
 	]
-
-
 }
