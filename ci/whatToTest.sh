@@ -101,7 +101,7 @@ systemsChanged=()
 for f in $FILESCHANGED
 do
 	bdir=$(dirname $f)
-	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=$allSystems || systemsChanged=($systemsChanged $bdir)
+	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=("${allSystems[@]}")  || systemsChanged=($systemsChanged $bdir)
 done
 
 echo $systemsChanged
