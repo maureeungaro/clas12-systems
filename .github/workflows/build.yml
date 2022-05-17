@@ -26,7 +26,7 @@ jobs:
         run: |
           if [ $GITHUB_BASE_REF ]; then
             BASE_REF=no
-			 else
+          else
             BASE_REF=$GITHUB_BASE_REF
           fi
           export JSON=$( ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
