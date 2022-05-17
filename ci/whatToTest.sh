@@ -27,10 +27,6 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-# available systems
-# ordered by z position
-allSystems=( targets fc ft/ft_cal ftof )
-
 # GITHUB_BASE_REF and LASTCOMMIT may be passed empty (for example -b -c ccc -g ggg)
 # This ensures that they are not assigned the other flags
 while getopts ":hdb:c:g:" option; do
@@ -80,11 +76,32 @@ NoCommit() {
 CheckCommit() {
 	echo
 	[[ $GITHUB_BASE_REF == "no" && $GITHUB_BEFORE == "no" ]] && NoRef
-	[[ $GITHUB_SHA      == "no" ]]                          && NoCommit
+	[[ $GITHUB_SHA      == "no" ]]                           && NoCommit
 }
 
-
 [[ ! -z $DEBUG ]] && echo "GITHUB_BASE_REF: $GITHUB_BASE_REF\n GITHUB_SHA: $GITHUB_SHA\n GITHUB_BEFORE: $GITHUB_BEFORE"
+
+allSystems=( targets fc ft/ft_cal ftof ) # available systems ordered by z position
+systemsChanged=()                        # list of system changed in last PR or push
+breakLoop=0                              # set in checkSystem to break main loop if changes in the core files are detected
+
+# if the base name dir contains one of the system, add that system
+checkSystem () {
+	systemDir=$1
+	
+	if [[ $systemDir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" ]];
+	then
+		systemsChanged=("${allSystems[@]}")
+		breakLoop=1
+	else
+		for ss in ${allSystems[*]}
+		do
+			systemPresent=$( echo $systemDir | grep $ss | wc | awk '{print $1}' )
+			(( $systemPresent == 1 )) && systemsChanged=($systemsChanged $bdir)
+		done
+	fi
+
+}
 
 CheckCommit
 
@@ -92,16 +109,17 @@ CheckCommit
 if [[ $GITHUB_BASE_REF != "no" ]]; then
 	git fetch origin $GITHUB_BASE_REF --depth=1 -q
 	FILESCHANGED=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
-else # Push
+# Push
+else 
 	git fetch origin $GITHUB_BEFORE --depth=1 -q
 	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA  )
 fi
 
-systemsChanged=()
 for f in $FILESCHANGED
 do
 	bdir=$(dirname $f)
-	[[ $bdir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" ]] && systemsChanged=("${allSystems[@]}")  || systemsChanged=($systemsChanged $bdir)
+	checkSystem $bdir
+	(( $breakLoop == 1 )) && break
 done
 
 echo "{\"include\":["
