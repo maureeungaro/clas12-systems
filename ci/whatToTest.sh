@@ -90,14 +90,14 @@ CheckCommit
 
 # Pull Request
 if [[ $GITHUB_BASE_REF != "no" ]]; then
-	git fetch origin $GITHUB_BASE_REF --depth=1
+	git fetch origin $GITHUB_BASE_REF --depth=1 -q
 	FILESCHANGED=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA | grep -v .github/workflows)
 else # Push
-	git fetch origin $GITHUB_BEFORE --depth=100
+	git fetch origin $GITHUB_BEFORE --depth=1 -q
 	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA | grep -v .github/workflows )
 fi
 
-systemsChanged=()
+systemsChanged()
 for f in $FILESCHANGED
 do
 	bdir=$(dirname $f)
