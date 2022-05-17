@@ -5,7 +5,7 @@
 # This could come from a push or a pull requrest.
 #
 # If the changes were made to the directories groovyFactories, ci, returns all supported systems
-
+#
 Help()
 {
 	# Display Help
@@ -93,7 +93,7 @@ if [[ $GITHUB_BASE_REF != "no" ]]; then
 	git fetch origin $GITHUB_BASE_REF --depth=1
 	FILESCHANGED=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA | grep -v .github/workflows)
 else # Push
-	git fetch origin $GITHUB_BEFORE --depth=1
+	git fetch origin $GITHUB_BEFORE --depth=100
 	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA | grep -v .github/workflows )
 fi
 
@@ -101,7 +101,7 @@ systemsChanged=()
 for f in $FILESCHANGED
 do
 	bdir=$(dirname $f)
-	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=allSystems || systemsChanged=($systemsChanged $bdir)
+	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=$allSystems || systemsChanged=($systemsChanged $bdir)
 done
 
-echo hello $systemsChanged hello
+echo $systemsChanged
