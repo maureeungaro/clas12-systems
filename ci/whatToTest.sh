@@ -122,8 +122,10 @@ do
 	(( $breakLoop == 1 )) && break
 done
 
+uniqueSystemsChanged=$( printf "%s\n" "${a[@]}" | sort -u )
+
 echo "{\"include\":["
-for s in ${systemsChanged[*]}
+for s in ${uniqueSystemsChanged[*]}
 do
 	[[ $s == ${systemsChanged[${#systemsChanged[@]}-1]} ]] && echo  "{\"detector\": \"$s\"}" || echo  "{\"detector\": \"$s\"},"
 done
