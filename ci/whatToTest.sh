@@ -104,4 +104,9 @@ do
 	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=("${allSystems[@]}")  || systemsChanged=($systemsChanged $bdir)
 done
 
-echo ${systemsChanged[*]}
+echo "{\"include\":["
+for s in ${systemsChanged[*]}
+do
+	[[ $s == ${systemsChanged[${#systemsChanged[@]}-1]} ]] && echo  "{\"detector\": \"$s\"}" || echo  "{\"detector\": \"$s\"},"
+done
+echo "]}"
