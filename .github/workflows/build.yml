@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@main
       - id: set-matrix
         run: |
-          export JSON=$( ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
+          export JSON=$( ./ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
           echo "::set-output name=matrix::$( echo "$JSON" | tr -d '\n' )"
     env:
       GITHUB_BEFORE: ${{ github.event.before }}
@@ -35,7 +35,7 @@ jobs:
     needs: generate-matrix
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-#    container: jeffersonlab/gemc:3.0-clas12
+    container: jeffersonlab/gemc:3.0-clas12
     name: Build ${{ matrix.detector }}
     strategy:
       fail-fast: false
@@ -47,6 +47,6 @@ jobs:
         uses: actions/checkout@main
       - name: Build geo
         run: |
-          echo Building ${{ matrix.detector }}
+          ./ci/build.sh -s ${{ matrix.detector }}
 
 
