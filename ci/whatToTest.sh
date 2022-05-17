@@ -104,4 +104,4 @@ do
 	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=allSystems || systemsChanged=($systemsChanged $bdir)
 done
 
-echo $systemsChanged
+echo hello $systemsChanged hello
