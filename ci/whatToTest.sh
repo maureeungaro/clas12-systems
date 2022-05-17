@@ -84,18 +84,16 @@ CheckCommit() {
 }
 
 
-echo AAA $DEBUG
-
 [[ -z $DEBUG ]] && echo "GITHUB_BASE_REF: $GITHUB_BASE_REF\n GITHUB_SHA: $GITHUB_SHA\n GITHUB_BEFORE: $GITHUB_BEFORE"
 
 CheckCommit
 
 # Pull Request
 if [[ $GITHUB_BASE_REF != "no" ]]; then
-	#git fetch origin $GITHUB_BASE_REF --depth=1
+	git fetch origin $GITHUB_BASE_REF --depth=1
 	FILESCHANGED=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA | grep -v .github/workflows)
 else # Push
-	#git fetch origin $GITHUB_BEFORE --depth=1
+	git fetch origin $GITHUB_BEFORE --depth=1
 	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA | grep -v .github/workflows )
 fi
 
