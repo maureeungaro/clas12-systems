@@ -79,21 +79,16 @@ CheckCommit() {
 	[[ $GITHUB_SHA      == "no" ]]                          && NoCommit
 }
 
-echo GITHUB_BASE_REF $GITHUB_BASE_REF
-echo GITHUB_BEFORE $GITHUB_BEFORE
-echo GITHUB_SHA $GITHUB_SHA
 
 CheckCommit
 
 # Pull Request
 if [ $GITHUB_BASE_REF != "no" ]; then
 	git fetch origin $GITHUB_BASE_REF --depth=1
-	echo git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA
-	#GITDIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
+	GITDIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
 else # Push
 	git fetch origin $GITHUB_BEFORE --depth=1
-	echo git diff --name-only $GITHUB_BEFORE $GITHUB_SHA
-	#GITDIFF=$( git diff --name-only $$LASTCOMMIT $GITHUB_SHA )
+	GITDIFF=$( git diff --name-only $$LASTCOMMIT $GITHUB_SHA )
 fi
  
 echo $GITDIFF
