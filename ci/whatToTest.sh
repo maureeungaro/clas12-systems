@@ -91,17 +91,17 @@ CheckCommit
 # Pull Request
 if [[ $GITHUB_BASE_REF != "no" ]]; then
 	git fetch origin $GITHUB_BASE_REF --depth=1 -q
-	FILESCHANGED=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA | grep -v .github/workflows)
+	FILESCHANGED=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
 else # Push
 	git fetch origin $GITHUB_BEFORE --depth=1 -q
-	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA | grep -v .github/workflows )
+	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA  )
 fi
 
 systemsChanged=()
 for f in $FILESCHANGED
 do
 	bdir=$(dirname $f)
-	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=("${allSystems[@]}")  || systemsChanged=($systemsChanged $bdir)
+	[[ $bdir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" ]] && systemsChanged=("${allSystems[@]}")  || systemsChanged=($systemsChanged $bdir)
 done
 
 echo "{\"include\":["
