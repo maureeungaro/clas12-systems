@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@main
       - id: set-matrix
         run: |
-          export JSON=$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )"
+          export JSON=$( ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )"
           echo "::set-output name=matrix::$( echo "$JSON" | tr -d '\n' )"
     env:
       GITHUB_BEFORE: ${{ github.event.before }}
