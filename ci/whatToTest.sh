@@ -29,7 +29,7 @@ fi
 
 # available systems
 # ordered by z position
-allSystems=(targets fc ft/ft_cal ftof)
+allSystems=( targets fc ft/ft_cal ftof )
 
 # GITHUB_BASE_REF and LASTCOMMIT may be passed empty (for example -b -c ccc -g ggg)
 # This ensures that they are not assigned the other flags
@@ -84,7 +84,7 @@ CheckCommit() {
 }
 
 
-[[ -z $DEBUG ]] && echo "GITHUB_BASE_REF: $GITHUB_BASE_REF\n GITHUB_SHA: $GITHUB_SHA\n GITHUB_BEFORE: $GITHUB_BEFORE"
+[[ ! -z $DEBUG ]] && echo "GITHUB_BASE_REF: $GITHUB_BASE_REF\n GITHUB_SHA: $GITHUB_SHA\n GITHUB_BEFORE: $GITHUB_BEFORE"
 
 CheckCommit
 
@@ -97,11 +97,11 @@ else # Push
 	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA | grep -v .github/workflows )
 fi
 
-declare -A systemsChanged
+systemsChanged=(a b c )
 for f in $FILESCHANGED
 do
 	bdir=$(dirname $f)
 	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=("${allSystems[@]}")  || systemsChanged=($systemsChanged $bdir)
 done
 
-echo $systemsChanged
+echo ${systemsChanged[*]}
