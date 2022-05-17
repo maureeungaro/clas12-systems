@@ -17,7 +17,7 @@ Help()
 	echo "-h: Print this Help."
 	echo "-b <GITHUB_BASE_REF>: sets the name of the base ref or target branch of the pull request"
 	echo "-c <GITHUB_SHA>: sets the name of the commit SHA that triggered the workflow"
-	echo "-g <LASTCOMMIT>: sets the name of the previous commit"
+	echo "-g <GITHUB_BEFORE>: sets the name of the previous commit"
 	echo
 }
 
@@ -49,9 +49,9 @@ while getopts ":hb:c:g:" option; do
 			[[ $GITHUB_SHA == "-g" ]] && GITHUB_SHA=no
          ;;
       g)
-         LASTCOMMIT=$OPTARG
-			[[ $LASTCOMMIT == "-c" ]] && LASTCOMMIT=no
-			[[ $LASTCOMMIT == "-b" ]] && LASTCOMMIT=no
+         GITHUB_BEFORE=$OPTARG
+			[[ $GITHUB_BEFORE == "-c" ]] && GITHUB_BEFORE=no
+			[[ $GITHUB_BEFORE == "-b" ]] && GITHUB_BEFORE=no
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
@@ -75,12 +75,12 @@ NoCommit() {
 # exit if both GITHUB_BASE_REF and LASTCOMMIT are not set
 CheckCommit() {
 	echo
-	[[ $GITHUB_BASE_REF == "no" && $LASTCOMMIT == "no" ]] && NoRef
-	[[ $GITHUB_SHA      == "no" ]]                        && NoCommit
+	[[ $GITHUB_BASE_REF == "no" && $GITHUB_BEFORE == "no" ]] && NoRef
+	[[ $GITHUB_SHA      == "no" ]]                          && NoCommit
 }
 
 echo GITHUB_BASE_REF $GITHUB_BASE_REF
-echo LASTCOMMIT $LASTCOMMIT
+echo GITHUB_BEFORE $GITHUB_BEFORE
 echo GITHUB_SHA $GITHUB_SHA
 
 CheckCommit
@@ -91,8 +91,8 @@ if [ $GITHUB_BASE_REF != "no" ]; then
 	echo git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA
 	#GITDIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
 else # Push
-	git fetch origin $LASTCOMMIT --depth=1
-	echo git diff --name-only $LASTCOMMIT $GITHUB_SHA
+	git fetch origin $GITHUB_BEFORE --depth=1
+	echo git diff --name-only $GITHUB_BEFORE $GITHUB_SHA
 	#GITDIFF=$( git diff --name-only $$LASTCOMMIT $GITHUB_SHA )
 fi
  
