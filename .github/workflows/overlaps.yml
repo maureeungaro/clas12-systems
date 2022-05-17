@@ -1,0 +1,57 @@
+name: overlaps
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on all pushes
+  push:
+  pull_request:
+    types:
+      # only run workflow when a commit is pushed to a PR branch
+      # instead of running for all other PR events
+      - synchronize
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  generate-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Check changed files
+        uses: actions/checkout@main
+      - id: set-matrix
+        run: |
+          if [ $GITHUB_BASE_REF ]; then
+            BASE_REF=no
+          else
+            BASE_REF=$GITHUB_BASE_REF
+          fi
+          export JSON=$( ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
+          echo generate-matrix: $JSON
+          echo "::set-output name=matrix::$( echo "$JSON" | tr -d '\n' )"
+    env:
+      GITHUB_BEFORE: ${{ github.event.before }}
+
+
+  # Check for overlaps
+  overlaps:
+    needs: generate-matrix
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: jeffersonlab/gemc:3.0-clas12
+    name: Overlaps ${{ matrix.detector }}
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Overlaps
+        run: |
+          ./ci/tests.sh -s ${{ matrix.detector }} -o
+
+
