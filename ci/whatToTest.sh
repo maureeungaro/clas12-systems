@@ -97,7 +97,7 @@ else # Push
 	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA | grep -v .github/workflows )
 fi
 
-systemsChanged=(a b c )
+systemsChanged=()
 for f in $FILESCHANGED
 do
 	bdir=$(dirname $f)
