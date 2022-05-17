@@ -4,13 +4,13 @@
 # Purpose: echo the list of systems changed by the last commit
 # This could come from a push or a pull requrest.
 #
-# If the changes were made to groovyFactories, ci, returns all supported systems
+# If the changes were made to the directories groovyFactories, ci, returns all supported systems
 
 Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: whatToTest.sh [-h|b|c|g]"
+	echo "Syntax: whatToTest.sh [-h|d|b|c|g]"
 	echo
 	echo "Options:"
 	echo
@@ -18,6 +18,7 @@ Help()
 	echo "-b <GITHUB_BASE_REF>: sets the name of the base ref or target branch of the pull request"
 	echo "-c <GITHUB_SHA>: sets the name of the commit SHA that triggered the workflow"
 	echo "-g <GITHUB_BEFORE>: sets the name of the previous commit"
+	echo "-d: debug mode (print the passed quantities)"
 	echo
 }
 
@@ -32,7 +33,7 @@ allSystems=(targets fc ft/ft_cal ftof)
 
 # GITHUB_BASE_REF and LASTCOMMIT may be passed empty (for example -b -c ccc -g ggg)
 # This ensures that they are not assigned the other flags
-while getopts ":hb:c:g:" option; do
+while getopts ":hdb:c:g:" option; do
    case $option in
       h) # display Help
          Help
@@ -53,6 +54,9 @@ while getopts ":hb:c:g:" option; do
 			[[ $GITHUB_BEFORE == "-c" ]] && GITHUB_BEFORE=no
 			[[ $GITHUB_BEFORE == "-b" ]] && GITHUB_BEFORE=no
          ;;
+		d)
+		   DEBUG=1
+			;;
      \?) # Invalid option
          echo "Error: Invalid option"
          exit 1
@@ -80,15 +84,26 @@ CheckCommit() {
 }
 
 
+echo AAA $DEBUG
+
+[[ -z $DEBUG ]] && echo "GITHUB_BASE_REF: $GITHUB_BASE_REF\n GITHUB_SHA: $GITHUB_SHA\n GITHUB_BEFORE: $GITHUB_BEFORE"
+
 CheckCommit
 
 # Pull Request
-if [ $GITHUB_BASE_REF != "no" ]; then
-	git fetch origin $GITHUB_BASE_REF --depth=1
-	GITDIFF=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
+if [[ $GITHUB_BASE_REF != "no" ]]; then
+	#git fetch origin $GITHUB_BASE_REF --depth=1
+	FILESCHANGED=$( git diff --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA | grep -v .github/workflows)
 else # Push
-	git fetch origin $GITHUB_BEFORE --depth=1
-	GITDIFF=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA )
+	#git fetch origin $GITHUB_BEFORE --depth=1
+	FILESCHANGED=$( git diff --name-only $GITHUB_BEFORE $GITHUB_SHA | grep -v .github/workflows )
 fi
- 
-echo $GITDIFF
+
+systemsChanged=()
+for f in $FILESCHANGED
+do
+	bdir=$(dirname $f)
+	[[ $bdir == "ci" || $bdir == "groovyFactories" ]] && systemsChanged=allSystems || systemsChanged=($systemsChanged $bdir)
+done
+
+echo $systemsChanged

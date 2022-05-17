@@ -15,7 +15,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   whatChanged:
     runs-on: ubuntu-latest
     steps:
@@ -23,10 +22,12 @@ jobs:
         uses: actions/checkout@main
       - id: set-matrix
         run: |
+          # echo $GITHUB
           echo "::set-output name=matrix::$(ci/whatToTest.sh -b $GITHUB_BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     env:
+      # GITHUB: ${{ toJson(github) }}
       GITHUB_BEFORE: ${{ github.event.before }}
 
 
