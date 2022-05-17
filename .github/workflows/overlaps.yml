@@ -1,4 +1,4 @@
-name: build
+name: overlaps
 
 # Controls when the workflow will run
 on:
@@ -52,6 +52,6 @@ jobs:
         uses: actions/checkout@main
       - name: Build geo
         run: |
-          ./ci/build.sh -s ${{ matrix.detector }}
+          ./ci/tests.sh -s ${{ matrix.detector }} -o
 
 

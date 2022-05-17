@@ -1,0 +1,35 @@
+{
+	"nthreads": 4,
+	
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 2,
+	
+	# the clas12ForwardCarriage system
+	"+gsystem": [
+		{
+			"system":   "./clas12ForwardCarriage",
+			"factory": "text",
+			"variation": "original"
+		}
+	],
+
+	"+goutput": [
+		{
+			"format": "ROOT",
+			"name": "events.root",
+			"type": "event"
+		},
+		{
+			"format": "TEXT",
+			"name": "events.txt",
+			"type": "event"
+		}
+	],
+	
+	"n": 1000,
+	"+gparticle": [
+		{ "pname": "pi0", "multiplicity": 1,  "p": 300,  "theta": 20.0, "delta_phi": 180.0, "vz": -20.0}
+	]
+}
