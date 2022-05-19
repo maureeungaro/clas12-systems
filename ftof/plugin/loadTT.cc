@@ -24,6 +24,10 @@ bool FTOF_Plugin::loadTT(int runno, string variation)
 
 	// filling translation table
 	for(unsigned row = 0; row < data.size(); row++) {
+		int crate   = data[row][0];
+		int slot    = data[row][1];
+		int channel = data[row][2];
+
 		int sector = data[row][3];
 		int panel = data[row][4];
 		int paddle = data[row][5];
