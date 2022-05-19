@@ -1,4 +1,4 @@
-name: tests
+name: CLAS12 Tests
 
 # Controls when the workflow will run
 on:

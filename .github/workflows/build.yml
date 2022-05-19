@@ -1,4 +1,4 @@
-name: build
+name: Build Geo
 
 # Controls when the workflow will run
 on:
