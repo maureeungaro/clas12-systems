@@ -1,6 +1,6 @@
 {
 	# number of threads
-	"nthreads": 4,
+	"nthreads": 2,
 
 	# verbosities
 	"verbosity": 1,
