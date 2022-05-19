@@ -1,4 +1,4 @@
-name: overlaps
+name: Test Overlaps
 
 # Controls when the workflow will run
 on:

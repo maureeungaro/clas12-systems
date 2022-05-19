@@ -4,5 +4,5 @@
         GEMC: Monte Carlo Particles and Hardware Simulator
      =========================================================
 
-	   Forward Tagger Calorimeter (FT_CAL_ geometry and plugin
+	   Forward Tagger Calorimeter (FT_CAL) geometry and plugin
 	   -------------------------------------------------------
