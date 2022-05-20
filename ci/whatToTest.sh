@@ -137,6 +137,8 @@ uniqueSystemsChanged=$( printf "%s\n" "${systemsChanged[@]}" | sort -u )
 
 (( $OUTFLAG == 1 )) && PrintFlag
 
+(( ${#systemsChanged[@]} )) || uniqueSystemsChanged=(irrelevant)
+
 echo "{\"include\":["
 for s in ${uniqueSystemsChanged[*]}
 do
