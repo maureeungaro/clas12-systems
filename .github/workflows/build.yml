@@ -55,13 +55,5 @@ jobs:
         uses: actions/checkout@main
       - name: Build geo
         run: |
-          echo  jobtype: ${{ needs.generate-matrix.outputs.jobtype }}
-          echo  jobtype: needs.generate-matrix.outputs.jobtype
-          echo $RELEVANCE
-#          if [ "$DETECTOR" == "irrelevant" ]; then
-#            ./ci/build.sh -s ${{ matrix.detector }}
-#          else
-#            echo No changes to detectors or workflows, nothing to do
-#          fi
-    env:
-      RELEVANCE: ${{ needs.generate-matrix.outputs.jobtype }}
+           ./ci/build.sh -s ${{ matrix.detector }}
+  
