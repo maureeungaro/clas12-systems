@@ -19,7 +19,6 @@ Help()
 	echo "-c <GITHUB_SHA>: sets the name of the commit SHA that triggered the workflow"
 	echo "-g <GITHUB_BEFORE>: sets the name of the previous commit"
 	echo "-d: debug mode (print the passed quantities)"
-	echo "-f: echo flag to control the build: can echo 'valid' or 'invalid'"
 	echo
 }
 
@@ -29,8 +28,6 @@ if [ $# -eq 0 ]; then
 fi
 
 MDEBUG=0
-OUTFLAG=0
-VALIDJOB=relevant
 
 # GITHUB_BASE_REF and LASTCOMMIT may be passed empty (for example -b -c ccc -g ggg)
 # This ensures that they are not assigned the other flags
@@ -57,9 +54,6 @@ while getopts ":dfhb:c:g:" option; do
          ;;
 		d)
 		   MDEBUG=1
-			;;
-		f)
-		   OUTFLAG=1
 			;;
 		\?) # Invalid option
          echo "Error: Invalid option"
@@ -136,10 +130,6 @@ done
 uniqueSystemsChanged=$( printf "%s\n" "${systemsChanged[@]}" | sort -u )
 
 (( $MDEBUG == 1 )) && echo GITHUB_BASE_REF: $GITHUB_BASE_REF  GITHUB_SHA: $GITHUB_SHA GITHUB_BEFORE: $GITHUB_BEFORE  uniqueSystemsChanged: ${uniqueSystemsChanged[*]}
-
-(( ${#systemsChanged[@]} )) || VALIDJOB=irrelevant
-
-(( $OUTFLAG == 1 )) && PrintFlag
 
 (( ${#systemsChanged[@]} )) || uniqueSystemsChanged=(irrelevant)
 
