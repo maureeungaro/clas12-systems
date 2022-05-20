@@ -52,7 +52,8 @@ jobs:
         uses: actions/checkout@main
       - name: Build geo
         run: |
-          if [ "$DETECTOR" == "" ]; then
+          echo $DETECTOR
+          if [ "$DETECTOR" == "irrelevant" ]; then
             ./ci/build.sh -s ${{ matrix.detector }}
           else
             echo No changes to detectors or workflows, nothing to do
