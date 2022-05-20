@@ -17,7 +17,8 @@ jobs:
   generate-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix:  ${{ steps.set-matrix.outputs.matrix }}
+      jobtype: ${{ steps.set-matrix.outputs.jobtype }}
     steps:
       - name: Check changed files
         uses: actions/checkout@main
@@ -28,9 +29,11 @@ jobs:
           else
             BASE_REF=$GITHUB_BASE_REF
           fi
-          export JSON=$( ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
-          echo generate-matrix: $JSON
-          echo "::set-output name=matrix::$( echo "$JSON" | tr -d '\n' )"
+          export JSON=$(    ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
+          export JOBTYPE=$( echo $JSON | grep irrelevant | wc -l )
+          echo generate-matrix: $JSON, ignore:  $JOBTYPE
+          echo "::set-output name=matrix::$(  echo "$JSON"    | tr -d '\n' )"
+          echo "::set-output name=jobtype::$( echo "$JOBTYPE" | tr -d '\n' )"
     env:
       GITHUB_BEFORE: ${{ github.event.before }}
 
@@ -38,6 +41,7 @@ jobs:
   # Check for overlaps
   overlaps:
     needs: generate-matrix
+    if: needs.generate-matrix.outputs.jobtype == '0'
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12

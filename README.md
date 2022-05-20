@@ -2,13 +2,16 @@
 
 Software to build CLAS12 systems geometry and digitization plugins
 
-## To Run
+## Geometry service
+
+CLAS12 systems that use the coatjava geometry service to share geometry between simulation and recontruction 
+use groovy to import the geometry parameters. To install coatjava:
 
 - Download coatjava:
 
   `installClas12Coatjava.sh`
 
-- Run script to create volume parameters for a system:
+To create volume parameters for a system, run the groovy scripts through the runFactories script:
 
   `cd groovyFactories` 
   
@@ -29,7 +32,7 @@ The validation performed for the CLAS12 systems includes the following workflows
 [![CLAS12 Tests](https://github.com/gemc/clas12-systems/actions/workflows/tests.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/tests.yml)
 [![Validate Geometry](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml)
 
-### Gemc validation
+### GEMC validation
 
 [![Compile GEMC](https://github.com/gemc/src/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/build.yml)
 [![Compile GLibrary](https://github.com/gemc/glibrary/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/glibrary/actions/workflows/build.yml)

@@ -10,7 +10,7 @@ Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: whatToTest.sh [-h|d|b|c|g]"
+	echo "Syntax: whatToTest.sh [-h|f|d|b|c|g]"
 	echo
 	echo "Options:"
 	echo
@@ -26,10 +26,12 @@ if [ $# -eq 0 ]; then
 	Help
 	exit 1
 fi
+
 MDEBUG=0
+
 # GITHUB_BASE_REF and LASTCOMMIT may be passed empty (for example -b -c ccc -g ggg)
 # This ensures that they are not assigned the other flags
-while getopts ":dhb:c:g:" option; do
+while getopts ":dfhb:c:g:" option; do
    case $option in
       h) # display Help
          Help
@@ -53,7 +55,7 @@ while getopts ":dhb:c:g:" option; do
 		d)
 		   MDEBUG=1
 			;;
-     \?) # Invalid option
+		\?) # Invalid option
          echo "Error: Invalid option"
          exit 1
          ;;
@@ -74,22 +76,26 @@ NoCommit() {
 
 # exit if both GITHUB_BASE_REF and LASTCOMMIT are not set
 CheckCommit() {
-	echo
 	[[ $GITHUB_BASE_REF == "no" && $GITHUB_BEFORE == "no" ]] && NoRef
 	[[ $GITHUB_SHA      == "no" ]]                           && NoCommit
 }
 
-
+PrintFlag () {
+	echo $VALIDJOB
+	exit
+}
 
 allSystems=( targets fc ft/ft_cal ftof ) # available systems ordered by z position
 systemsChanged=()                        # list of system changed in last PR or push
-breakLoop=0                              # set in checkSystem to break main loop if changes in the core files are detected
+breakLoop=0                              # set in CheckSystem to break main loop if changes in the core files are detected
 
 
 # if the base name dir contains one of the system, add that system
-checkSystem () {
-	systemDir=$1
-	if [[ $systemDir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" ]];
+CheckSystem () {
+	filenName=$1
+	bdir=$(dirname $filenName)
+
+	if [[ $bdir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" || $filenName == "compare_geometry.py" ]];
 	then
 		systemsChanged=("${allSystems[@]}")
 		breakLoop=1
@@ -116,8 +122,7 @@ fi
 
 for f in $FILESCHANGED
 do
-	bdir=$(dirname $f)
-	checkSystem $bdir
+	CheckSystem $f
 	(( $breakLoop == 1 )) && break
 done
 
@@ -125,6 +130,7 @@ uniqueSystemsChanged=$( printf "%s\n" "${systemsChanged[@]}" | sort -u )
 
 (( $MDEBUG == 1 )) && echo GITHUB_BASE_REF: $GITHUB_BASE_REF  GITHUB_SHA: $GITHUB_SHA GITHUB_BEFORE: $GITHUB_BEFORE  uniqueSystemsChanged: ${uniqueSystemsChanged[*]}
 
+(( ${#systemsChanged[@]} )) || uniqueSystemsChanged=(irrelevant)
 
 echo "{\"include\":["
 for s in ${uniqueSystemsChanged[*]}
