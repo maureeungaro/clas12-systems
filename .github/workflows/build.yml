@@ -46,10 +46,11 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
 
-    if: env.DETECTOR =! 'ftof'
-
     env:
       DETECTOR: ${{ matrix.detector }}
+
+    if: env.DETECTOR =! 'ftof'
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
