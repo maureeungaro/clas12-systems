@@ -40,7 +40,7 @@ jobs:
   # Build the geometry and plugins, install them in systemsTxtDB
   build_geometry_and_plugins:
     needs: generate-matrix
-    if: ${{ needs.generate-matrix.outputs.jobtype }} == '0'
+    if: needs.generate-matrix.outputs.jobtype == '0'
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
