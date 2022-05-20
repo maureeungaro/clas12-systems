@@ -100,7 +100,8 @@ CheckSystem () {
 	filenName=$1
 	bdir=$(dirname $filenName)
 
-	if [[ $bdir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" || $filenName == "compare_geometry.py" ]];
+	if [[ $bdir == "groovyFactories"  ]];
+//	if [[ $bdir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" || $filenName == "compare_geometry.py" ]];
 	then
 		systemsChanged=("${allSystems[@]}")
 		breakLoop=1
