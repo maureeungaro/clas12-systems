@@ -31,7 +31,7 @@ jobs:
           fi
           export JSON=$(    ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
           export JOBTYPE=$( echo $JSON | grep irrelevant | wc -l )
-          echo generate-matrix: $JSON, jobtype:  $JOBTYPE
+          echo generate-matrix: $JSON, ignore:  $JOBTYPE
           echo "::set-output name=matrix::$(  echo "$JSON"    | tr -d '\n' )"
           echo "::set-output name=jobtype::$( echo "$JOBTYPE" | tr -d '\n' )"
     env:
@@ -56,6 +56,5 @@ jobs:
         uses: actions/checkout@main
       - name: Build geo
         run: |
-           echo type ${{ needs.generate-matrix.outputs.jobtype }}
-           ./ci/build.sh -s ${{ matrix.detector }}
+          ./ci/build.sh -s ${{ matrix.detector }}
   
