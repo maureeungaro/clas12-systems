@@ -46,6 +46,8 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
 
+    if: false
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout
