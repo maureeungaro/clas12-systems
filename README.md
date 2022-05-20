@@ -29,7 +29,7 @@ The validation performed for the CLAS12 systems includes the following workflows
 [![CLAS12 Tests](https://github.com/gemc/clas12-systems/actions/workflows/tests.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/tests.yml)
 [![Validate Geometry](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml)
 
-### Gemc validation
+### GEMC validation
 
 [![Compile GEMC](https://github.com/gemc/src/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/build.yml)
 [![Compile GLibrary](https://github.com/gemc/glibrary/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/glibrary/actions/workflows/build.yml)
