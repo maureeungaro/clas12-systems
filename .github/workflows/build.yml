@@ -29,7 +29,7 @@ jobs:
             BASE_REF=$GITHUB_BASE_REF
           fi
           export JSON=$(    ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
-          export JOBTYPE=$( ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE -f)
+          export JOBTYPE=$( ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE -f )
           echo generate-matrix: $JSON, $JOBTYPE
           echo "::set-output name=matrix::$(  echo "$JSON"    | tr -d '\n' )"
           echo "::set-output name=jobtype::$( echo "$JOBTYPE" | tr -d '\n' )"
@@ -55,7 +55,7 @@ jobs:
         uses: actions/checkout@main
       - name: Build geo
         run: |
-          echo Detector: $DETECTOR jobtype: ${{ needs.generate-matrix.outputs.jobtype }}
+          echo  jobtype: ${{ needs.generate-matrix.outputs.jobtype }}
 #          if [ "$DETECTOR" == "irrelevant" ]; then
 #            ./ci/build.sh -s ${{ matrix.detector }}
 #          else
