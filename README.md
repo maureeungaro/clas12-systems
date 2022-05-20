@@ -11,7 +11,7 @@ use groovy to import the geometry parameters. To install coatjava:
 
   `installClas12Coatjava.sh`
 
-To create volume parameters for a system:
+To create volume parameters for a system, run the groovy scripts through the runFactories script:
 
   `cd groovyFactories` 
   
