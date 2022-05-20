@@ -393,7 +393,9 @@ def compare_indexed_volumes(
         _logger.info(f"comparing volume: {volume_id}")
         gemc3_vol = gemc3_volumes.get(volume_id, None)
         if gemc3_vol is None:
-            _logger.warning(f'\nVolume "{volume_id}" not found in gemc3\n')
+            message = f'Volume "{volume_id}" not found in gemc3'
+            _logger.warning(f"\n{message}\n")
+            FAILURES.append(f"For files: {file_info}\t{message}")
             continue
         match_results = {}
         for func in matchers:
