@@ -24,7 +24,7 @@ class ExitCode(IntEnum):
     ERROR = 2
 
 
-FAILURES = []
+FAILURES: List[str] = []
 
 
 @dataclass
@@ -406,7 +406,7 @@ def compare_indexed_volumes(
             if not match_res.is_equal:
                 message = f"For volume {volume_id}, matcher {matcher}: {match_res}"
                 _logger.warning(message)
-                FAILURES.append((file_info, message))
+                FAILURES.append(f"For files: {file_info}\t{message}")
     return all_results
 
 
