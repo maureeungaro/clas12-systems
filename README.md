@@ -2,7 +2,9 @@
 
 Software to build CLAS12 systems geometry and digitization plugins
 
-## To Run
+## Geometry service
+
+Some CLAS12 system use the coatjava geometry service to share geometry between simulation and recontruction.
 
 - Download coatjava:
 
