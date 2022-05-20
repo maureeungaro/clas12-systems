@@ -5,7 +5,7 @@ Software to build CLAS12 systems geometry and digitization plugins
 ## Geometry service
 
 CLAS12 systems that use the coatjava geometry service to share geometry between simulation and recontruction 
-use groovy to import the geometry parameters:
+use groovy to import the geometry parameters.
 
 - Download coatjava:
 
