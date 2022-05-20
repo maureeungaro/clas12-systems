@@ -60,7 +60,8 @@ while getopts ":dfhb:c:g:" option; do
 			;;
 		f)
 		   OUTFLAG=1
-			;;     \?) # Invalid option
+			;;
+		\?) # Invalid option
          echo "Error: Invalid option"
          exit 1
          ;;
