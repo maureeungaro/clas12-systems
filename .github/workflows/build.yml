@@ -46,11 +46,7 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
 
-    env:
-      DETECTOR: ${{ matrix.detector }}
-
-    if: env.DETECTOR =! 'ftof'
-
+    if: "$DETECTOR" =! 'ftof'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -65,3 +61,5 @@ jobs:
             echo No changes to detectors or workflows, nothing to do
           fi
 
+    env:
+      DETECTOR: ${{ matrix.detector }}

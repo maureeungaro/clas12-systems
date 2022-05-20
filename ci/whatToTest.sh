@@ -79,17 +79,17 @@ CheckCommit() {
 	[[ $GITHUB_SHA      == "no" ]]                           && NoCommit
 }
 
-
-
 allSystems=( targets fc ft/ft_cal ftof ) # available systems ordered by z position
 systemsChanged=()                        # list of system changed in last PR or push
-breakLoop=0                              # set in checkSystem to break main loop if changes in the core files are detected
+breakLoop=0                              # set in CheckSystem to break main loop if changes in the core files are detected
 
 
 # if the base name dir contains one of the system, add that system
-checkSystem () {
-	systemDir=$1
-	if [[ $systemDir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" ]];
+CheckSystem () {
+	filenName=$1
+	bdir=$(dirname $filenName)
+
+	if [[ $bdir == "ci" || $bdir == "groovyFactories" || $bdir == ".github/workflows" || $filenName == "compare_geometry.py" ]];
 	then
 		systemsChanged=("${allSystems[@]}")
 		breakLoop=1
@@ -102,7 +102,9 @@ checkSystem () {
 	fi
 }
 
+
 CheckCommit
+
 
 # Pull Request
 if [[ $GITHUB_BASE_REF != "no" ]]; then
@@ -116,8 +118,7 @@ fi
 
 for f in $FILESCHANGED
 do
-	bdir=$(dirname $f)
-	checkSystem $bdir
+	CheckSystem $f
 	(( $breakLoop == 1 )) && break
 done
 
