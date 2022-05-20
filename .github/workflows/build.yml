@@ -40,7 +40,7 @@ jobs:
   # Build the geometry and plugins, install them in systemsTxtDB
   build_geometry_and_plugins:
     needs: generate-matrix
-    if: needs.generate-matrix.outputs.jobtype == '0'
+    if: {{ needs.generate-matrix.outputs.jobtype == '0' }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
@@ -56,8 +56,12 @@ jobs:
       - name: Build geo
         run: |
           echo  jobtype: ${{ needs.generate-matrix.outputs.jobtype }}
+          echo  jobtype: needs.generate-matrix.outputs.jobtype
+          echo $RELEVANCE
 #          if [ "$DETECTOR" == "irrelevant" ]; then
 #            ./ci/build.sh -s ${{ matrix.detector }}
 #          else
 #            echo No changes to detectors or workflows, nothing to do
 #          fi
+    env:
+      RELEVANCE: ${{ needs.generate-matrix.outputs.jobtype }}
