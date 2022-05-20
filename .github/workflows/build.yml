@@ -29,8 +29,10 @@ jobs:
             BASE_REF=$GITHUB_BASE_REF
           fi
           export JSON=$( ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE )
-          echo generate-matrix: $JSON
+          export JOBTYPE=$( ./ci/whatToTest.sh -b $BASE_REF -c $GITHUB_SHA -g $GITHUB_BEFORE -t)
+          echo generate-matrix: $JSON, $JOBTYPE
           echo "::set-output name=matrix::$( echo "$JSON" | tr -d '\n' )"
+          echo "::set-output name=jobtype::$( echo "$JOBTYPE" | tr -d '\n' )"
     env:
       GITHUB_BEFORE: ${{ github.event.before }}
 

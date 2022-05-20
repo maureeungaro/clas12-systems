@@ -10,7 +10,7 @@ Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: whatToTest.sh [-h|d|b|c|g]"
+	echo "Syntax: whatToTest.sh [-h|f|d|b|c|g]"
 	echo
 	echo "Options:"
 	echo
@@ -19,6 +19,7 @@ Help()
 	echo "-c <GITHUB_SHA>: sets the name of the commit SHA that triggered the workflow"
 	echo "-g <GITHUB_BEFORE>: sets the name of the previous commit"
 	echo "-d: debug mode (print the passed quantities)"
+	echo "-f: echo flag to control the build: can echo 'valid' or 'invalid'"
 	echo
 }
 
@@ -26,10 +27,14 @@ if [ $# -eq 0 ]; then
 	Help
 	exit 1
 fi
+
 MDEBUG=0
+OUTFLAG=0
+VALIDJOB=relevant
+
 # GITHUB_BASE_REF and LASTCOMMIT may be passed empty (for example -b -c ccc -g ggg)
 # This ensures that they are not assigned the other flags
-while getopts ":dhb:c:g:" option; do
+while getopts ":dfhb:c:g:" option; do
    case $option in
       h) # display Help
          Help
@@ -53,7 +58,9 @@ while getopts ":dhb:c:g:" option; do
 		d)
 		   MDEBUG=1
 			;;
-     \?) # Invalid option
+		f)
+		   OUTFLAG=1
+			;;     \?) # Invalid option
          echo "Error: Invalid option"
          exit 1
          ;;
@@ -74,9 +81,13 @@ NoCommit() {
 
 # exit if both GITHUB_BASE_REF and LASTCOMMIT are not set
 CheckCommit() {
-	echo
 	[[ $GITHUB_BASE_REF == "no" && $GITHUB_BEFORE == "no" ]] && NoRef
 	[[ $GITHUB_SHA      == "no" ]]                           && NoCommit
+}
+
+PrintFlag () {
+	echo $VALIDJOB
+	exit
 }
 
 allSystems=( targets fc ft/ft_cal ftof ) # available systems ordered by z position
@@ -102,9 +113,7 @@ CheckSystem () {
 	fi
 }
 
-
 CheckCommit
-
 
 # Pull Request
 if [[ $GITHUB_BASE_REF != "no" ]]; then
@@ -126,7 +135,9 @@ uniqueSystemsChanged=$( printf "%s\n" "${systemsChanged[@]}" | sort -u )
 
 (( $MDEBUG == 1 )) && echo GITHUB_BASE_REF: $GITHUB_BASE_REF  GITHUB_SHA: $GITHUB_SHA GITHUB_BEFORE: $GITHUB_BEFORE  uniqueSystemsChanged: ${uniqueSystemsChanged[*]}
 
-(( ${#systemsChanged[@]} )) || uniqueSystemsChanged=(irrelevant)
+(( ${#systemsChanged[@]} )) || VALIDJOB=irrelevant
+
+(( $OUTFLAG == 1 )) && PrintFlag
 
 echo "{\"include\":["
 for s in ${uniqueSystemsChanged[*]}
