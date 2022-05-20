@@ -125,7 +125,6 @@ uniqueSystemsChanged=$( printf "%s\n" "${systemsChanged[@]}" | sort -u )
 
 (( $MDEBUG == 1 )) && echo GITHUB_BASE_REF: $GITHUB_BASE_REF  GITHUB_SHA: $GITHUB_SHA GITHUB_BEFORE: $GITHUB_BEFORE  uniqueSystemsChanged: ${uniqueSystemsChanged[*]}
 
-
 echo "{\"include\":["
 for s in ${uniqueSystemsChanged[*]}
 do

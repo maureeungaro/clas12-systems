@@ -52,6 +52,13 @@ jobs:
         uses: actions/checkout@main
       - name: Build geo
         run: |
+			 if [ "$DETECTOR" == "" ]; then
           ./ci/build.sh -s ${{ matrix.detector }}
+          else
+            echo No changes to detectors or workflows, nothing to do
+          fi
+
+        env:
+          DETECTOR: ${{ matrix.detector }}
 
 
