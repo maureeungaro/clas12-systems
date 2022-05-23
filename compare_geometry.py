@@ -5,15 +5,26 @@ __author__ = "Maria K Zurek <zurek@anl.gov>"
 
 import argparse
 from dataclasses import dataclass, field
+from enum import IntEnum
 import logging
 import math
 import os
 from pprint import pprint
 import sys
-from typing import List, Iterable, Dict, Callable, Tuple
+from typing import List, Iterable, Dict, Callable, Tuple, Optional
 
 
 _logger = logging.getLogger("compare_geometry")
+
+
+
+class ExitCode(IntEnum):
+    OK = 0
+    FAILED = 1
+    ERROR = 2
+
+
+FAILURES: List[str] = []
 
 
 @dataclass
@@ -373,15 +384,18 @@ def get_indexed_volumes(items: Iterable[VolumeParams]) -> Dict[str, VolumeParams
 def compare_indexed_volumes(
         gemc2_volumes: Iterable[VolumeParams],
         gemc3_volumes: Iterable[VolumeParams],
-        matchers: Iterable[Callable]
-    ) -> Dict[str, Dict[Callable, MatcherResult]]:
+        matchers: Iterable[Callable],
+        file_info: Optional[str] = "",
+    ) -> Dict[str, Dict[str, MatcherResult]]:
 
     all_results = {}
     for volume_id, gemc2_vol in gemc2_volumes.items():
         _logger.info(f"comparing volume: {volume_id}")
         gemc3_vol = gemc3_volumes.get(volume_id, None)
         if gemc3_vol is None:
-            _logger.warning(f'\nVolume "{volume_id}" not found in gemc3\n')
+            message = f'Volume "{volume_id}" not found in gemc3'
+            _logger.warning(f"\n{message}\n")
+            FAILURES.append(f"For files: {file_info}\t{message}")
             continue
         match_results = {}
         for func in matchers:
@@ -392,11 +406,13 @@ def compare_indexed_volumes(
         all_results[volume_id] = match_results
         for matcher, match_res in match_results.items():
             if not match_res.is_equal:
-                _logger.warning(f"For volume {volume_id}, matcher {matcher}: {match_res}")
+                message = f"For volume {volume_id}, matcher {matcher}: {match_res}"
+                _logger.warning(message)
+                FAILURES.append(f"For files: {file_info}\t{message}")
     return all_results
 
 
-def compare_files_gemc2_gemc3(gemc2: os.PathLike, gemc3: os.PathLike) -> Dict[str, Dict[Callable, MatcherResult]]:
+def compare_files_gemc2_gemc3(gemc2: os.PathLike, gemc3: os.PathLike) -> Dict[str, Dict[str, MatcherResult]]:
     gemc2_vols = read_file(gemc2, "gemc2")
     gemc3_vols = read_file(gemc3, "gemc3")
 
@@ -430,7 +446,8 @@ def compare_files_gemc2_gemc3(gemc2: os.PathLike, gemc3: os.PathLike) -> Dict[st
     results = compare_indexed_volumes(
         get_indexed_volumes(gemc2_vols),
         get_indexed_volumes(gemc3_vols),
-        simple_equal_matchers + simple_is_close_matchers + simple_no_na_matchers + advanced_matchers
+        simple_equal_matchers + simple_is_close_matchers + simple_no_na_matchers + advanced_matchers,
+        file_info=f"{gemc2} -> {gemc3}"
     )
     return results
 
@@ -520,7 +537,7 @@ def _create_argument_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main():
+def main() -> ExitCode:
     logging.basicConfig(level=logging.DEBUG)
 
     parser = _create_argument_parser()
@@ -540,8 +557,13 @@ def main():
             gemc3_file,
         )
         #pprint(single_file_pair_results)
+    if FAILURES:
+        _logger.error("The following matcher failures were detected:")
+        _logger.error("\n".join(FAILURES))
+        return ExitCode.FAILED
+    return ExitCode.OK
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
 
