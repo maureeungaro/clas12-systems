@@ -42,7 +42,6 @@ def build_geometry_lhydrogen(configuration):
 	}
 
 	def build_vacuum_container():
-		n_planes = 4
 		phi_start = 0
 		phi_total = 360 
 		z_plane 	= z_plane_varmap[variation]
@@ -52,14 +51,13 @@ def build_geometry_lhydrogen(configuration):
 		# Vacuum Target Container
 		gvolume = GVolume('target')
 		gvolume.description = f'Liquid Hydrogen Target Container for variation {variation}'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = 'G4_Galactic'	# from GEANT4 materials database
 		gvolume.color = '22ff22'
 		gvolume.style = 0
 		return gvolume
 	
 	def build_target_cell():
-		n_planes = 5
 		phi_start = 0
 		phi_total = 360 
 		z_plane 	= [-24.2, -21.2, 22.5, 23.5, 24.5]
@@ -69,7 +67,7 @@ def build_geometry_lhydrogen(configuration):
 		gvolume = GVolume("lh2")
 		gvolume.mother = "target"
 		gvolume.description = f'Liquid Hydrogen Target Cell for variation {variation}'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = material_varmap[variation]
 		gvolume.color = 'aa0000'
 		return gvolume
@@ -750,7 +748,6 @@ def build_geometry_nd3(configuration):
 
 def build_geometry_c12(configuration):
 	def build_vacuum_container():
-		n_planes = 4
 		phi_start = 0
 		phi_total = 360 
 		z_plane 	= [-145.0,  235.0, 260.0, 370.0]
@@ -759,7 +756,7 @@ def build_geometry_c12(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'C12 Target Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = 'G4_Galactic'	
 		gvolume.color = '22ff22'
 		gvolume.style = 0
@@ -809,7 +806,6 @@ def build_geometry_al27(configuration):
 
 	def build_vacuum_target():	
 		#Vacuum Target Container
-		n_planes = 4
 		phi_start = 0
 		phi_total = 360 
 
@@ -819,7 +815,7 @@ def build_geometry_al27(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -869,7 +865,6 @@ def build_geometry_cu63(configuration):
 
 	def build_vacuum_target():	
 		#Vacuum Target Container
-		n_planes = 4
 		phi_start = 0
 		phi_total = 360 
 
@@ -879,7 +874,7 @@ def build_geometry_cu63(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -929,7 +924,6 @@ def build_geometry_sn118(configuration):
 
 	def build_vacuum_target():	
 		#Vacuum Target Container
-		n_planes = 4
 		phi_start = 0
 		phi_total = 360 
 
@@ -939,7 +933,7 @@ def build_geometry_sn118(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -989,7 +983,6 @@ def build_geometry_pb208(configuration):
 
 	def build_vacuum_target():	
 		#Vacuum Target Container
-		n_planes = 4
 		phi_start = 0
 		phi_total = 360 
 
@@ -999,7 +992,7 @@ def build_geometry_pb208(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -1067,7 +1060,6 @@ def build_geometry_longitudinal(configuration):
 
 	def build_vacuum_target():	
 		#Vacuum Target Container
-		n_planes = 4
 		phi_start = 0
 		phi_total = 360 
 
@@ -1077,7 +1069,7 @@ def build_geometry_longitudinal(configuration):
 
 		gvolume = GVolume('ltarget') 
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -1237,7 +1229,6 @@ def build_geometry_apollo(configuration):
 		# mother volume
 		r_out = vacuum_radius
 		z_length = spheres_center + vacuum_radius
-		n_planes = 2
 		phi_start = 0
 		phi_total = 360 
 		z_plane = [-volume_length, z_length]
@@ -1246,7 +1237,7 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume("PolTarg")
 		gvolume.description = "PolTarg Region"
 		gvolume.color = "123456"
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = "G4_AIR"
 		gvolume.visible = 0 
 		return gvolume
@@ -1254,7 +1245,6 @@ def build_geometry_apollo(configuration):
 	def build_vacuum_volume():
 		# vacuum volume
 		r_out = vacuum_radius
-		n_planes = 2
 		phi_start = 0
 		phi_total = 360 
 		z_plane = [-volume_length, spheres_center]
@@ -1265,7 +1255,7 @@ def build_geometry_apollo(configuration):
 		gvolume.description = "Vacuum cylindrical volume"
 		gvolume.color = "ffffff"
 		gvolume.setPosition(0,0,target_center)
-		gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = "G4_Galactic"
 		gvolume.visible = 0
 		return gvolume
@@ -1500,7 +1490,6 @@ def build_geometry_apollo(configuration):
 		tube.makeG4Polycone(
 			0,
 			360,
-			2,
 			[-volume_length, spheres_center],
 			[r_in, r_in],
 			[r_out, r_out],

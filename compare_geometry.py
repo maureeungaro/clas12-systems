@@ -2,7 +2,6 @@
 
 __author__ = "Maria K Zurek <zurek@anl.gov>"
 
-
 import argparse
 from dataclasses import dataclass, field
 from enum import IntEnum
@@ -13,10 +12,7 @@ from pprint import pprint
 import sys
 from typing import List, Iterable, Dict, Callable, Tuple, Optional
 
-
 _logger = logging.getLogger("compare_geometry")
-
-
 
 class ExitCode(IntEnum):
     OK = 0
@@ -386,11 +382,13 @@ def compare_indexed_volumes(
         gemc3_volumes: Iterable[VolumeParams],
         matchers: Iterable[Callable],
         file_info: Optional[str] = "",
+        verbosity = False,
     ) -> Dict[str, Dict[str, MatcherResult]]:
 
     all_results = {}
     for volume_id, gemc2_vol in gemc2_volumes.items():
-        _logger.info(f"comparing volume: {volume_id}")
+        if verbosity :
+            _logger.info(f"comparing volume: {volume_id}")
         gemc3_vol = gemc3_volumes.get(volume_id, None)
         if gemc3_vol is None:
             message = f'Volume "{volume_id}" not found in gemc3'
@@ -412,7 +410,7 @@ def compare_indexed_volumes(
     return all_results
 
 
-def compare_files_gemc2_gemc3(gemc2: os.PathLike, gemc3: os.PathLike) -> Dict[str, Dict[str, MatcherResult]]:
+def compare_files_gemc2_gemc3(gemc2: os.PathLike, gemc3: os.PathLike, verbosity) -> Dict[str, Dict[str, MatcherResult]]:
     gemc2_vols = read_file(gemc2, "gemc2")
     gemc3_vols = read_file(gemc3, "gemc3")
 
@@ -447,7 +445,8 @@ def compare_files_gemc2_gemc3(gemc2: os.PathLike, gemc3: os.PathLike) -> Dict[st
         get_indexed_volumes(gemc2_vols),
         get_indexed_volumes(gemc3_vols),
         simple_equal_matchers + simple_is_close_matchers + simple_no_na_matchers + advanced_matchers,
-        file_info=f"{gemc2} -> {gemc3}"
+        file_info=f"{gemc2} -> {gemc3}",
+        verbosity=verbosity
     )
     return results
 
@@ -495,15 +494,17 @@ def get_pairs_to_compare(
         "rga_fall2018": "rga_fall2018",
     }
 
-    map_gemc2_to_gemc3_ft_cal = {
-        "FTOff": "default",
+    map_gemc2_to_gemc3_ft = {
+        "FTOff": "FTOff",
+        "FTOn": "FTOn",
+        "KPP": "KPP"
     }
 
     map_sybsystem_to_map_gemc2_to_gemc3 = {
         "target": map_gemc2_to_gemc3_targets,
         "forward_carriage": map_gemc2_to_gemc3_forward_carriage,
         "ftof": map_gemc2_to_gemc3_ftof,
-        "ft_cal": map_gemc2_to_gemc3_ft_cal,
+        "ft": map_gemc2_to_gemc3_ft,
     }
 
     return [
@@ -531,9 +532,10 @@ def _create_argument_parser() -> argparse.ArgumentParser:
         "--template-subsystem",
         dest="template_subsystem",
         help="Detector subsystem used to populate the template",
-        choices=["target", "forward_carriage", "ftof", "ft_cal"],
+        choices=["target", "forward_carriage", "ftof", "ft"],
         default="target",
     )
+    parser.add_argument("-v", "--verbose", help="Print volume being validated", action='store_true')
     return parser
 
 
@@ -542,6 +544,7 @@ def main() -> ExitCode:
 
     parser = _create_argument_parser()
     parsed_args = parser.parse_args()
+    verbosity = parsed_args.verbose
 
     file_pairs_to_compare = get_pairs_to_compare(
         parsed_args.gemc2_path,
@@ -555,6 +558,7 @@ def main() -> ExitCode:
         single_file_pair_results = compare_files_gemc2_gemc3(
             gemc2_file,
             gemc3_file,
+            verbosity
         )
         #pprint(single_file_pair_results)
     if FAILURES:

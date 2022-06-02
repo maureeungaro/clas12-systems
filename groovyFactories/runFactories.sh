@@ -64,7 +64,7 @@ do
 	do
 		logFile=$det"__groovyLog_"$variation".txt"
 		echo $green$det$reset $yellow$variation$reset, log to $logFile
-		groovy -cp "..:../*" $det".groovy" --variation $variation --runnumber 11 > $logFile
+		groovy -classpath "..:../*" $det".groovy" --variation $variation --runnumber 11 > $logFile
 		toMove=$det"__volumes_$variation.txt"
 		[ -f $toMove ] && mv $toMove $txtDbOutputDir
 		toMove=$det"__parameters_$variation.txt"

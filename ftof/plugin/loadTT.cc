@@ -19,7 +19,7 @@ bool FTOF_Plugin::loadTT(int runno, string variation)
 	vector<vector<double> > data;
 
 	string database   = "/daq/tt/ftof:1";
-	gLogMessage("FTOF: Loading Translation Table " + database);
+	gDLogMessage("FTOF: Loading Translation Table " + database);
 	data.clear(); calib->GetCalib(data, database);
 
 	// filling translation table

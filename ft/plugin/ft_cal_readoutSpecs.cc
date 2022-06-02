@@ -14,7 +14,7 @@ bool FT_CAL_Plugin::defineReadoutSpecs()
 
 
 // DO NOT EDIT BELOW THIS LINE: defines how to create the <FT_CAL_Plugin>
-extern "C" GDynamicDigitization* GDynamicFactory(void) {
+extern "C" GDynamicDigitization* GDynamicDigitizationFactory(void) {
 	return static_cast<GDynamicDigitization*>(new FT_CAL_Plugin);
 }
 

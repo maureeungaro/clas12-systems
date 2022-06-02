@@ -1,0 +1,18 @@
+{
+	# Run check overlaps for ft_cal
+
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 1,
+	
+	# nthreads must be 1 to run checkOverlaps
+	"nthreads": 1,
+
+	"+gsystem": [
+		{ "system": "./ft", "factory": "text", "variation": "FTOff" }
+	],
+
+	"digitizationVariation": "rga_spring2018_mc",
+	"checkOverlaps": 1
+}

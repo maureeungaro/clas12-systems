@@ -85,9 +85,9 @@ PrintFlag () {
 	exit
 }
 
-allSystems=( targets fc ft/ft_cal ftof ) # available systems ordered by z position
-systemsChanged=()                        # list of system changed in last PR or push
-breakLoop=0                              # set in CheckSystem to break main loop if changes in the core files are detected
+allSystems=( targets fc ft ftof ) # available systems ordered by z position
+systemsChanged=()                 # list of system changed in last PR or push
+breakLoop=0                       # set in CheckSystem to break main loop if changes in the core files are detected
 
 
 # if the base name dir contains one of the system, add that system
@@ -102,7 +102,7 @@ CheckSystem () {
 	else
 		for ss in ${allSystems[*]}
 		do
-			systemPresent=$( echo $systemDir | grep $ss | wc | awk '{print $1}' )
+			systemPresent=$( echo $bdir | grep $ss | wc | awk '{print $1}' )
 			(( $systemPresent == 1 )) && systemsChanged=($systemsChanged $ss)
 		done
 	fi
