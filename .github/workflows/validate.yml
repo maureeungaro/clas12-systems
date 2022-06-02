@@ -54,7 +54,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-      - name: Validate
+      - name: Validate ${{ matrix.detector }}
         run: |
           ./ci/validateAgainstGemc2.sh -s ${{ matrix.detector }} -p /jlab/clas12Tags/$CLAS12TAG/experiments/clas12
     env:
