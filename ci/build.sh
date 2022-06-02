@@ -5,8 +5,8 @@
 # 1. The python sci-g main python filename must match the containing dir name
 # 2. The plugin directory, if existing, must be named 'plugin'
 
-# Container run example:
-# docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
+# Container run:
+# docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -s ft
 

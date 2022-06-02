@@ -2,8 +2,8 @@
 
 # Purpose: compares the geometry implemented in gemc3 to the geometry in gemc2 for selected detector
 
-# Container run example:
-# docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
+# Container run:
+# docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/validateAgainstGemc2.sh -s ftof
 
@@ -124,7 +124,7 @@ function run_comparison {
 								 --gemc3-path "${_gemc3_files_path}/${gemc3_filename_prefix}__geometry_{}.txt" 
 }
 
-#./ci/build.sh -s $detector
+./ci/build.sh -s $detector
 
 echo
 echo "Comparing gemc2 and gemc3 geometry for $detector" 

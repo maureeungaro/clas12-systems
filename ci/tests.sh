@@ -5,8 +5,8 @@
 #   inside each detector subdirs
 # Assumptions: the names of the tests and overlaps directories.
 
-# Container run example:
-# docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
+# Container run:
+# docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/tests.sh -s ft -o
 
