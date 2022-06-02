@@ -1,6 +1,6 @@
-#include "ftof.h"
+#include "ft_hodo.h"
 
-bool FTOF_Plugin::defineReadoutSpecs()
+bool FT_HODO_Plugin::defineReadoutSpecs()
 {
 	float     timeWindow = 10;                  // electronic readout time-window of the detector
 	float     gridStartTime = 0;                // defines the windows grid
@@ -13,8 +13,8 @@ bool FTOF_Plugin::defineReadoutSpecs()
 }
 
 
-// DO NOT EDIT BELOW THIS LINE: defines how to create the <FTOF_Plugin>
+// DO NOT EDIT BELOW THIS LINE: defines how to create the <FT_CAL_Plugin>
 extern "C" GDynamicDigitization* GDynamicDigitizationFactory(void) {
-	return static_cast<GDynamicDigitization*>(new FTOF_Plugin);
+	return static_cast<GDynamicDigitization*>(new FT_HODO_Plugin);
 }
 

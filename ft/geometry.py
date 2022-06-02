@@ -254,7 +254,6 @@ VETO_SKIN_TN = 0.5
 PAINT_TN     = 0.1
 TILE_WW      = 15.0
 
-VETO_nplanes = 4
 VETO_iradius = [VETO_RING_OR,     VETO_RING_OR, VETO_IR, VETO_IR]
 VETO_oradius = [VETO_OR,          VETO_OR,      VETO_OR, VETO_OR]
 VETO_zpos    = [VETO_Z - VETO_TN, 1810.6,       1810.6,  VETO_Z + VETO_TN]
@@ -288,12 +287,16 @@ def buildCalorimeter(configuration):
 	buildCalInsulation(configuration)
 	buildCalShell(configuration)
 	buildCalBeamline(configuration)
-	buildCalMoellerdisk(configuration)
+	make_ft_cal_flux(configuration)
+	make_ft_moellerdisk(configuration)
+
+
+def make_ft_pipe(configuration):
+	buildCalMotherVolume(configuration)
+	buildCalBeamline(configuration)
 
 
 def buildCalMotherVolume(configuration):
-
-	nplanes_FT = 6
 	z_plane_FT = [O_Shell_Z1,     2098.,  TPlate_ZM,   BLine_Z4,  BLine_Z4, BLine_Z5]
 	iradius_FT = [  BLine_MR,  BLine_MR,   BLine_MR,  TPlate_MR,  BLine_OR, BLine_OR]
 	oradius_FT = [     700.0,     700.0,      238.0,      238.0,     238.0,    238.0]
@@ -302,17 +305,17 @@ def buildCalMotherVolume(configuration):
 
 	# a G4Polycone is built with the same geant4 constructor parameters, in the same order.
 	# an additional argument at the end can be given to specify the length units (default is mm)
-	gvolume.makeG4Polycone('0', '360', nplanes_FT, z_plane_FT, iradius_FT, oradius_FT)
+	gvolume.makeG4Polycone('0', '360', z_plane_FT, iradius_FT, oradius_FT)
 	gvolume.material     = 'G4_AIR'
 	gvolume.description = 'Calorimeter Mother Volume'
 	gvolume.color       = '1437f4'
 	gvolume.style       = 0
+	gvolume.visible     = 0
 	gvolume.publish(configuration)
 
 
 def buildCrystalsMother(configuration):
 
-	nplanes_FT_CRY = 2
 	z_plane_FT_CRY = [ Idisk_Z - Idisk_LT, Idisk_Z + Idisk_LT]
 	iradius_FT_CRY = [           Idisk_IR,           Idisk_IR]
 	oradius_FT_CRY = [           Odisk_OR,           Odisk_OR]
@@ -320,9 +323,9 @@ def buildCrystalsMother(configuration):
 	gvolume = GVolume('ft_calCrystalsMother')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Calorimeter Crystal Volume'
-	gvolume.makeG4Polycone('0', '360', nplanes_FT_CRY, z_plane_FT_CRY, iradius_FT_CRY, oradius_FT_CRY)
+	gvolume.makeG4Polycone('0', '360', z_plane_FT_CRY, iradius_FT_CRY, oradius_FT_CRY)
 	gvolume.material    = 'G4_AIR'
-	gvolume.color       = 'b437f4'
+	gvolume.color       = '1437f4'
 	gvolume.style       = 0
 	gvolume.publish(configuration)
 
@@ -350,9 +353,9 @@ def buildCrystals(configuration):
 				dY = Vwidth/2.0
 				dZ = Vlength/2.0
 				locZ = Vfront + Vlength/2.0
-				gvolume = GVolume('crVolume_h{0}_v{1}'.format(iX, iY))
+				gvolume = GVolume(f'ft_cal_cr_motherVolume_h{iX}_v{iY}')
 				gvolume.mother      = 'ft_calCrystalsMother'
-				gvolume.description = 'Volume for crystal h:{0} v:{1}'.format(iX, iY)
+				gvolume.description = f'Mother Volume for crystal h:{iX}, v:{iY}'
 				gvolume.makeG4Box(dX, dY, dZ)
 				gvolume.material    = 'G4_AIR'
 				gvolume.setPosition(locX, locY, locZ)
@@ -365,11 +368,11 @@ def buildCrystals(configuration):
 				dY = Swidth/2.0
 				dZ = Slength/2.0
 				locZ = Sfront + Slength/2.
-				gvolume = GVolume('crapd_h{0}_v{1}'.format(iX, iY))
+				gvolume = GVolume(f'ft_cal_cr_apd_h{iX}_v{iY}')
 				gvolume.mother      = 'ft_calCrystalsMother'
-				gvolume.description = 'apd for crystal h:{0} v:{1}'.format(iX, iY)
+				gvolume.description = f'apd for crystal h:{iX}, v:{iY}'
 				gvolume.makeG4Box(dX, dY, dZ)
-				gvolume.material    = 'G4_C'
+				gvolume.material    = 'ft_peek'
 				gvolume.setPosition(locX, locY, locZ)
 				gvolume.color       = '99CC66'
 				gvolume.publish(configuration)
@@ -381,13 +384,13 @@ def buildCrystals(configuration):
 				locX=0.0
 				locY=0.0
 				locZ=0.0
-				gvolume = GVolume('cr_wrap_h{0}_v{1}'.format(iX, iY))
-				gvolume.mother      = 'crVolume_h{0}_v{1}'.format(iX, iY)
-				gvolume.description = 'wrapping for crystal h:{0} v:{1}'.format(iX, iY)
+				gvolume = GVolume(f'ft_cal_cr_wrap_h{iX}_v{iY}')
+				gvolume.mother      = f'ft_cal_cr_motherVolume_h{iX}_v{iY}'
+				gvolume.description = f'wrapping for crystal h:{iX}, v:{iY}'
 				gvolume.makeG4Box(dX, dY, dZ)
 				gvolume.material    = 'G4_MYLAR'
 				gvolume.setPosition(locX, locY, locZ)
-				gvolume.color       = 'A31EDE'
+				gvolume.color       = '838EDE'
 				gvolume.publish(configuration)
 
 				# PbWO4 Crystal
@@ -397,15 +400,15 @@ def buildCrystals(configuration):
 				locX=0.0
 				locY=0.0
 				locZ = Flength/2.
-				gvolume = GVolume('cr_h{0}_v{1}'.format(iX, iY))
-				gvolume.mother       = 'cr_wrap_h{0}_v{1}'.format(iX, iY)
-				gvolume.description  = 'PbWO4 crystal h:{0} v:{1}'.format(iX, iY)
+				gvolume = GVolume(f'ft_cal_cr_h{iX}_v{iY}')
+				gvolume.mother       = f'ft_cal_cr_wrap_h{iX}_v{iY}'
+				gvolume.description  = f'PbWO4 crystal h:{iX}, v:{iY}'
 				gvolume.makeG4Box(dX, dY, dZ)
 				gvolume.material     = 'G4_PbWO4'
 				gvolume.setPosition(locX, locY, locZ)
 				gvolume.color        = '836FFF'
 				gvolume.digitization = 'ft_cal'
-				gvolume.setIdentifier('h', iX, 'v', iY)
+				gvolume.setIdentifier('ih', iX, 'iv', iY)
 				gvolume.publish(configuration)
 
 				# LED housing
@@ -415,11 +418,11 @@ def buildCrystals(configuration):
 				locX=0.0
 				locY=0.0
 				locZ = -Vlength/2.0 + Flength/2.0
-				gvolume = GVolume('cr_led_h{0}_v{1}'.format(iX, iY))
-				gvolume.mother      = 'cr_wrap_h{0}_v{1}'.format(iX, iY)
-				gvolume.description = 'Led for crystal h:{0} v:{1}'.format(iX, iY)
+				gvolume = GVolume(f'ft_cal_cr_ledHousing_h{iX}_v{iY}')
+				gvolume.mother      = f'ft_cal_cr_wrap_h{iX}_v{iY}'
+				gvolume.description = f'Led Housing for crystal h:{iX}, v:{iY}'
 				gvolume.makeG4Box(dX, dY, dZ)
-				gvolume.material    = 'G4_C'
+				gvolume.material    = 'ft_peek'
 				gvolume.setPosition(locX, locY, locZ)
 				gvolume.color       = 'EEC900'
 				gvolume.publish(configuration)
@@ -427,16 +430,16 @@ def buildCrystals(configuration):
 
 def buildCalCopper(configuration):
 	# back
-	gvolume = GVolume('cal_back_copper')
+	gvolume = GVolume('ft_cal_back_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
-	gvolume.description = 'calorimeter back copper'
+	gvolume.description = 'ft calorimeter back copper'
 	gvolume.makeG4Tubs(Bdisk_IR, Bdisk_OR, Bdisk_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
 	gvolume.setPosition(0, 0, Bdisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# front
-	gvolume = GVolume('cal_front_copper')
+	gvolume = GVolume('ft_cal_front_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'calorimeter front copper'
 	gvolume.makeG4Tubs(Fdisk_IR, Fdisk_OR, Fdisk_TN, 0.0, 360.0)
@@ -445,7 +448,7 @@ def buildCalCopper(configuration):
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# inner
-	gvolume = GVolume('cal_inner_copper')
+	gvolume = GVolume('ft_cal_inner_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'calorimeterinnerouter copper'
 	gvolume.makeG4Tubs(Idisk_IR, Idisk_OR, Idisk_LT, 0.0, 360.0)
@@ -454,7 +457,7 @@ def buildCalCopper(configuration):
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# outer
-	gvolume = GVolume('cal_outer_copper')
+	gvolume = GVolume('ft_cal_outer_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'calorimeter outer copper'
 	gvolume.makeG4Tubs(Odisk_IR, Odisk_OR, Odisk_LT, 0.0, 360.0)
@@ -463,9 +466,9 @@ def buildCalCopper(configuration):
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# Preamp Space
-	gvolume = GVolume('cal_back_plate')
+	gvolume = GVolume('ft_cal_back_plate')
 	gvolume.mother      = 'ft_calCrystalsMother'
-	gvolume.description = 'calorimeter outer copper'
+	gvolume.description = 'calorimeter preamp space back_plate'
 	gvolume.makeG4Tubs(BPlate_IR, BPlate_OR, BPlate_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_AIR'
 	gvolume.setPosition(0, 0, BPlate_Z)
@@ -474,11 +477,11 @@ def buildCalCopper(configuration):
 
 def buildCalMotherBoard(configuration):
 	# MotherBoard
-	gvolume = GVolume('cal_back_mtb')
+	gvolume = GVolume('ft_cal_back_mtb')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'calorimeter back motherboard'
 	gvolume.makeG4Tubs(Bmtb_IR, Bmtb_OR, Bmtb_TN, 0.0, 360.0)
-	gvolume.material    = 'G4_Fe'
+	gvolume.material    = 'pcboard'
 	gvolume.setPosition(0, 0, Bmtb_Z)
 	gvolume.color       = '0B3B0B'
 	gvolume.publish(configuration)
@@ -486,11 +489,11 @@ def buildCalMotherBoard(configuration):
 	for i in range(4):
 		Bmtb_hear_DX =  (Bmtb_OR + Bmtb_hear_LN - Bmtb_hear_D0)*math.cos(Bmtb_angle[i]/degrad)
 		Bmtb_hear_DY = -(Bmtb_OR + Bmtb_hear_LN - Bmtb_hear_D0)*math.sin(Bmtb_angle[i]/degrad)
-		gvolume = GVolume('cal_back_mtb_h{0}'.format(i))
+		gvolume = GVolume(f'ft_cal_back_mtb_h{i}')
 		gvolume.mother      = 'ft_cal'
-		gvolume.description = 'back motherboard  h:{0}'.format(i)
+		gvolume.description = f'back motherboard  h:{i}'
 		gvolume.makeG4Box(Bmtb_hear_LN, Bmtb_hear_WD, Bmtb_TN)
-		gvolume.material    = 'G4_C'
+		gvolume.material    = 'pcboard'
 		gvolume.setPosition(Bmtb_hear_DX, Bmtb_hear_DY, Bmtb_Z)
 		gvolume.setRotation(0, 0, Bmtb_angle[i])
 		gvolume.color       = '0B3B0B'
@@ -499,11 +502,11 @@ def buildCalMotherBoard(configuration):
 
 def buildCalLed(configuration):
 	# LED assembly
-	gvolume = GVolume('cal_led')
+	gvolume = GVolume('ft_cal_led')
 	gvolume.mother      = 'ft_cal'
-	gvolume.description = 'calorimeter LED Assembly'
+	gvolume.description = 'ft calorimeter LED Assembly'
 	gvolume.makeG4Tubs(LED_IR, LED_OR, LED_TN, 0.0, 360.0)
-	gvolume.material    = 'G4_Cu'
+	gvolume.material    = 'ft_peek'
 	gvolume.setPosition(0, 0, LED_Z)
 	gvolume.color       = '333333'
 	gvolume.publish(configuration)
@@ -511,7 +514,6 @@ def buildCalLed(configuration):
 
 def buildCalTungstenCup(configuration):
 
-	nplanes_TCup = 2
 	z_plane_TCup = [  BCup_Z1, BCup_ZM]
 	iradius_TCup = [ BCup_IRM, BCup_IRM]
 	oradius_TCup = [ BCup_OR1, BCup_ORM]
@@ -519,13 +521,12 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_back')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'tungsten cup and cone at the back of the ft, back part'
-	gvolume.makeG4Polycone('0', '360', nplanes_TCup, z_plane_TCup, iradius_TCup, oradius_TCup)
-	gvolume.material    = 'G4_W'
+	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)
 
 
-	nplanes_TCup = 2
 	z_plane_TCup = [  BCup_ZM, BCup_ZE]
 	iradius_TCup = [ I_Ins_OR, I_Ins_OR]
 	oradius_TCup = [ BCup_ORM, BCup_ORE]
@@ -533,12 +534,11 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_plate')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'stainless steel plate at the back of the ft'
-	gvolume.makeG4Polycone('0', '360', nplanes_TCup, z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = 'cccccc'
 	gvolume.publish(configuration)
 
-	nplanes_TCup = 2
 	z_plane_TCup = [  BCup_ZB, BCup_Z2]
 	iradius_TCup = [ BCup_IRM, BCup_IRM]
 	oradius_TCup = [ BCup_ORB, BCup_OR2]
@@ -546,86 +546,403 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_front')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'tungsten cup and cone at the back of the ft, front part'
-	gvolume.makeG4Polycone('0', '360', nplanes_TCup, z_plane_TCup, iradius_TCup, oradius_TCup)
-	gvolume.material    = 'G4_W'
+	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)
 
 
-	nplanes_TCup = 2
 	z_plane_TCup = [  BCup_Z1, BCup_Z2]
 	iradius_TCup = [ BCup_IRM, BCup_IRM]
 	oradius_TCup = [ BCup_OR1, BCup_OR2]
 
 	for i in range(4):
+
 		biangle = BCup_iangle[i]
 		bdangle = BCup_dangle[i]
 
-		gvolume = GVolume('cal_tcup_m{0}'.format(i))
+		gvolume = GVolume(f'ft_cal_tcup_m{i+1}')
 		gvolume.mother      = 'ft_cal'
-		gvolume.description = 'tungsten cup and cone at the back of the ft, medium part {0}'.format(i)
-		gvolume.makeG4Polycone('{0}'.format(biangle), '{0}'.format(bdangle), nplanes_TCup, z_plane_TCup, iradius_TCup, oradius_TCup)
-		gvolume.material    = 'G4_W'
-		gvolume.color       = '00ff00'
+		gvolume.description = f'tungsten cup and cone at the back of the ft, medium part {i+1}'
+		gvolume.makeG4Polycone(biangle, bdangle, z_plane_TCup, iradius_TCup, oradius_TCup)
+		gvolume.material    = 'ft_W'
+		gvolume.color       = 'ff0000'
+		gvolume.publish(configuration)
+
+
+def make_ft_cal_flux(configuration):
+	# flux on the back of the crystals
+	Flux_TN = Sgap/2         # flux detector half thickness defined as a function of the gap between sensor and crystals
+	Flux_IR = Bdisk_IR       # inner radius is defined equal to copper back disk
+	Flux_OR = Bdisk_OR       # outer radius is defined equal to copper front disk
+	Flux_Z =  Vfront + Vlength + Flux_TN
+	gvolume = GVolume('ft_cal_flux')
+	gvolume.mother      = 'ft_calCrystalsMother'
+	gvolume.description = 'ft flux'
+	gvolume.makeG4Tubs(Flux_IR, Flux_OR, Flux_TN, 0.0, 360.0)
+	gvolume.material    = 'G4_Galactic'
+	gvolume.setPosition(0, 0, Flux_Z)
+	gvolume.color       = 'aa0088'
+	gvolume.setIdentifier('id', 3)  # identifier for ft_cal_flux
+	gvolume.digitization = 'flux'
+	gvolume.publish(configuration)
+
+
+def make_ft_moellerdisk(configuration):
+
+
+	# flux in front of tagger
+	disk_zpos    = [ 281.0 , O_Shell_Z1 - 0.05 ]
+	disk_iradius = [   2.0 ,   56.0 ]
+	disk_oradius = [ 150.0 ,  150.0 ]
+
+	for n in range(1,2):
+
+		idisk = n + 1
+
+		gvolume = GVolume(f'moller_disk_{n}')
+		gvolume.mother      = 'root'
+		gvolume.description = f'Moller disk {n}'
+		gvolume.makeG4Tubs(disk_iradius[n], disk_oradius[n], 0.05, 0.0, 360.0)
+		gvolume.material    = 'G4_Galactic'
+		gvolume.setPosition(0, 0, disk_zpos[n])
+		gvolume.color       = 'aa0088'
+		gvolume.visible     = 0
+		gvolume.setIdentifier('id', idisk)  # identifier for moller_disk
+		gvolume.digitization = 'flux'
 		gvolume.publish(configuration)
 
 
 
+# Calorimeter Insulation
 def buildCalInsulation(configuration):
+	
 	# inner
-	gvolume = GVolume('cal_inner_ins')
+	gvolume = GVolume('ft_cal_inner_ins')
 	gvolume.mother      = 'ft_cal'
-	gvolume.description = 'Inner Insultion'
+	gvolume.description = 'Inner Insulation'
 	gvolume.makeG4Tubs(I_Ins_IR, I_Ins_OR, I_Ins_LT, 0.0, 360.0)
-	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, LED_Z)
-	gvolume.color       = '333333'
-	#gvolume.publish(configuration)
-	print("buildCalInsulation not implemented yet because of the material")
+	gvolume.material    = 'insfoam'
+	gvolume.setPosition(0, 0, I_Ins_Z)
+	gvolume.color       = 'F5F6CE'
+	gvolume.publish(configuration)
 
+	# outer front
+	z_plane_O_Ins = [ O_Ins_Z1, O_Ins_Z2, O_Ins_Z2, O_Ins_Z3, O_Ins_Z4 ]
+	iradius_O_Ins = [ O_Ins_I1, O_Ins_I1, O_Ins_I2, O_Ins_I3, O_Ins_I4 ]
+	oradius_O_Ins = [ O_Ins_O1, O_Ins_O2, O_Ins_O2, O_Ins_O3, O_Ins_O4 ]
+	gvolume = GVolume('ft_cal_outer_ins_f')
+	gvolume.mother      = 'ft_cal'
+	gvolume.description = 'Outer Insulation front'
+	gvolume.makeG4Polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+	gvolume.material    = 'insfoam'
+	gvolume.color       = 'F5F6CE'
+	gvolume.publish(configuration)
+
+	# outer back
+	z_plane_O_Ins = [ O_Ins_Z5, O_Ins_Z6, O_Ins_Z7, O_Ins_Z8, O_Ins_Z8, O_Ins_Z9, O_Ins_Z10, O_Ins_Z11 ]
+	iradius_O_Ins = [ O_Ins_I5, O_Ins_I6, O_Ins_I7, O_Ins_I8, O_Ins_I9, O_Ins_I9, O_Ins_I10, O_Ins_I11 ]
+	oradius_O_Ins = [ O_Ins_O5, O_Ins_O6, O_Ins_O7, O_Ins_O8, O_Ins_O8, O_Ins_O9, O_Ins_O10, O_Ins_O11 ]
+	gvolume = GVolume('ft_cal_outer_ins_b')
+	gvolume.mother      = 'ft_cal'
+	gvolume.description = 'Outer Insulation back'
+	gvolume.makeG4Polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+	gvolume.material    = 'insfoam'
+	gvolume.color       = 'F5F6CE'
+	gvolume.publish(configuration)
+
+	# outer medium
+	z_plane_O_Ins = [ O_Ins_Z5, O_Ins_Z4 ]
+	iradius_O_Ins = [ O_Ins_I5, O_Ins_I4 ]
+	oradius_O_Ins = [ O_Ins_O5, O_Ins_O4 ]
+
+	for i in range(4):
+		gvolume = GVolume(f'ft_cal_outer_ins_m{i+1}')
+		gvolume.mother      = 'ft_cal'
+		gvolume.description = f'Outer Insulation medium {i+1}'
+		biangle = BCup_iangle[i]
+		bdangle = BCup_dangle[i]
+		gvolume.makeG4Polycone(biangle, bdangle, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+		gvolume.material    = 'insfoam'
+		gvolume.color       = 'F5F6CE'
+		gvolume.publish(configuration)
+
+
+
+
+# Outer Shell
 def buildCalShell(configuration):
-	print("buildCalShell not implemented yet because of the material")
+	# outer front
+	z_plane_O_Shell = [ O_Shell_Z1, O_Shell_Z2, O_Shell_Z2, O_Shell_Z3, O_Shell_Z4 ]
+	iradius_O_Shell = [ O_Shell_I1, O_Shell_I1, O_Shell_I2, O_Shell_I3, O_Shell_I4 ]
+	oradius_O_Shell = [ O_Shell_O1, O_Shell_O2, O_Shell_O2, O_Shell_O3, O_Shell_O4 ]
+	gvolume = GVolume('ft_cal_outer_shell_f')
+	gvolume.mother      = 'ft_cal'
+	gvolume.description = 'Outer Shell front'
+	gvolume.makeG4Polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+	gvolume.material    = 'carbonFiber'
+	gvolume.color       = 'F5DA81'
+	gvolume.publish(configuration)
+
+	# outer back
+	z_plane_O_Shell = [ O_Shell_Z5, O_Shell_Z6, O_Shell_Z7, O_Shell_Z8, O_Shell_Z9, O_Shell_Z10, O_Shell_Z11, O_Shell_Z12, O_Shell_Z13 ]
+	iradius_O_Shell = [ O_Shell_I5, O_Shell_I6, O_Shell_I7, O_Shell_I8, O_Shell_I9, O_Shell_I10, O_Shell_I11, O_Shell_I12, O_Shell_I13 ]
+	oradius_O_Shell = [ O_Shell_O5, O_Shell_O6, O_Shell_O7, O_Shell_O8, O_Shell_O9, O_Shell_O10, O_Shell_O11, O_Shell_O12, O_Shell_O13 ]
+	gvolume = GVolume('ft_cal_outer_shell_b')
+	gvolume.mother      = 'ft_cal'
+	gvolume.description = 'Outer Shell back'
+	gvolume.makeG4Polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+	gvolume.material    = 'carbonFiber'
+	gvolume.color       = 'F5DA81'
+	gvolume.publish(configuration)
+
+	# outer medium
+	z_plane_O_Shell = [ O_Shell_Z5, O_Shell_Z4 ]
+	iradius_O_Shell = [ O_Shell_I5, O_Shell_I4 ]
+	oradius_O_Shell = [ O_Shell_O5, O_Shell_O4 ]
+	for i in range(4):
+		gvolume = GVolume(f'ft_cal_outer_shell_m{i+1}')
+		gvolume.mother      = 'ft_cal'
+		gvolume.description = f'Outer Shell medium{i+1}'
+		biangle = BCup_iangle[i]
+		bdangle = BCup_dangle[i]
+		gvolume.makeG4Polycone(biangle, bdangle, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+		gvolume.material    = 'carbonFiber'
+		gvolume.color       = 'F5DA81'
+		gvolume.publish(configuration)
+
 
 def buildCalBeamline(configuration):
-	print("buildCalBeamline not implemented yet because of the material")
+	TPlate_IR= BLine_IR + BLine_TN
+	TPlate_OR= TPlate_Z1*BCup_tang
 
-def buildCalMoellerdisk(configuration):
-	print("buildCalMoellerdisk not implemented yet because of the material")
+	if not configuration.variation == "KPP":
+		z_plane_TPlate = [ TPlate_Z1, TPlate_ZM, TPlate_Z2 ]
+		iradius_TPlate = [ TPlate_IR, TPlate_IR, TPlate_MR ]
+		oradius_TPlate = [ TPlate_OR, TPlate_OR, TPlate_OR ]
+
+		gvolume = GVolume('ft_cal_tplate')
+		gvolume.mother      = 'ft_cal'
+		gvolume.description = 'ft tungsten plate'
+		gvolume.makeG4Polycone(0, 360, z_plane_TPlate, iradius_TPlate, oradius_TPlate)
+		gvolume.material    = 'ft_W'
+		gvolume.color       = 'ff0000'
+		gvolume.publish(configuration)
+
 
 
 def buildHodoscope(configuration):
-	gvolume = GVolume('hodo')
+	gvolume = GVolume('ft_hodo')
 	gvolume.mother      = 'root'
-	gvolume.description = 'scintillation hodoscope'
-	gvolume.makeG4Polycone('0', '360', VETO_nplanes, VETO_zpos, VETO_iradius, VETO_oradius)
+	gvolume.description = 'ft scintillation hodoscope'
+	gvolume.makeG4Polycone('0', '360', VETO_zpos, VETO_iradius, VETO_oradius)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = '3399FF'
 	gvolume.style       = 0
+	gvolume.visible     = 0
 	gvolume.publish(configuration)
 
-	gvolume = GVolume('hodo_vol')
-	gvolume.mother      = 'hodo'
-	gvolume.description = 'scintillation hodoscope inner volume'
+	gvolume = GVolume('ft_hodo_innervol')
+	gvolume.mother      = 'ft_hodo'
+	gvolume.description = 'ft scintillation hodoscope inner volume'
 	gvolume.makeG4Tubs(VETO_RING_OR, VETO_OR, VETO_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_AIR'
 	gvolume.setPosition(0, 0, VETO_Z)
 	gvolume.color       = '3399FF'
 	gvolume.style       = 0
+	gvolume.visible     = 0
 	gvolume.publish(configuration)
 
-	gvolume = GVolume('hodo_ring')
-	gvolume.mother      = 'hodo'
-	gvolume.description = 'hodoscope support ring'
+	gvolume = GVolume('ft_hodo_ring')
+	gvolume.mother      = 'ft_hodo'
+	gvolume.description = 'ft hodoscope support ring'
 	gvolume.makeG4Tubs(VETO_RING_IR, VETO_RING_OR, VETO_RING_TN, 0.0, 360.0)
-	gvolume.material    = 'G4_PLASTIC_SC_VINYLTOLUENE'
+	gvolume.material    = 'ft_peek'
 	gvolume.setPosition(0, 0, VETO_RING_Z)
 	gvolume.color       = 'cccccc'
 	gvolume.publish(configuration)
 
 	LS_Z = -VETO_TN
 
-
+	# loop over layers
 	for l in range(n_L):
 		L = l + 1
-		LS_TN = VETO_SKIN_TN/2.
+		LS_TN = VETO_SKIN_TN/2.0
+		LS_Z  = LS_Z + LS_TN
+
+		gvolume = GVolume(f'ft_hodo_L{L}')
+		gvolume.mother      = 'ft_hodo_innervol'
+		gvolume.description = f'ft_hodo layer {L} support'
+		gvolume.makeG4Tubs(VETO_RING_OR, VETO_OR, LS_TN, 0.0, 360.0)
+		gvolume.material    = 'carbonFiber'
+		gvolume.setPosition(0, 0, LS_Z)
+		gvolume.color       = 'EFEFFB'
+		gvolume.publish(configuration)
+
+
+		LS_Z = LS_Z + LS_TN
+		LS_TN = tn_L[l]/2. + PAINT_TN
+		TILE_TN = tn_L[l]/2
+		LS_Z = LS_Z + LS_TN
+		p_X=0.0
+		p_Y=0.0
+		p_Z=LS_Z
+	
+		for q in range(4):
+
+			S = 1 + 2*q
+			for i in range(n_S1):
+				I = i+1
+				sp_X = px_S1[i]*2 * (TILE_WW + 2*PAINT_TN)
+				sp_Y = py_S1[i]*2 * (TILE_WW + 2*PAINT_TN)
+				
+				if   q == 0 :
+					p_X = sp_X
+					p_Y = sp_Y
+				elif q == 1 :
+					p_X = -sp_Y
+					p_Y =  sp_X
+				elif q == 2 :
+					p_X = -sp_X
+					p_Y = -sp_Y
+				elif q == 3 :
+					p_X =  sp_Y
+					p_Y = -sp_X
+				
+				WW_TILE  = ww_S1[i]*TILE_WW/2.0
+				WW_PAINT = ww_S1[i]*(TILE_WW + 2*PAINT_TN)/2.0
+				TNAME  = 'ft_hodo_p30_'
+				TTNAME = 'ft_hodo_p30_tile_'
+				TCOLOR = '0431B4'
+				
+				if ww_S1[i] == 1 :
+					TNAME  = 'ft_hodo_p15_'
+					TTNAME = 'ft_hodo_p15_tile_'
+					TCOLOR = '3399FF'
+				
+				gvolume = GVolume(f'{TNAME}{S}{L}{I}')
+				gvolume.mother      = 'ft_hodo_innervol'
+				gvolume.description = f'{TNAME} {S} {L} {I}'
+				gvolume.setPosition(p_X, p_Y, p_Z)
+				gvolume.makeG4Box(WW_PAINT, WW_PAINT, LS_TN)
+				gvolume.material    = 'G4_MYLAR'
+				gvolume.color       = TCOLOR
+				gvolume.style       = 1
+				gvolume.publish(configuration)
+
+				gvolume = GVolume(f'{TTNAME}{S}{L}{I}')
+				gvolume.mother       = f'{TNAME}{S}{L}{I}'
+				gvolume.description  = f'{TTNAME} {S} {L} {I}'
+				gvolume.makeG4Box(WW_TILE, WW_TILE, TILE_TN)
+				gvolume.material     = 'scintillator'
+				gvolume.color        = 'BCA9F5'
+				gvolume.style        = 1
+				gvolume.digitization = 'ft_hodo'
+				gvolume.setIdentifier('sector', S, 'layer', L, 'component', I)
+				gvolume.publish(configuration)
+
+
+			S = 2 + 2*q
+			for i in range(n_S2):
+
+				I = i+1
+				sp_X = px_S2[i]*2.0*(TILE_WW + 2*PAINT_TN)
+				sp_Y = py_S2[i]*2.0*(TILE_WW + 2*PAINT_TN)
+				if   q == 0 :
+					p_X = sp_X
+					p_Y = sp_Y
+				elif q == 1 :
+					p_X = -sp_Y
+					p_Y =  sp_X
+				elif q == 2 :
+					p_X = -sp_X
+					p_Y = -sp_Y
+				elif q == 3 :
+					p_X =  sp_Y
+					p_Y = -sp_X
+
+				WW_TILE  = ww_S2[i]*TILE_WW/2.0
+				WW_PAINT = ww_S2[i]*(TILE_WW + 2*PAINT_TN)/2.0
+				TNAME  = 'ft_hodo_p30_'
+				TTNAME = 'ft_hodo_p30_tile_'
+				TCOLOR = '0431B4'
+				if ww_S2[i] == 1 :
+					TNAME  = "ft_hodo_p15_"
+					TTNAME = "ft_hodo_p15_tile_"
+					TCOLOR = "3399FF"
+
+				gvolume = GVolume(f'{TNAME}{S}{L}{I}')
+				gvolume.mother      = 'ft_hodo_innervol'
+				gvolume.description = f'{TNAME} {S} {L} {I}'
+				gvolume.setPosition(p_X, p_Y, p_Z)
+				gvolume.makeG4Box(WW_PAINT, WW_PAINT, LS_TN)
+				gvolume.material    = 'G4_MYLAR'
+				gvolume.color       = TCOLOR
+				gvolume.style       = 1
+				gvolume.publish(configuration)
+
+				gvolume = GVolume(f'{TTNAME}{S}{L}{I}')
+				gvolume.mother       = f'{TNAME}{S}{L}{I}'
+				gvolume.description  = f'{TTNAME} {S} {L} {I}'
+				gvolume.makeG4Box(WW_TILE, WW_TILE, TILE_TN)
+				gvolume.material     = 'scintillator'
+				gvolume.color        = 'BCA9F5'
+				gvolume.style        = 1
+				gvolume.digitization = 'ft_hodo'
+				gvolume.setIdentifier('sector', S, 'layer', L, 'component', I)
+				gvolume.publish(configuration)
+
+
+		LS_Z = LS_Z + LS_TN
+
+
+
+def buildTracker(configuration):
+	print(" buildTracker not yet")
+
+
+
+def make_ft_trk_mother(configuration):
+	print(" buildTracker not yet")
+
+def place_epoxy(configuration):
+	print(" buildTracker not yet")
+
+def place_pcboard(configuration):
+	print(" buildTracker not yet")
+
+def place_strips(configuration):
+	print(" buildTracker not yet")
+
+def place_kapton(configuration):
+	print(" buildTracker not yet")
+
+def place_resiststrips(configuration):
+	print(" buildTracker not yet")
+def place_gas1(configuration):
+	print(" buildTracker not yet")
+
+def place_photoresist(configuration):
+	print(" buildTracker not yet")
+
+def place_mesh(configuration):
+	print(" buildTracker not yet")
+
+def place_gas2(configuration):
+	print(" buildTracker not yet")
+
+def place_driftelectrode(configuration):
+	print(" buildTracker not yet")
+
+def place_drift(configuration):
+	print(" buildTracker not yet")
+
+def place_rings(configuration):
+	print(" buildTracker not yet")
+
+def place_assembly(configuration):
+	print(" buildTracker not yet")
+
+def make_ft_trk_fee_boxes(configuration):
+	print(" buildTracker not yet")
 

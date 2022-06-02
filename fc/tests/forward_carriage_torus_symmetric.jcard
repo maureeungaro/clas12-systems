@@ -1,5 +1,5 @@
 {
-	"nthreads": 2,
+	# no nthreads specified: runs on all available threads
 
 	# verbosities
 	"verbosity": 1,

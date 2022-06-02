@@ -1,0 +1,42 @@
+{
+	# Run simulation with 3 different outputs, including JLABSRO
+	# no nthreads specified: runs on all available threads
+
+	# verbosities
+	"verbosity": 2,
+	"grunv": 1,
+	"gframestreamv": 2,
+	"eventDistributionv": 2,
+
+	"+gsystem": [
+		{ "system": "./ft", "factory": "text", "variation": "FTOn" }
+	],
+
+	"+goutput": [
+		{
+			"format": "ROOT",
+			"name": "events.root",
+			"type": "event"
+		},
+		{
+			"format": "JLABSRO",
+			"name": "stream.dat",
+			"type": "stream"
+		},
+		{
+			"format": "TEXT",
+			"name": "events.txt",
+			"type": "event"
+		}
+	],
+
+	"digitizationVariation": "rga_spring2018_mc",
+	"n": 1000,
+	"eventTimeSize": "2*us",
+	"+gparticle": [
+		{ "pname": "e-",  "multiplicity": 10, "p": 2100},
+		{ "pname": "pi0", "multiplicity": 1,  "p": 300,  "theta": 3.0, "delta_phi": 180.0, "vz": -2.0}
+	]
+
+
+}

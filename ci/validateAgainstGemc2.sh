@@ -1,20 +1,17 @@
-#!/usr/bin/env bash
-set -e
+#!/usr/bin/env zsh
 
 # Purpose: compares the geometry implemented in gemc3 to the geometry in gemc2 for selected detector
 
-# Container run example:
-# docker run -it --rm jeffersonlab/gemc:3.0-clas12 bash
+# Container run:
+# docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
-# ./ci/validateAgainstGemc2.sh-s -s ftof
+# ./ci/validateAgainstGemc2.sh -s ftof
 
 # load environment if we're on the container
 # notice the extra argument to the source command
 TERM=xterm # source script use tput for colors, TERM needs to be specified
 FILE=/etc/profile.d/jlab.sh
 test -f $FILE && source $FILE keepmine
-
-GEMC2_DATA_DIR=/jlab/clas12Tags
 
 startDir=`pwd`
 GEMC3_DATA_DIR=$startDir/systemsTxtDB
@@ -23,12 +20,13 @@ Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: build.sh [-h|s]"
+	echo "Syntax: validateAgainstGemc2.sh [-h|s|p]"
 	echo
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
 	echo "-s <System>: compare geometry for <System>"
+	echo "-p <path>: GEMC2 Geometry DIrectory"
 	echo
 }
 
@@ -37,7 +35,7 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-while getopts ":hs:" option; do
+while getopts ":hs:p:" option; do
    case $option in
       h) # display Help
          Help
@@ -45,6 +43,9 @@ while getopts ":hs:" option; do
          ;;
       s)
          detector=$OPTARG
+         ;;
+      p)
+         G2_PATH=$OPTARG
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
@@ -59,10 +60,22 @@ DetectorNotDefined () {
 	exit 2
 }
 
+PathNotDefined () {
+	echo "GEMC2 geometry path is not set or does not exist."
+	Help
+	exit 2
+}
+
+CheckPath () {
+	test -d $G2_PATH && echo GEMC2 Geometry DIrectory:  $G2_PATH || PathNotDefined
+}
+
 # exit if detector var is not defined
-[[ -v detector ]] && echo "Building $detector" || DetectorNotDefined
+[[ -v detector ]] && echo "\nValidating $detector" || DetectorNotDefined
+[[ -v G2_PATH ]]  && CheckPath                   || PathNotDefined
 
 gemc2_files_dir=$detector
+
 case $detector in
 	targets)
 		subsystem_template_name="target"
@@ -74,10 +87,10 @@ case $detector in
 		gemc2_filename_prefix="forwardCarriage"
 		gemc3_filename_prefix="clas12ForwardCarriage"
 		;;
-	ft/ft_cal)
-		subsystem_template_name="ft_cal"
+	ft)
+		subsystem_template_name="ft"
 		gemc2_filename_prefix="ft"
-		gemc3_filename_prefix="ft_cal"
+		gemc3_filename_prefix="ft"
 		gemc2_files_dir='ft'
 		;;
 	ftof)
@@ -93,22 +106,25 @@ case $detector in
 
 function run_comparison {
 
-	local _gemc2_files_path="$GEMC2_DATA_DIR/5.0/experiments/clas12/$gemc2_files_dir"
+	local _gemc2_files_path="$G2_PATH/$gemc2_files_dir"
 	local _gemc3_files_path="$GEMC3_DATA_DIR"
 
-	echo "gemc2 files directory is: $_gemc2_files_path"
+	echo "gemc2 files directory $_gemc2_files_path  content:\n"
 	
 	ls -ltrh $_gemc2_files_path
 
-	echo "gemc3 files directory is: $_gemc3_files_path"
+	echo "\ngemc3 files directory $_gemc3_files_path content:\n"
 
 	ls -ltrh $_gemc3_files_path
 
-	echo "Running gemc2 - gemc3 geometry comparison for ${detector}"
+	echo "\nRunning gemc2 - gemc3 geometry comparison for ${detector}"
 
-	./compare_geometry.py --template-subsystem "$subsystem_template_name" --gemc2-path "${_gemc2_files_path}/${gemc2_filename_prefix}__geometry_{}.txt" --gemc3-path "${_gemc3_files_path}/${gemc3_filename_prefix}__geometry_{}.txt"
+	./compare_geometry.py --template-subsystem "$subsystem_template_name" \
+								 --gemc2-path "${_gemc2_files_path}/${gemc2_filename_prefix}__geometry_{}.txt" \
+								 --gemc3-path "${_gemc3_files_path}/${gemc3_filename_prefix}__geometry_{}.txt" 
 }
 
+./ci/build.sh -s $detector
 
 echo
 echo "Comparing gemc2 and gemc3 geometry for $detector" 

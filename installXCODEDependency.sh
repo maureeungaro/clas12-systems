@@ -17,10 +17,10 @@ cp $CCDB_HOME/lib/*.dylib                     $CONFIGURATION_BUILD_DIR
 
 ## FT
 
-cd ft/ft_cal/
-./ft_cal.py
-cp ft/ft_cal/ft_cal.jcard                     $CONFIGURATION_BUILD_DIR
-cp ft/ft_cal/ft_cal__geometry_default.txt     $CONFIGURATION_BUILD_DIR
+cd ft/
+./ft.py
+cp tests/*.jcard  $CONFIGURATION_BUILD_DIR
+mv ft__*.txt  $CONFIGURATION_BUILD_DIR
 cd -
 
 

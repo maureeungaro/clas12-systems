@@ -1,15 +1,15 @@
 {
 	# Run simulation with 3 different outputs, including JLABSRO
-
-	"nthreads": 2,
+	# no nthreads specified: runs on all available threads
 
 	# verbosities
-	"verbosity": 1,
+	"verbosity": 2,
 	"grunv": 1,
 	"gframestreamv": 2,
+	"eventDistributionv": 2,
 
 	"+gsystem": [
-		{ "system": "./ft_cal", "factory": "text", "variation": "default" }
+		{ "system": "./ft", "factory": "text", "variation": "FTOn" }
 	],
 
 	"+goutput": [

@@ -1,21 +1,15 @@
 {
-	# number of threads
-	# The checkOverlaps = 2 options cause random crash when nthreads is > 1,
-	# possibly due to geometry asked by the run manager to delete objects while in use.
-	# This is an issue open on sci-g until new geant4 versions can be checked.
-	"nthreads": 2,
+	# Run simulation with 3 different outputs, including JLABSRO
+	# no nthreads specified: runs on all available threads
 
 	# verbosities
-	"verbosity": 1,
-	"gsystemv": 0,
-	"g4systemv": 0,
+	"verbosity": 2,
 	"grunv": 1,
-	"gsensitivityv": 0,
-	"eventDistributionv": 0,
 	"gframestreamv": 2,
+	"eventDistributionv": 2,
 
 	"+gsystem": [
-		{ "system": "./ft_cal", "factory": "text", "variation": "default" }
+		{ "system": "./ft", "factory": "text", "variation": "KPP" }
 	],
 
 	"+goutput": [
@@ -37,9 +31,8 @@
 	],
 
 	"digitizationVariation": "rga_spring2018_mc",
-	"n": 200,
+	"n": 1000,
 	"eventTimeSize": "2*us",
-	"checkOverlaps": 0,
 	"+gparticle": [
 		{ "pname": "e-",  "multiplicity": 10, "p": 2100},
 		{ "pname": "pi0", "multiplicity": 1,  "p": 300,  "theta": 3.0, "delta_phi": 180.0, "vz": -2.0}

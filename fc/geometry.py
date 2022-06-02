@@ -15,8 +15,6 @@ def build_geometry_forward_carriage(configuration):
 	fc_end = 9500
 	fc_max_radius = 5000
 
-	n_planes = 6
-
 	# Notice:
 	# The FC coordinates are the same as CLAS12 target center
 	z_plane = [1206.0, 1556.0, 2406.0, torus_z_start, torus_z_start,fc_end]
@@ -28,7 +26,7 @@ def build_geometry_forward_carriage(configuration):
 	gvolume = GVolume('fc')
 	gvolume.mother = "root"
 	gvolume.description = 'Forward Carriage (FC) detector envelope to hold the torus magnet and the FC detectors'
-	gvolume.makeG4Polycone(phi_start, phi_total, n_planes, z_plane, inner_radius, outer_radius)
+	gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 	gvolume.material = "G4_AIR"
 	gvolume.color = '88aa88'
 	gvolume.visible = 0
