@@ -78,11 +78,12 @@ DefineScriptName() {
 
 
 CreateAndCopyDetectorTXTs() {
+	system=$1
 	echo
 	echo Running $script
 	$script
 	ls -ltrh ./
-	subDir=$(basename $detector)
+	subDir=$(basename $system)
 	filesToCopy=$(ls | grep \.txt | grep "$subdir")
 	echo
 	echo Moving $=filesToCopy to $GPLUGIN_PATH and cleaning up
@@ -112,7 +113,7 @@ BuildSystem() {
 	echo
 	pwd
 	cd $system
-	CreateAndCopyDetectorTXTs
+	CreateAndCopyDetectorTXTs $system
 	test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
 	echo $GPLUGIN_PATH content:
 	ls -ltrh $GPLUGIN_PATH
