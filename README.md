@@ -18,7 +18,7 @@ To create volume parameters for a system, run the groovy scripts through the run
   `runFactories.sh systemName`
 
 
-## Validation
+## CLAS12 Systems Validation
 
 The validation performed for the CLAS12 systems includes the following workflows
 
