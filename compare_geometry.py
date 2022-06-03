@@ -553,8 +553,13 @@ def main() -> ExitCode:
     )
 
     for gemc2_file, gemc3_file in file_pairs_to_compare:
-        print("\n\n")
-        _logger.info(f"{gemc2_file} -> {gemc3_file}")
+        if verbosity:
+            print("\n\n")
+            _logger.info(f"{gemc2_file} -> {gemc3_file}")
+        else:
+            fname2 = os.path.basename(gemc2_file)
+            fname3 = os.path.basename(gemc3_file)
+            _logger.info(f"{fname2} -> {fname3}")
         single_file_pair_results = compare_files_gemc2_gemc3(
             gemc2_file,
             gemc3_file,

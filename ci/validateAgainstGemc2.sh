@@ -26,7 +26,8 @@ Help()
 	echo
 	echo "-h: Print this Help."
 	echo "-s <System>: compare geometry for <System>"
-	echo "-p <path>: GEMC2 Geometry DIrectory"
+	echo "-p <path>: path to GEMC2 CLAS12 Geometry Directory"
+	echo "-v: Verbose mode. Prints volumes and file paths."
 	echo
 }
 
@@ -35,7 +36,8 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-while getopts ":hs:p:" option; do
+verbosity=""
+while getopts ":hvs:p:" option; do
    case $option in
       h) # display Help
          Help
@@ -46,6 +48,9 @@ while getopts ":hs:p:" option; do
          ;;
       p)
          G2_PATH=$OPTARG
+         ;;
+      v)
+         verbosity="-v"
          ;;
      \?) # Invalid option
          echo "Error: Invalid option"
@@ -61,27 +66,22 @@ DetectorNotDefined () {
 }
 
 PathNotDefined () {
-	echo "GEMC2 geometry path is not set or does not exist."
+	echo "CLAS12 GEMC2 geometry path is not set or does not exist."
 	Help
 	exit 2
 }
 
 CheckPath () {
-	test -d $G2_PATH && echo GEMC2 Geometry DIrectory:  $G2_PATH || PathNotDefined
+	test -d $G2_PATH && echo Path to GEMC2 CLAS12 Geometry Directory: $G2_PATH || PathNotDefined
 }
 
 # exit if detector var is not defined
-[[ -v detector ]] && echo "\nValidating $detector" || DetectorNotDefined
-[[ -v G2_PATH ]]  && CheckPath                   || PathNotDefined
+[[ -v detector ]] && echo "\nValidating $detector" || DetectorNotDefined 
+[[ -v G2_PATH ]]  && CheckPath                     || PathNotDefined
 
 gemc2_files_dir=$detector
 
 case $detector in
-	targets)
-		subsystem_template_name="target"
-		gemc2_filename_prefix="target"
-		gemc3_filename_prefix="clas12Target"
-		;;
 	fc)
 		subsystem_template_name="forward_carriage"
 		gemc2_filename_prefix="forwardCarriage"
@@ -98,8 +98,13 @@ case $detector in
 		gemc2_filename_prefix=$detector
 		gemc3_filename_prefix=$detector
 		;;
+	targets)
+		subsystem_template_name="target"
+		gemc2_filename_prefix="target"
+		gemc3_filename_prefix="clas12Target"
+		;;
 	*) # Invalid option
-    	echo "Detector not supported"
+    	echo Detector $detector not supported. Possible choices: fc, ft, ftof, targets
     	exit 1
         ;;
    esac
@@ -121,7 +126,7 @@ function run_comparison {
 
 	./compare_geometry.py --template-subsystem "$subsystem_template_name" \
 								 --gemc2-path "${_gemc2_files_path}/${gemc2_filename_prefix}__geometry_{}.txt" \
-								 --gemc3-path "${_gemc3_files_path}/${gemc3_filename_prefix}__geometry_{}.txt" 
+								 --gemc3-path "${_gemc3_files_path}/${gemc3_filename_prefix}__geometry_{}.txt" $verbosity
 }
 
 ./ci/build.sh -s $detector
