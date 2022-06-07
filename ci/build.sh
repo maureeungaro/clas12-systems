@@ -114,7 +114,7 @@ BuildSystem() {
 	pwd
 	cd $system
 	CreateAndCopyDetectorTXTs $system
-	test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
+	#test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
 	echo $GPLUGIN_PATH content:
 	ls -ltrh $GPLUGIN_PATH
 	cd $startDir
