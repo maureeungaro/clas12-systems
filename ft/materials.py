@@ -56,3 +56,15 @@ def define_materials(configuration):
 	gmaterial.addNAtoms("C",  9)
 	gmaterial.addNAtoms("H",  10)
 	gmaterial.publish(configuration)
+
+	# pcb-FR4
+	# found in geant4 examples:
+	# http://www.phenix.bnl.gov/~suhanov/ncc/geant/rad-source/src/ExN03DetectorConstruction.cc
+	gmaterial = GMaterial("myFR4")
+	gmaterial.description = "ft pcb-FR4 1.86 g/cm3"
+	gmaterial.density = 1.86
+	gmaterial.addMaterialWithFractionalMass("G4_C",  0.4355)
+	gmaterial.addMaterialWithFractionalMass("G4_H",  0.0365)
+	gmaterial.addMaterialWithFractionalMass("G4_Si", 0.2468)
+	gmaterial.addMaterialWithFractionalMass("G4_O",  0.2812)
+	gmaterial.publish(configuration)

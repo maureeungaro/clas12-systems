@@ -445,17 +445,16 @@ def buildCalBeamline(configuration):
 	TPlate_IR= BLine_IR + BLine_TN
 	TPlate_OR= TPlate_Z1*BCup_tang
 
-	if not configuration.variation == "KPP":
-		z_plane_TPlate = [ TPlate_Z1, TPlate_ZM, TPlate_Z2 ]
-		iradius_TPlate = [ TPlate_IR, TPlate_IR, TPlate_MR ]
-		oradius_TPlate = [ TPlate_OR, TPlate_OR, TPlate_OR ]
+	z_plane_TPlate = [ TPlate_Z1, TPlate_ZM, TPlate_Z2 ]
+	iradius_TPlate = [ TPlate_IR, TPlate_IR, TPlate_MR ]
+	oradius_TPlate = [ TPlate_OR, TPlate_OR, TPlate_OR ]
 
-		gvolume = GVolume('ft_cal_tplate')
-		gvolume.mother      = 'ft_cal'
-		gvolume.description = 'ft tungsten plate'
-		gvolume.makeG4Polycone(0, 360, z_plane_TPlate, iradius_TPlate, oradius_TPlate)
-		gvolume.material    = 'ft_W'
-		gvolume.color       = 'ff0000'
-		gvolume.publish(configuration)
+	gvolume = GVolume('ft_cal_tplate')
+	gvolume.mother      = 'ft_cal'
+	gvolume.description = 'ft tungsten plate'
+	gvolume.makeG4Polycone(0, 360, z_plane_TPlate, iradius_TPlate, oradius_TPlate)
+	gvolume.material    = 'ft_W'
+	gvolume.color       = 'ff0000'
+	gvolume.publish(configuration)
 
 

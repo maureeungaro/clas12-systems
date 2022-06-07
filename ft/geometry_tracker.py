@@ -240,170 +240,358 @@ def place_pcboard(configuration, l, type):
 def place_strips(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
+	PDz       = Strips_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
 	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+		z           = z0[l] - 0.5*(zrel[2] + zrel[3])
+		vname       = f'ft_trk_strips_X_L{layer_no}'
+		descriptio  = f'strips X, layer {layer_no}'
 
 	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+		z           = z0[l] + 0.5*(zrel[2] + zrel[3])
+		vname       = f'ft_trk_strips_Y_L{layer_no}'
+		descriptio  = f'strips Y, layer {layer_no}'
+
+	# notice different IR and OR from above
+	SInnerRadius = 70.43
+	SOuterRadius = 143.66
+	gvolume = GVolume(vname)
+	gvolume.description = descriptio
+	gvolume.mother      = 'ft_trk'
+	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.material    = strips_material
+	gvolume.setPosition(0, 0, z)
+	gvolume.color       = strips_color
+	gvolume.publish(configuration)
 
 def place_kapton(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
-	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+	zmin      = [     zrel[3], zrel[11] ]
+	zmax      = [     zrel[4], zrel[12] ]
+	PRMin     = [ InnerRadius, InnerRadius ]
+	PRMax     = [ OuterRadius, 158.5 ]
 
-	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+
+	for ring in range(2):
+
+		PDz = 0.5*( -zmin[ring] + zmax[ring] )
+		ring_no = ring + 1
+
+		if type == 1:
+			z           = z0[l] - 0.5*(zmin[ring]+zmax[ring])
+			vname       = f'ft_trk_kapton_X_L{layer_no}_R{ring_no}'
+			descriptio  = f'kapton X, layer {layer_no}, ring {ring_no}'
+
+		elif type == 2:
+			z           = z0[l] + 0.5*(zmin[ring]+zmax[ring])
+			vname       = f'ft_trk_kapton_Y_L{layer_no}_R{ring_no}'
+			descriptio  = f'kapton Y, layer {layer_no}, ring {ring_no}'
+
+		gvolume = GVolume(vname)
+		gvolume.description = descriptio
+		gvolume.mother      = 'ft_trk'
+		gvolume.makeG4Tubs(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
+		gvolume.material    = kapton_material
+		gvolume.setPosition(0, 0, z)
+		gvolume.color       = pcboard_color
+		gvolume.publish(configuration)
 
 def place_resiststrips(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
+	PDz       = ResistStrips_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
 	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+		z           = z0[l] - 0.5*(zrel[4] + zrel[5])
+		vname       = f'ft_trk_resiststrips_X_L{layer_no}'
+		descriptio  = f'resistive strips X, layer {layer_no}'
 
 	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+		z           = z0[l] + 0.5*(zrel[4] + zrel[5])
+		vname       = f'ft_trk_resiststrips_Y_L{layer_no}'
+		descriptio  = f'resistive strips Y, layer {layer_no}'
+
+	# notice different IR and OR from above
+	SInnerRadius = 70.43
+	SOuterRadius = 143.66
+	gvolume = GVolume(vname)
+	gvolume.description = descriptio
+	gvolume.mother      = 'ft_trk'
+	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.material    = resistive_material
+	gvolume.setPosition(0, 0, z)
+	gvolume.color       = strips_color
+	gvolume.publish(configuration)
 
 def place_gas1(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
+	PDz       = Gas1_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
 	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+		z           = z0[l] - 0.5*(zrel[5] + zrel[6])
+		vname       = f'ft_trk_gas1_X_L{layer_no}'
+		descriptio  = f'gas1 X, layer {layer_no}'
 
 	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+		z           = z0[l] + 0.5*(zrel[5] + zrel[6])
+		vname       = f'ft_trk_gas1_Y_L{layer_no}'
+		descriptio  = f'gas1 Y, layer {layer_no}'
+
+	# notice different IR and OR from above
+	SInnerRadius = 71.43
+	SOuterRadius = 143.16
+	gvolume = GVolume(vname)
+	gvolume.description = descriptio
+	gvolume.mother      = 'ft_trk'
+	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.material    = gas_material
+	gvolume.setPosition(0, 0, z)
+	gvolume.color       = gas_color
+	gvolume.publish(configuration)
 
 def place_photoresist(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
-	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+	zmin      = [     zrel[5],     zrel[5],                zrel[7], zrel[7] ]
+	zmax      = [     zrel[6],     zrel[6], zrel[9]-2.*AluRings_Dz, zrel[9]-2.*AluRings_Dz ]
+	PRMin     = [ InnerRadius,      143.16,            InnerRadius, 143.16 ]
+	PRMax     = [       71.43, OuterRadius,                  71.43, OuterRadius ]
 
-	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+
+	for ring in range(4):
+
+		ring_no = ring + 1
+		PDz = 0.5*( -zmin[ring] + zmax[ring] )
+
+		if type == 1:
+			z           = z0[l] - 0.5*(zmin[ring]+zmax[ring])
+			vname       = f'ft_trk_phrst_X_L{layer_no}_R{ring_no}'
+			descriptio  = f'photoresist X, layer {layer_no}, ring {ring_no}'
+
+		elif type == 2:
+			z           = z0[l] + 0.5*(zmin[ring]+zmax[ring])
+			vname       = f'ft_trk_phrst_Y_L{layer_no}_R{ring_no}'
+			descriptio  = f'photoresist Y, layer {layer_no}, ring {ring_no}'
+
+
+		gvolume = GVolume(vname)
+		gvolume.description = descriptio
+		gvolume.mother      = 'ft_trk'
+		gvolume.makeG4Tubs(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
+		gvolume.material    = photoresist_material
+		gvolume.setPosition(0, 0, z)
+		gvolume.color       = photoresist_color
+		gvolume.publish(configuration)
 
 def place_mesh(configuration, l, type):
 	layer_no   = l + 1
-	z         = 0.0
-	PDz       = Epoxy_Dz
-	PSPhi     = 0.0
-	PDPhi     = 360.000
+	z          = 0.0
+	PDz        = Mesh_Dz
+	PSPhi      = 0.0
+	PDPhi      = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
 	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+		z           = z0[l] - 0.5*(zrel[6] + zrel[7])
+		vname       = f'ft_trk_mesh_X_L{layer_no}'
+		descriptio  = f'mesh X, layer {layer_no}'
 
 	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+		z           = z0[l] + 0.5*(zrel[6] + zrel[7])
+		vname       = f'ft_trk_mesh_Y_L{layer_no}'
+		descriptio  = f'mesh Y, layer {layer_no}'
+
+	gvolume = GVolume(vname)
+	gvolume.description = descriptio
+	gvolume.mother      = 'ft_trk'
+	gvolume.makeG4Tubs(InnerRadius, OuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.material    = mesh_material
+	gvolume.setPosition(0, 0, z)
+	gvolume.color       = mesh_color
+	gvolume.publish(configuration)
 
 def place_gas2(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
+	PDz       = Gas2_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
 	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+		z           = z0[l] - 0.5*(zrel[7] + zrel[8] + 2*Photoresist_Dz)
+		vname       = f'ft_trk_gas2_X_L{layer_no}'
+		descriptio  = f'gas1 X, layer {layer_no}'
 
 	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+		z           = z0[l] + 0.5*(zrel[7] + zrel[8] + 2*Photoresist_Dz)
+		vname       = f'ft_trk_gas2_Y_L{layer_no}'
+		descriptio  = f'gas1 Y, layer {layer_no}'
+
+	# notice different IR and OR from above
+	SInnerRadius = 67.0
+	SOuterRadius = 151.5
+	gvolume = GVolume(vname)
+	gvolume.description = descriptio
+	gvolume.mother      = 'ft_trk'
+	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.material    = gas_material
+	gvolume.setPosition(0, 0, z)
+	gvolume.color       = gas_color
+	gvolume.digitization = 'ft_trk'
+	gvolume.setIdentifier('superlayer', layer_no, 'type', type, 'segment', 1, 'strip', 1)
+	gvolume.publish(configuration)
 
 def place_driftelectrode(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
+	PDz       = DriftElectrode_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
 	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+		z           = z0[l] - 0.5*(zrel[8] + zrel[9])
+		vname       = f'ft_trk_driftel_X_L{layer_no}'
+		descriptio  = f'drift electrode X, layer {layer_no}'
 
 	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+		z           = z0[l] + 0.5*(zrel[8] + zrel[9])
+		vname       = f'ft_trk_driftel_Y_L{layer_no}'
+		descriptio  = f'drift electrode Y, layer {layer_no}'
+
+	# notice different IR and OR from above
+	SInnerRadius = 70.43
+	SOuterRadius = 143.66
+	gvolume = GVolume(vname)
+	gvolume.description = descriptio
+	gvolume.mother      = 'ft_trk'
+	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.material    = 'G4_Cu'
+	gvolume.setPosition(0, 0, z)
+	gvolume.color       = strips_color
+	gvolume.publish(configuration)
 
 def place_drift(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
+	PDz       = DriftPCB_Dz
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
 	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+		z           = z0[l] - 0.5*(zrel[9] + zrel[10])
+		vname       = f'ft_trk_drift_X_L{layer_no}'
+		descriptio  = f'drift X, layer {layer_no}'
 
 	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+		z           = z0[l] + 0.5*(zrel[9] + zrel[10])
+		vname       = f'ft_trk_drift_Y_L{layer_no}'
+		descriptio  = f'drift Y, layer {layer_no}'
+
+	# notice different OR from above
+	SOuterRadius = 158.5
+	gvolume = GVolume(vname)
+	gvolume.description = descriptio
+	gvolume.mother      = 'ft_trk'
+	gvolume.makeG4Tubs(InnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.material    = pcboard_material
+	gvolume.setPosition(0, 0, z)
+	gvolume.color       = pcboard_color
+	gvolume.publish(configuration)
 
 def place_rings(configuration, l, type):
 	layer_no   = l + 1
 	z         = 0.0
-	PDz       = Epoxy_Dz
+	PDz       = 0.5*5.0
 	PSPhi     = 0.0
 	PDPhi     = 360.000
 	vname      = 'no'
 	descriptio = 'no'
 
-	if type == 1:
-		vname       = f'ft_trk_pcboard_X_L{layer_no}'
-		descriptio  = f'pc board X, layer {layer_no}'
+	zmin      = zrel[7] + 2*Photoresist_Dz
+	zmax      = zrel[9]
+	PRMin     = [ 60.0, 151.5 ]
+	PRMax     = [ 67.0, 158.5 ]
 
-	elif type == 2:
-		vname       = f'ft_trk_pcboard_Y_L{layer_no}'
-		descriptio  = f'pc board Y, layer {layer_no}'
+
+	for ring in range(2):
+		ring_no = ring + 1
+
+		if type == 1:
+			z           = z0[l] - 0.5*(zmin + zmax)
+			vname       = f'ft_trk_ring_X_L{layer_no}_R{ring_no}'
+			descriptio  = f'ring X, layer {layer_no}, ring {ring_no}'
+
+		elif type == 2:
+			z           = z0[l] + 0.5*(zmin + zmax)
+			vname       = f'ft_trk_ring_Y_L{layer_no}_R{ring_no}'
+			descriptio  = f'ring Y, layer {layer_no}, ring {ring_no}'
+
+		gvolume = GVolume(vname)
+		gvolume.description = descriptio
+		gvolume.mother      = 'ft_trk'
+		gvolume.makeG4Tubs(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
+		gvolume.material    = 'G4_Al'
+		gvolume.setPosition(0, 0, z)
+		gvolume.color       = alu_color
+		gvolume.publish(configuration)
+
+	ang_offset = 0.0
+	for ext in range(25):
+		ext_no = ext + 1
+		PSPhi    = - 0.5*4.9 + ext*15.0 + ang_offset
+		PDPhi    = 4.9
+
+		# an overall rotation will have to be added to place correctly
+		# extensions 24 and 25 which break cylindrical symmetry
+		if ext_no == 24:
+			PSPhi = PSPhi - 5.0
+		if ext_no == 25:
+			PSPhi = PSPhi - 15.0 + 5.0
+
+		if type == 1:
+			vname       = f'ft_trk_ring_X_L{layer_no}_E{ext_no}'
+			descriptio  = f'ring Y, layer {layer_no}, extension {ext_no}'
+		elif type == 2:
+			vname       = f'ft_trk_ring_Y_L{layer_no}_E{ext_no}'
+			descriptio  = f'ring Y, layer {layer_no}, extension {ext_no}'
+
+		gvolume = GVolume(vname)
+		gvolume.description = descriptio
+		gvolume.mother      = 'ft_trk'
+		gvolume.makeG4Tubs(PRMax[1], OuterRadius, PDz, PSPhi, PDPhi)
+		gvolume.material    = 'G4_Al'
+		gvolume.setPosition(0, 0, z)
+		gvolume.color       = alu_color
+		gvolume.publish(configuration)
 
