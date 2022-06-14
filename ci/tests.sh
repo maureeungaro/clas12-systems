@@ -105,7 +105,6 @@ do
 	exitCode=$?
 	if [[ $exitCode != 0 ]]; then
 		cat *.err
-		cat *.log
 		exit $exitCode
 	fi
 done

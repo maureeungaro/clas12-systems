@@ -24,6 +24,14 @@ ft_hodo_sources = [
 			  'ft_hodo_hitDigitization.cc'
 			  ]
 
-ft_cal_plugin  = env.SharedLibrary( source = ft_cal_sources,  target = 'ft_cal')
-ft_hodo_plugin = env.SharedLibrary( source = ft_hodo_sources,  target = 'ft_hodo')
+ft_mmtrk_sources = [
+			  'ft_mmtrk_readoutSpecs.cc',
+			  'ft_mmtrk_loadConstants.cc',
+			  'ft_mmtrk_stripSharing.cc',
+			  'ft_mmtrk_hitDigitization.cc'
+			  ]
+
+ft_cal_plugin   = env.SharedLibrary( source = ft_cal_sources,   target = 'ft_cal')
+ft_hodo_plugin  = env.SharedLibrary( source = ft_hodo_sources,  target = 'ft_hodo')
+ft_mmtrk_plugin = env.SharedLibrary( source = ft_mmtrk_sources, target = 'ft_mmtrk')
 

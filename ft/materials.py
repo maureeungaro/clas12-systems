@@ -68,3 +68,56 @@ def define_materials(configuration):
 	gmaterial.addMaterialWithFractionalMass("G4_Si", 0.2468)
 	gmaterial.addMaterialWithFractionalMass("G4_O",  0.2812)
 	gmaterial.publish(configuration)
+
+	# micromegas gas: Ar/Isobutane for now, but not sure what will be used
+	mmgasdensity = (1.662*0.95+2.489*0.05)*0.001
+	gmaterial = GMaterial("mmgas")
+	gmaterial.description = "ft micromegas gas"
+	gmaterial.density = mmgasdensity
+	gmaterial.addMaterialWithFractionalMass("G4_Ar", 0.95)
+	gmaterial.addMaterialWithFractionalMass("G4_H",  0.0086707)
+	gmaterial.addMaterialWithFractionalMass("G4_C",  0.0413293)
+	gmaterial.publish(configuration)
+
+   # micromegas strips
+	mmstriptransparency = 459./559. # strips filling fraction
+	mmstripdensity      = 8.96*mmstriptransparency*(15./12.) # 3 extra microns for connecting strips underneath
+	ResistPasteTransparency_Density = 0.81*1.33
+	gmaterial = GMaterial("mmstrips")
+	gmaterial.description = "ft micromegas strips"
+	gmaterial.density = mmstripdensity
+	gmaterial.addMaterialWithFractionalMass("G4_Cu",  1)
+	gmaterial.publish(configuration)
+
+	# resistive strips
+	# for fmt: 81% filling fraction, 1.33 density from excel file;
+	# from Cern mail 12/06/16, suppose 50% C / 50% epoxy;
+	# adopt C at above density.
+	# thickness almost negligible, so not crucial to be exact.
+	ResistPasteTransparency_Density = 0.81*1.33
+	gmaterial = GMaterial("ResistPaste")
+	gmaterial.description = "ft micromegas resistive strips"
+	gmaterial.density = ResistPasteTransparency_Density
+	gmaterial.addMaterialWithFractionalMass("G4_C",  1)
+	gmaterial.publish(configuration)
+
+
+	# micromegas mesh
+	mmmeshtransparency = 0.55
+	mmmeshdensity = 7.93*mmmeshtransparency
+	gmaterial = GMaterial("mmmesh")
+	gmaterial.description = "ft micromegas mesh"
+	gmaterial.density = mmmeshdensity
+	gmaterial.addMaterialWithFractionalMass("G4_Mn",  0.02)
+	gmaterial.addMaterialWithFractionalMass("G4_Si",  0.01)
+	gmaterial.addMaterialWithFractionalMass("G4_Cr",  0.19)
+	gmaterial.addMaterialWithFractionalMass("G4_Ni",  0.10)
+	gmaterial.addMaterialWithFractionalMass("G4_Fe",  0.68)
+	gmaterial.publish(configuration)
+
+	PhotoResist_Density = 1.42
+	gmaterial = GMaterial("myPhRes")
+	gmaterial.description = "ft micromegas PhotoResist"
+	gmaterial.density = PhotoResist_Density
+	gmaterial.addMaterialWithFractionalMass("G4_C",  1)
+	gmaterial.publish(configuration)

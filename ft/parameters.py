@@ -363,12 +363,12 @@ z0[1]     = z0[0] + 2.*zrel[9] + 2.*AssemblyRing3_Dz
 epoxy_material       = 'epoxy'
 pcboard_material     = 'myFR4'
 strips_material      = 'mmstrips'
-kapton_material      = 'myKapton'
+kapton_material      = 'G4_KAPTON'
 resistive_material   = 'ResistPaste'
 gas_material         = 'mmgas'
 mesh_material        = 'mmmesh'
 photoresist_material = 'myPhRes'
-drift_material       = 'mmmylar'
+drift_material       = 'G4_MYLAR'
 
 
 # G4 colors

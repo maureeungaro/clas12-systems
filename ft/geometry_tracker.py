@@ -464,7 +464,7 @@ def place_gas2(configuration, l, type):
 	gvolume.material    = gas_material
 	gvolume.setPosition(0, 0, z)
 	gvolume.color       = gas_color
-	gvolume.digitization = 'ft_trk'
+	gvolume.digitization = 'ft_mmtrk'
 	gvolume.setIdentifier('superlayer', layer_no, 'type', type, 'segment', 1, 'strip', 1)
 	gvolume.publish(configuration)
 

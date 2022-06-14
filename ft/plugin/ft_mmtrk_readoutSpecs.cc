@@ -1,8 +1,8 @@
-#include "ft_cal.h"
+#include "ft_mmtrk.h"
 
-bool FT_CAL_Plugin::defineReadoutSpecs()
+bool FT_MMTRK_Plugin::defineReadoutSpecs()
 {
-	float     timeWindow = 400;                 // electronic readout time-window of the detector
+	float     timeWindow = 132;                 // electronic readout time-window of the detector
 	float     gridStartTime = 0;                // defines the windows grid
 	HitBitSet hitBitSet = HitBitSet("000000");  // defines what information to be stored in the hit
 	bool      verbosity = true;
@@ -13,8 +13,8 @@ bool FT_CAL_Plugin::defineReadoutSpecs()
 }
 
 
-// DO NOT EDIT BELOW THIS LINE: defines how to create the <FT_CAL_Plugin>
+// DO NOT EDIT BELOW THIS LINE: defines how to create the <FT_MMTRK_Plugin>
 extern "C" GDynamicDigitization* GDynamicDigitizationFactory(void) {
-	return static_cast<GDynamicDigitization*>(new FT_CAL_Plugin);
+	return static_cast<GDynamicDigitization*>(new FT_MMTRK_Plugin);
 }
 
