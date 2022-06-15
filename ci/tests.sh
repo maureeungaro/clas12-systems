@@ -100,11 +100,11 @@ export GEMCDB_ENV=systemsTxtDB
 for jc in $=jcards
 do
 	echo Running gemc for $jc
+	rm -f *.err *.log
 	gemc $jc
 	exitCode=$?
 	if [[ $exitCode != 0 ]]; then
 		cat *.err
-		cat *.log
 		exit $exitCode
 	fi
 done

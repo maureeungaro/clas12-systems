@@ -7,7 +7,10 @@ import subprocess
 from gemc_api_utils import GConfiguration
 from gemc_api_geometry import *
 
-from geometry import buildHodoscope, buildCalorimeter, make_ft_pipe, buildTracker
+from geometry_calorimeter import buildCalorimeter, make_ft_pipe
+from geometry_hodoscope import buildHodoscope
+from geometry_tracker import buildTracker
+
 from materials import define_materials
 
 _logger = logging.getLogger("ft")
