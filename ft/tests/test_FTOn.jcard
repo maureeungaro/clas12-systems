@@ -4,7 +4,7 @@
 
 	# verbosities
 	"verbosity": 2,
-	"grunv": 1,
+	"grunv": 2,
 	"gframestreamv": 2,
 	"eventDistributionv": 2,
 
