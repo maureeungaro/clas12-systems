@@ -85,9 +85,11 @@ PrintFlag () {
 	exit
 }
 
-allSystems=( targets fc ft ftof ) # available systems ordered by z position
-systemsChanged=()                 # list of system changed in last PR or push
-breakLoop=0                       # set in CheckSystem to break main loop if changes in the core files are detected
+# available systems ordered by z position
+allSystems=( targets beamline ft fc ftof )
+
+systemsChanged=()  # list of system changed in last PR or push
+breakLoop=0        # set in CheckSystem to break main loop if changes in the core files are detected
 
 
 # if the base name dir contains one of the system, add that system

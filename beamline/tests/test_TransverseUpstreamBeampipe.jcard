@@ -1,0 +1,40 @@
+{
+	# Run simulation with 3 different outputs, including JLABSRO
+	# no nthreads specified: runs on all available threads
+
+	# verbosities
+	"verbosity": 2,
+	"grunv": 2,
+	"gframestreamv": 2,
+	"eventDistributionv": 2,
+
+	# uncomment to set maximum number of events / sub run different than the default of 100
+	# this number controls how often the outputs are written out
+	# "maxebuffer": 1000,
+
+	"+gsystem": [
+		{ "system": "./beamline", "factory": "text", "variation": "TransverseUpstreamBeampipe" }
+	],
+
+	"+goutput": [
+		{
+			"format": "ROOT",
+			"name": "events.root",
+			"type": "event"
+		},
+		{
+			"format": "TEXT",
+			"name": "events.txt",
+			"type": "event"
+		}
+	],
+
+	"n": 1000,
+	"eventTimeSize": "2*us",
+	"+gparticle": [
+		{ "pname": "e-",  "multiplicity": 1, "p": 2100, "theta": 3, "delta_phi": 180.0, "delta_theta": 2.0},
+		{ "pname": "pi0", "multiplicity": 1, "p": 2300, "theta": 2}
+	]
+
+
+}
