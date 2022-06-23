@@ -103,8 +103,13 @@ case $detector in
 		gemc2_filename_prefix="target"
 		gemc3_filename_prefix="clas12Target"
 		;;
+	pcal)
+		subsystem_template_name=$detector
+		gemc2_filename_prefix=$detector
+		gemc3_filename_prefix=$detector
+		;;
 	*) # Invalid option
-    	echo Detector $detector not supported. Possible choices: fc, ft, ftof, targets
+    	echo Detector $detector not supported. Possible choices: fc, ft, ftof, pcal, targets
     	exit 1
         ;;
    esac
