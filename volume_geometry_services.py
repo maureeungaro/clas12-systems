@@ -95,6 +95,7 @@ class SolidParams:
             "Sphere": self.process_sphere,
             "Polycone": self.process_polycone,
             "Trd": self.process_trd,
+            "G4Trap": self.process_trap,
         }
         return map_type_to_method[self.solid_type](gvolume)
 
@@ -158,6 +159,15 @@ class SolidParams:
             lunit=_ensure_single_unit(self.units)
         )
 
+    def process_trap(self, gvolume):
+        length_units = self.units[0:1] + self.units[3:6] + self.units[7:10]
+        angle_units = self.units[1:3] + [self.units[6], self.units[10]]
+        
+        gvolume.makeG4Trap(
+            *self.numbers,
+            lunit1=_ensure_single_unit(length_units),
+            lunit2=_ensure_single_unit(angle_units)
+        )
 
 @dataclass
 class VolumeParams:
