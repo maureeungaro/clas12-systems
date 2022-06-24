@@ -1,6 +1,8 @@
+import sys
 from gemc_api_geometry import GVolume
 from gemc_api_utils import GConfiguration
 from gemc_api_materials import GMaterial
+sys.path.append("..")
 from volume_geometry_services import (
     VolumeParams,
     parse,
