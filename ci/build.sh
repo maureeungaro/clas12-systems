@@ -81,7 +81,7 @@ CreateAndCopyDetectorTXTs() {
 	system=$1
 	echo
 	echo Running $script
-	$script || echo "Error when running script as \'$script\'" && exit 1
+	$script || { echo "Error when running $script" ; exit 1 }
 	ls -ltrh ./
 	subDir=$(basename $system)
 	filesToCopy=$(ls | grep \.txt | grep "$subdir")
