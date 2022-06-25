@@ -54,6 +54,8 @@ def process_pcal(volume: VolumeParams) -> VolumeParams:
             volume.digitization = "ecal"
             sector_id = parsed_data['sector']
             layer_id = 1
+            # strips 1-52: single strip identifier
+            # strips 53-84: double strip identifier
             strip_id = strip_parsed if strip_parsed <= 52 else 53 + (strip_parsed-53) // 2
             volume.identifier = f"sector: {sector_id}, layer: {layer_id}, strip: {strip_id}"
 
@@ -79,6 +81,8 @@ def process_pcal(volume: VolumeParams) -> VolumeParams:
             volume.digitization = "ecal"
             sector_id = parsed_data['sector']
             layer_id = 2
+            # strips 1-30: double strip identifier
+            # strips 31-77: single strip identifier
             strip_id = 1 + ((strip_parsed-1) // 2) if strip_parsed <= 30 else strip_parsed-15
             volume.identifier = f"sector: {sector_id}, layer: {layer_id}, strip: {strip_id}"
 
@@ -104,6 +108,8 @@ def process_pcal(volume: VolumeParams) -> VolumeParams:
             volume.digitization = "ecal"
             sector_id = parsed_data['sector']
             layer_id = 3
+            # strips 1-30: double strip identifier
+            # strips 31-77: single strip identifier
             strip_id = 1 + ((strip_parsed-1) // 2) if strip_parsed <= 30 else strip_parsed-15
             volume.identifier = f"sector: {sector_id}, layer: {layer_id}, strip: {strip_id}"
 

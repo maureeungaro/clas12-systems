@@ -5,7 +5,7 @@
 # This could come from a push or a pull requrest.
 #
 # If the changes were made to the directories groovyFactories, ci, returns all supported systems
-#
+# 
 Help()
 {
 	# Display Help
