@@ -229,6 +229,7 @@ def matches_solid(gemc2: VolumeParams, gemc3: VolumeParams) -> MatcherResult:
         "G4Polycone": "Polycone",
         "G4Sphere": "Sphere",
         "G4Trd": "Trd",
+        "G4Trap": "G4Trap",
     }
     gemc2_solid = gemc2.solid
     gemc3_solid = gemc3.solid
@@ -500,11 +501,17 @@ def get_pairs_to_compare(
         "KPP": "KPP"
     }
 
+    map_gemc2_to_gemc3_pcal = {
+        "default": "default",
+        "rga_fall2018": "rga_fall2018",
+    }
+
     map_sybsystem_to_map_gemc2_to_gemc3 = {
         "target": map_gemc2_to_gemc3_targets,
         "forward_carriage": map_gemc2_to_gemc3_forward_carriage,
         "ftof": map_gemc2_to_gemc3_ftof,
         "ft": map_gemc2_to_gemc3_ft,
+        "pcal": map_gemc2_to_gemc3_pcal,
     }
 
     return [
@@ -532,7 +539,7 @@ def _create_argument_parser() -> argparse.ArgumentParser:
         "--template-subsystem",
         dest="template_subsystem",
         help="Detector subsystem used to populate the template",
-        choices=["target", "forward_carriage", "ftof", "ft"],
+        choices=["target", "forward_carriage", "ftof", "ft", "pcal"],
         default="target",
     )
     parser.add_argument("-v", "--verbose", help="Print volume being validated", action='store_true')
@@ -560,12 +567,12 @@ def main() -> ExitCode:
             fname2 = os.path.basename(gemc2_file)
             fname3 = os.path.basename(gemc3_file)
             _logger.info(f"{fname2} -> {fname3}")
-        single_file_pair_results = compare_files_gemc2_gemc3(
+        compare_files_gemc2_gemc3(
             gemc2_file,
             gemc3_file,
             verbosity
         )
-        #pprint(single_file_pair_results)
+
     if FAILURES:
         _logger.error("The following matcher failures were detected:")
         _logger.error("\n".join(FAILURES))
