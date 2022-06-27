@@ -37,7 +37,7 @@ fi
 
 # available systems
 # ordered by z position
-allSystems=(targets fc ft ftof pcal)
+allSystems=(targets beamline ft fc ftof pcal)
 
 while getopts ":has:" option; do
    case $option in

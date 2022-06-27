@@ -13,7 +13,7 @@
 	# "maxebuffer": 1000,
 
 	"+gsystem": [
-		{ "system": "./ft", "factory": "text", "variation": "KPP" }
+		{ "system": "./beamline", "factory": "text", "variation": "FTOn" }
 	],
 
 	"+goutput": [
@@ -23,18 +23,12 @@
 			"type": "event"
 		},
 		{
-			"format": "JLABSRO",
-			"name": "stream.dat",
-			"type": "stream"
-		},
-		{
 			"format": "TEXT",
 			"name": "events.txt",
 			"type": "event"
 		}
 	],
 
-	"digitizationVariation": "rga_spring2018_mc",
 	"n": 1000,
 	"eventTimeSize": "2*us",
 	"+gparticle": [
