@@ -37,7 +37,7 @@ fi
 
 # available systems
 # ordered by z position
-allSystems=(targets fc ft ftof)
+allSystems=(targets fc ft ftof pcal)
 
 while getopts ":has:" option; do
    case $option in
@@ -81,7 +81,7 @@ CreateAndCopyDetectorTXTs() {
 	system=$1
 	echo
 	echo Running $script
-	$script
+	$script || { echo "Error when running $script" ; exit 1 }
 	ls -ltrh ./
 	subDir=$(basename $system)
 	filesToCopy=$(ls | grep \.txt | grep "$subdir")

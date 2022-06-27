@@ -1,3 +1,5 @@
+import sys
+
 from gemc_api_geometry import *
 
 import math
@@ -8,24 +10,24 @@ def _make_full_tube(gvolume, r_in, r_out, half_length):
 
 
 def _build_nuclear_target_foil(
-			material,
-			name_prefix,
-			descr_prefix,
-			z_center,
-			half_length,
-			r_in=0.0,
-			r_out=5.0,
-			color="aa0000",
-		):
+	material,
+	name_prefix,
+	descr_prefix,
+	z_center,
+	half_length,
+	r_in=0.0,
+	r_out=5.0,
+	color="aa0000",
+	):
 
-			gvolume = GVolume(f"{name_prefix}NuclearTargFoil")
-			gvolume.mother = "target"
-			gvolume.description = f"{descr_prefix} foil for EG2p Nuclear Targets Assembly"
-			gvolume.material = material
-			gvolume.color = color
-			_make_full_tube(gvolume, r_in, r_out, half_length)
-			gvolume.setPosition(0., 0., z_center)
-			return gvolume
+		gvolume = GVolume(f"{name_prefix}NuclearTargFoil")
+		gvolume.mother = "target"
+		gvolume.description = f"{descr_prefix} foil for EG2p Nuclear Targets Assembly"
+		gvolume.material = material
+		gvolume.color = color
+		_make_full_tube(gvolume, r_in, r_out, half_length)
+		gvolume.setPosition(0., 0., z_center)
+		return gvolume
 
 
 def build_geometry_lhydrogen(configuration):
