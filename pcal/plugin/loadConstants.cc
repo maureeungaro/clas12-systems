@@ -1,4 +1,4 @@
-#include "pcal.h"
+#include "ec.h"
 
 // ccdb
 #include <CCDB/Calibration.h>
@@ -9,7 +9,7 @@ using namespace ccdb;
 // clhep
 using namespace CLHEP;
 
-bool PCAL_Plugin::loadConstants(int runno, string variation)
+bool EC_Plugin::loadConstants(int runno, string variation)
 {
 
 	return true;

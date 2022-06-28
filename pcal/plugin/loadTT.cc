@@ -1,4 +1,4 @@
-#include "pcal.h"
+#include "ec.h"
 
 // ccdb
 #include <CCDB/Calibration.h>
@@ -12,13 +12,13 @@ unique_ptr<Calibration> calib(CalibrationGenerator::CreateCalibration(connection
 int icomponent;
 vector<vector<double> > data;
 
-bool PCAL_Plugin::loadTT(int runno, string variation)
+bool EC_Plugin::loadTT(int runno, string variation)
 {
 	translationTable = new GTranslationTable();
 
 	vector<vector<double> > data;
 
-	string database   = "/daq/tt/ecal:1";
+	string database   = "/daq/tt/ec:1";
 	gDLogMessage("PCAL: Loading Translation Table " + database);
 	data.clear(); calib->GetCalib(data, database);
 

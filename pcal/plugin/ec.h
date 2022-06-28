@@ -1,11 +1,11 @@
-#ifndef PCAL_Plugin_HEADERS
-#define PCAL_Plugin_HEADERS 1
+#ifndef EC_Plugin_HEADERS
+#define EC_Plugin_HEADERS 1
 
 // glibrary
 #include "gdynamicdigitization.h"
 #include "gutsConventions.h"
 
-class PCAL_Plugin : public GDynamicDigitization {
+class EC_Plugin : public GDynamicDigitization {
 
 public:
 

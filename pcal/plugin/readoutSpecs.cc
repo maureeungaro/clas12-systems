@@ -1,6 +1,6 @@
-#include "pcal.h"
+#include "ec.h"
 
-bool PCAL_Plugin::defineReadoutSpecs()
+bool EC_Plugin::defineReadoutSpecs()
 {
 	float     timeWindow = 10;                  // electronic readout time-window of the detector
 	float     gridStartTime = 0;                // defines the windows grid
@@ -13,8 +13,8 @@ bool PCAL_Plugin::defineReadoutSpecs()
 }
 
 
-// DO NOT EDIT BELOW THIS LINE: defines how to create the <PCAL_Plugin>
+// DO NOT EDIT BELOW THIS LINE: defines how to create the <EC_Plugin>
 extern "C" GDynamicDigitization* GDynamicDigitizationFactory(void) {
-	return static_cast<GDynamicDigitization*>(new PCAL_Plugin);
+	return static_cast<GDynamicDigitization*>(new EC_Plugin);
 }
 

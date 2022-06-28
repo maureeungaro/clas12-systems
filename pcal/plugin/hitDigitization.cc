@@ -1,10 +1,10 @@
-#include "pcal.h"
+#include "ec.h"
 
 // G4 headers
 #include "G4Poisson.hh"
 #include "Randomize.hh"
 
-GDigitizedData* PCAL_Plugin::digitizeHit(GHit *ghit, size_t hitn)
+GDigitizedData* EC_Plugin::digitizeHit(GHit *ghit, size_t hitn)
 {
 	GDigitizedData* gdata = new GDigitizedData(ghit);
 
