@@ -507,12 +507,12 @@ def get_pairs_to_compare(
     }
 
     map_gemc2_to_gemc3_beamline = {
-        "ELMO": "ELMO",
+        #"ELMO": "ELMO",
         "FTOff": "FTOff",
         "FTOn": "FTOn",
-        "TransverseUpstreamBeampipe": "TransverseUpstreamBeampipe",
-        "rghFTOn": "rghFTOn",
-        "rghFTOut": "rghFTOut"
+        #"TransverseUpstreamBeampipe": "TransverseUpstreamBeampipe",
+        #"rghFTOn": "rghFTOn",
+        #"rghFTOut": "rghFTOut"
     }
 
     map_sybsystem_to_map_gemc2_to_gemc3 = {
