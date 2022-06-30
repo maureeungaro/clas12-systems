@@ -52,9 +52,9 @@ def main():
 		if variation == "FTOn" or variation == "FTOff":
 			build_rgab_beamline(configuration)
 		elif variation == "ELMO":
-			build_rgh_beamline(configuration)
-		elif variation == "rghFTOut" or variation == "rghFTOn":
 			build_elmo_beamline(configuration)
+		elif variation == "rghFTOut" or variation == "rghFTOn":
+			build_rgh_beamline(configuration)
 		elif variation == "TransverseUpstreamBeampipe" :
 			build_transverseUpstream_beamline(configuration)
 

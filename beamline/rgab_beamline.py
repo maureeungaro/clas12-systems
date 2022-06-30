@@ -13,12 +13,6 @@ def build_rgab_beamline(configuration):
 	alcovePipeEnds   = 9400
 	mediumStarts  = pipeFirstStep + 76.5 # added by hand by shooting geantino vertically to locate the point
 
-# apex cad model not filled with lead.
-	apexIR = 140
-	apexOR = 190
-	apexLength = 1000
-	apexPos = 5372
-
 	if configuration.variation == 'FTOff':
 		shieldStart = 503
 
@@ -72,7 +66,6 @@ def build_rgab_beamline(configuration):
 	pipeLength = ( mediumStarts - pipeFirstStep ) / 2.0 - 0.1
 	zpos = pipeFirstStep + pipeLength
 	connectingIR = secondVacuumIR + 0.1
-
 
 	gvolume = GVolume('vacuumPipe3')
 	gvolume.description = 'third straightVacuumPipe steel'
@@ -139,7 +132,13 @@ def build_rgab_beamline(configuration):
 	gvolume.publish(configuration)
 
 	# lead inside apex
+	# apex cad model not filled with lead.
+	apexIR = 140
+	apexOR = 190
+	apexLength = 1000
+	apexPos = 5372
 	zpos = apexPos + apexLength
+	
 	gvolume = GVolume('leadInsideApex')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'lead inside apex'
