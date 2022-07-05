@@ -512,8 +512,8 @@ def get_pairs_to_compare(
         "FTOff": "FTOff",
         "FTOn": "FTOn",
         "rghFTOn": "rghFTOn",
-        "rghFTOut": "rghFTOut"
-        #"TransverseUpstreamBeampipe": "TransverseUpstreamBeampipe",
+        "rghFTOut": "rghFTOut",
+        "TransverseUpstreamBeampipe": "TransverseUpstreamBeampipe"
     }
 
     map_sybsystem_to_map_gemc2_to_gemc3 = {
