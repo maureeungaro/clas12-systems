@@ -149,20 +149,19 @@ def build_rgab_beamline(configuration):
 	gvolume.publish(configuration)
 
 
+	# airpipes to account for change in volume size from target to "root" within a magnetic field
+	#
+	#
+
 	gapZpos = 283
 	gapLength = 295
 
 	if configuration.variation == 'FTOff':
 		gapLength = 92.5
 
-
 	gapLengthm = gapLength + 1
 	ztart = gapZpos
 
-
-	# airpipes to account for change in volume size from target to "root" within a magnetic field
-	#
-	#
 	z_plane_airpipe  =  [   0, 2*gapLength ]
 	zradius_airpipe  =  [   0,           0 ]
 	oradius_airpipe  =  [  20,          55 ]

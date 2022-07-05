@@ -14,7 +14,8 @@
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
-		{ "system": "./beamline", "factory": "text", "variation": "rghFTOn" }
+		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOn" },
+		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
 	],
 
 	"+goutput": [

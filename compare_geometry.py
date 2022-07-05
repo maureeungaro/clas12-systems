@@ -230,6 +230,7 @@ def matches_solid(gemc2: VolumeParams, gemc3: VolumeParams) -> MatcherResult:
         "G4Sphere": "Sphere",
         "G4Trd": "Trd",
         "G4Trap": "G4Trap",
+        "G4Cons": "Cons"
     }
     gemc2_solid = gemc2.solid
     gemc3_solid = gemc3.solid
@@ -510,8 +511,8 @@ def get_pairs_to_compare(
         "ELMO": "ELMO",
         "FTOff": "FTOff",
         "FTOn": "FTOn",
-        #"rghFTOn": "rghFTOn",
-        #"rghFTOut": "rghFTOut"
+        "rghFTOn": "rghFTOn",
+        "rghFTOut": "rghFTOut"
         #"TransverseUpstreamBeampipe": "TransverseUpstreamBeampipe",
     }
 

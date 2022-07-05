@@ -54,8 +54,7 @@ def main():
 		elif variation == "ELMO":
 			build_elmo_beamline(configuration)
 		elif variation == "rghFTOut" or variation == "rghFTOn":
-			# build_rgh_beamline(configuration)
-			build_transverseUpstream_beamline(configuration)
+			build_rgh_beamline(configuration)
 		elif variation == "TransverseUpstreamBeampipe" :
 			build_transverseUpstream_beamline(configuration)
 

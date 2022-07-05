@@ -230,9 +230,3 @@ def build_elmo_beamline(configuration):
 
 
 
-
-	zpos = 2300.0
-
-
-
-	zpos = 2550.0
