@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for ft_cal
+	# Run check overlaps for beamline ELMO
 
 	# verbosities
 	"verbosity": 1,

@@ -142,7 +142,7 @@ function run_comparison {
 
 ./ci/build.sh -s $detector
 if [ $? -ne 0 ]; then
-	echo building gemc failed
+	echo building system $detector failed
 	exit 1
 fi
 

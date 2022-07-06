@@ -162,15 +162,15 @@ def build_rgh_beamline(configuration):
 
 
 	# airpipes to account for change in volume size from target to "root" within a magnetic field
+	iradius_airpipe  =  [       0,      0,      0,    0 ]
+	oradius_airpipe  =  [    30.0,   30.0,  25.46, 41.2 ]
+	z_plane_airpipe  =  [  280.71, 384.98, 384.98,  570 ]
 
-	z_plane_airpipe  =  [       0,      0,      0,    0 ]
-	zradius_airpipe  =  [    30.0,   30.0,  25.46, 41.2 ]
-	oradius_airpipe  =  [  280.71, 384.98, 384.98,  570 ]
 
 	gvolume = GVolume('Airpipe')
 	gvolume.mother      = 'hdIce_mother'
 	gvolume.description = 'airgap between target and shield to limit e- steps'
-	gvolume.makeG4Polycone('0', '360', z_plane_airpipe, zradius_airpipe, oradius_airpipe)
+	gvolume.makeG4Polycone('0', '360', z_plane_airpipe, iradius_airpipe, oradius_airpipe)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)

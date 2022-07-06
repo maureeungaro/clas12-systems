@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for ft_cal
+	# Run check overlaps for beamline TransverseUpstreamBeampipe
 
 	# verbosities
 	"verbosity": 1,
@@ -11,7 +11,9 @@
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
-		{ "system": "./beamline", "factory": "text", "variation": "TransverseUpstreamBeampipe" }
+		{ "system": "./ubeamline",             "factory": "text", "variation": "TransverseUpstreamBeampipe" },
+		{ "system": "./beamline",              "factory": "text", "variation": "FTOn" },
+		{ "system": "./clas12Target",          "factory": "text", "variation": "lh2" }
 	],
 
 	"checkOverlaps": 1
