@@ -8,6 +8,7 @@
 # Container run:
 # docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
+# git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -s ft
 
 # load environment if we're on the container
