@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for ft_cal
+	# Run check overlaps for beamline rghFTOut
 
 	# verbosities
 	"verbosity": 1,
@@ -10,7 +10,9 @@
 	"nthreads": 1,
 
 	"+gsystem": [
-		{ "system": "./beamline", "factory": "text", "variation": "rghFTOut" }
+		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
+		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOut" },
+		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
 	],
 
 	"checkOverlaps": 1

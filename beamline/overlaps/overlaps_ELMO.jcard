@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for ft_cal
+	# Run check overlaps for beamline ELMO
 
 	# verbosities
 	"verbosity": 1,
@@ -10,6 +10,7 @@
 	"nthreads": 1,
 
 	"+gsystem": [
+		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
 		{ "system": "./beamline", "factory": "text", "variation": "ELMO" }
 	],
 

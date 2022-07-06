@@ -108,8 +108,14 @@ case $detector in
 		gemc2_filename_prefix=$detector
 		gemc3_filename_prefix=$detector
 		;;
+	beamline)
+		subsystem_template_name=$detector
+		gemc2_filename_prefix=$detector
+		gemc3_filename_prefix=$detector
+		;;
 	*) # Invalid option
-    	echo Detector $detector not supported. Possible choices: fc, ft, ftof, pcal, targets
+		# Order of choices is along z direction
+    	echo Detector $detector not supported. Possible choices: targets, beamline, ft, fc, ftof, pcal
     	exit 1
         ;;
    esac
@@ -136,7 +142,7 @@ function run_comparison {
 
 ./ci/build.sh -s $detector
 if [ $? -ne 0 ]; then
-	echo building gemc failed
+	echo building system $detector failed
 	exit 1
 fi
 

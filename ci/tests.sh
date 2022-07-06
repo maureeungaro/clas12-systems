@@ -87,6 +87,10 @@ cp $GLIBRARY/lib/gstreamer*.gplugin $GPLUGIN_PATH
 jcards=no
 
 ./ci/build.sh -s $detector
+if [ $? -ne 0 ]; then
+	echo building system $detector failed
+	exit 1
+fi
 
 # sets the list of jcards to run
 JcardsToRun

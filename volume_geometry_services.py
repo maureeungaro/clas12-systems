@@ -164,7 +164,7 @@ class SolidParams:
         angle_units = self.units[1:3] + [self.units[6], self.units[10]]
         
         gvolume.makeG4Trap(
-            *self.numbers,
+            self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)
         )

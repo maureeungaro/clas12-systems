@@ -21,8 +21,7 @@ VARIATIONS = {
     "FTOff",
     "ELMO",
     "rghFTOut",
-    "rghFTOn",
-    "TransverseUpstreamBeampipe"
+    "rghFTOn"
 }
 
 
@@ -38,7 +37,7 @@ def main():
 	
 		basepath = os.environ["GPLUGIN_PATH"]
 	
-		_logger.info(f"Building ft configuration for variation {variation}")
+		_logger.info(f"Building beamline configuration for variation {variation}")
 		# Define GConfiguration name, factory and description. Initialize it.
 		configuration = GConfiguration('beamline', 'TEXT', 'The CLAS12 Beamline')
 		configuration.setVariation(variation)
@@ -52,14 +51,24 @@ def main():
 		if variation == "FTOn" or variation == "FTOff":
 			build_rgab_beamline(configuration)
 		elif variation == "ELMO":
-			build_rgh_beamline(configuration)
-		elif variation == "rghFTOut" or variation == "rghFTOn":
 			build_elmo_beamline(configuration)
-		elif variation == "TransverseUpstreamBeampipe" :
-			build_transverseUpstream_beamline(configuration)
+		elif variation == "rghFTOut" or variation == "rghFTOn":
+			build_rgh_beamline(configuration)
 
 		# print out the GConfiguration
 		configuration.printC()
+
+
+	uconfiguration = GConfiguration('ubeamline', 'TEXT', 'The CLAS12 Beamline')
+	uconfiguration.setVariation("TransverseUpstreamBeampipe")
+	uconfiguration.init_geom_file()
+	uconfiguration.init_mats_file()
+
+	build_transverseUpstream_beamline(uconfiguration)
+
+	# print out the GConfiguration
+	uconfiguration.printC()
+
 
 
 if __name__ == "__main__":

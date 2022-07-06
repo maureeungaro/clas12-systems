@@ -230,6 +230,7 @@ def matches_solid(gemc2: VolumeParams, gemc3: VolumeParams) -> MatcherResult:
         "G4Sphere": "Sphere",
         "G4Trd": "Trd",
         "G4Trap": "G4Trap",
+        "G4Cons": "Cons"
     }
     gemc2_solid = gemc2.solid
     gemc3_solid = gemc3.solid
@@ -492,7 +493,7 @@ def get_pairs_to_compare(
 
     map_gemc2_to_gemc3_ftof = {
         "default": "default",
-        "rga_fall2018": "rga_fall2018",
+        "rga_fall2018": "rga_fall2018"
     }
 
     map_gemc2_to_gemc3_ft = {
@@ -503,14 +504,24 @@ def get_pairs_to_compare(
 
     map_gemc2_to_gemc3_pcal = {
         "default": "default",
-        "rga_fall2018": "rga_fall2018",
+        "rga_fall2018": "rga_fall2018"
+    }
+
+    map_gemc2_to_gemc3_beamline = {
+        "ELMO": "ELMO",
+        "FTOff": "FTOff",
+        "FTOn": "FTOn",
+        "rghFTOn": "rghFTOn",
+        "rghFTOut": "rghFTOut",
+        "TransverseUpstreamBeampipe": "TransverseUpstreamBeampipe"
     }
 
     map_sybsystem_to_map_gemc2_to_gemc3 = {
         "target": map_gemc2_to_gemc3_targets,
+        "beamline": map_gemc2_to_gemc3_beamline,
+        "ft": map_gemc2_to_gemc3_ft,
         "forward_carriage": map_gemc2_to_gemc3_forward_carriage,
         "ftof": map_gemc2_to_gemc3_ftof,
-        "ft": map_gemc2_to_gemc3_ft,
         "pcal": map_gemc2_to_gemc3_pcal,
     }
 
@@ -535,11 +546,13 @@ def _create_argument_parser() -> argparse.ArgumentParser:
         help="Path or template to use to get file paths for GEMC3.",
         default="clas12Target__geometry_{}.txt"
     )
+
+    # detector order is along z
     parser.add_argument(
         "--template-subsystem",
         dest="template_subsystem",
         help="Detector subsystem used to populate the template",
-        choices=["target", "forward_carriage", "ftof", "ft", "pcal"],
+        choices=["target", "beamline", "ft", "forward_carriage", "ftof", "pcal"],
         default="target",
     )
     parser.add_argument("-v", "--verbose", help="Print volume being validated", action='store_true')
