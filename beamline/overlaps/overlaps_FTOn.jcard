@@ -15,5 +15,6 @@
 		{ "system": "./clas12Target",          "factory": "text", "variation": "lh2" }
 	],
 
-	"checkOverlaps": 1
+	
+	"checkOverlaps": 2
 }

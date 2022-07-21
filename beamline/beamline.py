@@ -31,7 +31,8 @@ def main():
 	# Provides the -h, --help message
 	desc_str = "   Will create the CLAS12 Beamline geometries\n"
 	parser = argparse.ArgumentParser(description=desc_str)
-	
+	args = parser.parse_args()
+
 	# loop over all the defined builder functions
 	for variation in VARIATIONS:
 	

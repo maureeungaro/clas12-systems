@@ -1,15 +1,19 @@
 {
 	# Run check overlaps for bonus target
 
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 1,
+	
 	# nthreads must be 1 to run checkOverlaps
 	"nthreads": 1,
-
-	# the target system
+	
 	"+gsystem": [
 		{
 			"system":   "./clas12Target", "factory": "text", "variation": "bonus"
 		}
 	],
 
-	"checkOverlaps": 1
+	"checkOverlaps": 2
 }

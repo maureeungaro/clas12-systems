@@ -24,6 +24,7 @@ def main():
     # Provides the -h, --help message
     desc_str = "   Will create the clas12 FTOF configuration\n"
     parser = argparse.ArgumentParser(description=desc_str)
+    args = parser.parse_args()
 
     # loop over all the defined builder functions
     for var_key, file_name in VARIATION_MAP.items():
