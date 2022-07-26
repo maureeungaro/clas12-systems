@@ -98,7 +98,7 @@ CompileAndCopyPlugin() {
 	echo "Compiling plugin for "$detector
 	echo
 	cd plugin
-	scons -j4 OPT=1
+	scons -j2 SHOWENV=1 SHOWBUILD=1 OPT=1
 	echo Moving plugins to $GPLUGIN_PATH
 	mv *.gplugin $GPLUGIN_PATH
 	scons -c

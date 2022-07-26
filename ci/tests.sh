@@ -97,6 +97,8 @@ JcardsToRun
 
 # for some reason DYLD_LIBRARY_PATH is not passed to this script
 export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
+echo DYLD_LIBRARY_PATH:$DYLD_LIBRARY_PATH
+echo LD_LIBRARY_PATH:$LD_LIBRARY_PATH
 
 # location of database
 export GEMCDB_ENV=systemsTxtDB
