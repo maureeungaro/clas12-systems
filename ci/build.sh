@@ -9,13 +9,17 @@
 # docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
-# ./ci/build.sh -s ft
+# ./ci/build.sh -s ftof
 
-# load environment if we're on the container
-# notice the extra argument to the source command
-TERM=xterm # source script use tput for colors, TERM needs to be specified
-FILE=/etc/profile.d/jlab.sh
-test -f $FILE && source $FILE keepmine
+if [[ -z "${G3CLAS12_VERSION}" ]]; then
+	# load environment if we're on the container
+	# notice the extra argument to the source command
+	TERM=xterm # source script use tput for colors, TERM needs to be specified
+	FILE=/etc/profile.d/jlab.sh
+	test -f $FILE && source $FILE keepmine
+else
+  echo environment already defined
+fi
 
 Help()
 {
@@ -95,15 +99,27 @@ CreateAndCopyDetectorTXTs() {
 }
 
 CompileAndCopyPlugin() {
-	echo "Compiling plugin for "$detector
+	# getting number of available CPUS
+	copt=" -j"`getconf _NPROCESSORS_ONLN`" OPT=1"
+	echo
+	echo Compiling $detector plugin with options: "$copt"
 	echo
 	cd plugin
-	scons -j2 SHOWENV=1 SHOWBUILD=1 OPT=1
+	scons SHOWENV=1 SHOWBUILD=1 $copt
+	gpls=$(ls systemsTxtDB/*.gplugin)
+	for gpl in $gpls;
+	do
+		ldresult=$( ld $gpl 2>&1 | grep undefined | wc -l )
+		if [ $ldresult -ne 0 ]; then
+			echo ld of gplugin $gpl returns undefined references
+			ld $gpl
+			echo
+			exit 1
+		fi
+	done
+	echo
 	echo Moving plugins to $GPLUGIN_PATH
 	mv *.gplugin $GPLUGIN_PATH
-	scons -c
-	# cleaning up
-	rm -rf .sconsign.dblite
 }
 
 BuildSystem() {
