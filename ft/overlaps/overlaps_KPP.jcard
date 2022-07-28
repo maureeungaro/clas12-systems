@@ -6,13 +6,10 @@
 	"gsystemv": 1,
 	"g4systemv": 1,
 	
-	# nthreads must be 1 to run checkOverlaps
-	"nthreads": 1,
-
 	"+gsystem": [
 		{ "system": "./ft", "factory": "text", "variation": "KPP" }
 	],
 
 	"digitizationVariation": "rga_spring2018_mc",
-	"checkOverlaps": 2
+	"checkOverlaps": 1
 }

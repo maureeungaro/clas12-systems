@@ -1,7 +1,9 @@
 {
 	# Run simulation with 3 different outputs, including JLABSRO
 	# no nthreads specified: runs on all available threads
-
+	# uncomment this line to specify number of threads
+	# "nthreads": 4,
+	
 	# verbosities
 	"verbosity": 2,
 	"grunv": 2,

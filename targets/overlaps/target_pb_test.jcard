@@ -6,14 +6,11 @@
 	"gsystemv": 1,
 	"g4systemv": 1,
 	
-	# nthreads must be 1 to run checkOverlaps
-	"nthreads": 1,
-	
 	"+gsystem": [
 		{
 			"system":   "./clas12Target", "factory": "text", "variation": "pb_test"
 		}
 	],
 
-	"checkOverlaps": 2
+	"checkOverlaps": 1
 }

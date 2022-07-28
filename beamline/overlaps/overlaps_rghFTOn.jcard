@@ -6,9 +6,6 @@
 	"gsystemv": 2,
 	"g4systemv": 2,
 
-	# nthreads must be 1 to run checkOverlaps
-	"nthreads": 1,
-
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
 		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOn" },
@@ -16,5 +13,5 @@
 	],
 
 	
-	"checkOverlaps": 2
+	"checkOverlaps": 1
 }

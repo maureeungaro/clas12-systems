@@ -106,7 +106,7 @@ CompileAndCopyPlugin() {
 	echo
 	cd plugin
 	scons SHOWENV=1 SHOWBUILD=1 $copt
-	gpls=$(ls systemsTxtDB/*.gplugin)
+	gpls=$(ls *.gplugin)
 	for gpl in $gpls;
 	do
 		ldresult=$( ld $gpl 2>&1 | grep undefined | wc -l )
