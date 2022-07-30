@@ -1,4 +1,4 @@
-name: Build Geo
+name: Build geo and plugins
 
 # Controls when the workflow will run
 on:

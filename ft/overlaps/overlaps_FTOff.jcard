@@ -10,6 +10,6 @@
 		{ "system": "./ft", "factory": "text", "variation": "FTOff" }
 	],
 
-	"digitizationVariation": "rga_spring2018_mc",
+	"dVariation": "rga_spring2018_mc",
 	"checkOverlaps": 1
 }
