@@ -8,7 +8,7 @@
 	"verbosity": 2,
 	"grunv": 2,
 	"gframestreamv": 2,
-	"eventDistributionv": 2,
+	"runweightsv": 2,
 
 	# uncomment to set maximum number of events / sub run different than the default of 100
 	# this number controls how often the outputs are written out
@@ -16,7 +16,8 @@
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
-		{ "system": "./beamline", "factory": "text", "variation": "ELMO" }
+		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOut" },
+		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
 	],
 
 	"+goutput": [

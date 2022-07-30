@@ -6,7 +6,7 @@
 	# verbosities
 	"verbosity": 2,
 	"grunv": 2,
-	"eventDistributionv": 2,
+	"runweightsv": 2,
 	"gsensitivityv": 1,
 
 	# uncomment to set maximum number of events / sub run different than the default of 100
