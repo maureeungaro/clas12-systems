@@ -1,0 +1,24 @@
+{
+	# Run check overlaps for beamline ELMO
+
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 1,
+
+	"+gsystem": [
+		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
+		{ "system": "./beamline", "factory": "text", "variation": "ELMO" }
+	],
+
+
+	
+	"g4view": {
+		"segsPerCircle": 50
+	},
+
+	"g4camera": {
+		"theta": "160*deg",
+		"phi": "30*deg"
+	}
+}

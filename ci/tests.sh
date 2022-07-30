@@ -25,13 +25,14 @@ Help()
 {
 	# Display Help
 	echo
-	echo "Syntax: tests.sh [-h|t|o|s]"
+	echo "Syntax: tests.sh [-h|t|o|d|s]"
 	echo
 	echo "Options:"
 	echo
 	echo "-h: Print this Help."
 	echo "-t: runs detector test. 'tests' directory must contain jcards."
 	echo "-o: runs overlaps test. 'overlaps' directory must contain jcards."
+	echo "-d: runs dawn screenshot. 'dawn' directory must contain jcards."
 	echo "-s <System>: build geometry and plugin for <System>"
 	echo
 }
@@ -41,7 +42,7 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-while getopts ":htos:" option; do
+while getopts ":htods:" option; do
    case $option in
       h)
          Help
@@ -49,6 +50,9 @@ while getopts ":htos:" option; do
          ;;
       t)
          testType=tests
+         ;;
+      t)
+         testType=dawn
          ;;
       o)
          testType=overlaps
