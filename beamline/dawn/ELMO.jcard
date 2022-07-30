@@ -11,8 +11,6 @@
 		{ "system": "./beamline", "factory": "text", "variation": "ELMO" }
 	],
 
-
-	
 	"g4view": {
 		"segsPerCircle": 50
 	},

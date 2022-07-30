@@ -12,7 +12,6 @@
 		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
 	],
 
-	
 	"g4view": {
 		"segsPerCircle": 50
 	},

@@ -51,7 +51,7 @@ while getopts ":htods:" option; do
       t)
          testType=tests
          ;;
-      t)
+      d)
          testType=dawn
          ;;
       o)

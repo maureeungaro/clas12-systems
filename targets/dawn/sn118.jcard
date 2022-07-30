@@ -1,38 +1,23 @@
 {
-	# no nthreads specified: runs on all available threads
-	# uncomment this line to specify number of threads
-	# "nthreads": 4,
-	
+	# Run check overlaps for sn118 target
+
 	# verbosities
 	"verbosity": 1,
 	"gsystemv": 1,
-	"g4systemv": 2,
+	"g4systemv": 1,
 	
-	# the target system
 	"+gsystem": [
 		{
-			"system":   "./clas12Target",
-			"factory": "text",
-			"variation": "sn118"
+			"system":   "./clas12Target", "factory": "text", "variation": "sn118"
 		}
 	],
 
-	"+goutput": [
-		{
-			"format": "ROOT",
-			"name": "events.root",
-			"type": "event"
-		},
-		{
-			"format": "TEXT",
-			"name": "events.txt",
-			"type": "event"
-		}
-	],
-	
-	"n": 1000,
-	"+gparticle": [
-		{ "pname": "pi0", "multiplicity": 1,  "p": 300,  "theta": 1.0, "delta_phi": 180.0, "vz": -20.0}
-	]
+	"g4view": {
+		"segsPerCircle": 50
+	},
 
+	"g4camera": {
+		"theta": "160*deg",
+		"phi": "30*deg"
+	}
 }
