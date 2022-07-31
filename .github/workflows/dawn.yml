@@ -45,7 +45,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: jeffersonlab/gemc:3.0-clas12
-    name: Tests ${{ matrix.detector }}
+    name: Dawn Screenshot ${{ matrix.detector }}
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}

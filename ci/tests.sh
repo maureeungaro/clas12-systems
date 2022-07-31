@@ -88,6 +88,17 @@ JcardsToRun () {
 	echo List of jcards in $testType: $=jcards
 }
 
+
+PublishDawn () {
+	jcardRoot=$(echo $1 | awk -F'.jcard' '{print $1}')
+	pdfFileName=$jcardRoot".pdf"
+	echo
+	echo Converting g4_0000.eps to $pdfFileName
+	gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
+	echo Content after conversion:
+	ls -lrt
+}
+
 [[ -v testType ]] && echo Running $testType tests || TestTypeNotDefined
 
 startDir=`pwd`
@@ -113,10 +124,14 @@ export GEMCDB_ENV=systemsTxtDB
 for jc in $=jcards
 do
 	echo Running gemc using jcards $jc
-	gemc $jc
+
+	[[ $testType == 'dawn' ]] && gemc $jc -dawn || gemc $jc
 	exitCode=$?
 	if [[ $exitCode != 0 ]]; then
 		cat *.err
 		exit $exitCode
 	fi
+
+	[[ $testType == 'dawn' ]] && PublishDawn $jc
+
 done
