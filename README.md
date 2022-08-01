@@ -20,7 +20,7 @@ To create volume parameters for a system, run the groovy scripts through the run
 
 ## CLAS12 Screenshots
 
-The screenshots are produced by the ci screpts
+The ci produce a pdf screenshot for each variations in all systems:
 
 - Targets
 
@@ -32,8 +32,8 @@ The screenshots are produced by the ci screpts
   | [ELMO](screenshots/beamline/ELMO.pdf) | [FTOff](screenshots/beamline/FTOff.pdf) | [FTOn](screenshots/beamline/FTOn.pdf) | [TransverseUpstreamBeampipe](screenshots/beamline/TransverseUpstreamBeampipe.pdf) | [rghFTOn](screenshots/beamline/rghFTOn.pdf) | [rghFTOut](screenshots/beamline/rghFTOut.pdf) |
 
   
-  
-  
+
+<br/> 
 ## CLAS12 Systems Validation
 
 The validation performed for the CLAS12 systems includes the following workflows
@@ -51,7 +51,10 @@ The validation performed for the CLAS12 systems includes the following workflows
 [![Validate Geometry](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml)
 [![Dawn Screenshot](https://github.com/maureeungaro/clas12-systems/actions/workflows/dawn.yml/badge.svg)](https://github.com/maureeungaro/clas12-systems/actions/workflows/dawn.yml)
 
-### GEMC validation
+
+<br/> 
+
+### GEMC / Glibrary code validation
 
 [![Compile GEMC](https://github.com/gemc/src/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/build.yml)
 [![Compile GLibrary](https://github.com/gemc/glibrary/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/glibrary/actions/workflows/build.yml)
