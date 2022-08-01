@@ -32,8 +32,8 @@ The ci produce a pdf screenshot for each variations in all systems:
   | [ELMO](screenshots/beamline/ELMO.pdf) | [FTOff](screenshots/beamline/FTOff.pdf) | [FTOn](screenshots/beamline/FTOn.pdf) | [TransverseUpstreamBeampipe](screenshots/beamline/TransverseUpstreamBeampipe.pdf) | [rghFTOn](screenshots/beamline/rghFTOn.pdf) | [rghFTOut](screenshots/beamline/rghFTOut.pdf) |
 
   
-
 <br/> 
+
 ## CLAS12 Systems Validation
 
 The validation performed for the CLAS12 systems includes the following workflows
