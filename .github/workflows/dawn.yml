@@ -54,8 +54,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-      - name: Test
+      - name: Run Dawn
         run: |
           ./ci/tests.sh -s ${{ matrix.detector }} -d
+      - name: Archive Screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          name: Archive Dawn Screenshots
+          path: screenshots
 
 

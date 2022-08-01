@@ -113,14 +113,19 @@ RunGemc () {
 }
 
 PublishDawn () {
-	jcardRoot=$(echo $1 | awk -F'.jcard' '{print $1}')
-	pdfFileName=$jcardRoot".pdf"
+	outputScreenshotDir=screenshots/$detector
+	[[ -d $outputScreenshotDir ]] && $mkdir outputScreenshotDir
+	jcardRoot=$(echo $1 | awk -F'.jcard' '{print $1}' | awk -F\/ '{print $NF}')
+	pdfFileName=$outputScreenshotDir/$jcardRoot".pdf"
 	echo
 	echo Converting g4_0000.eps to $pdfFileName
-	gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
+	#gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
 	echo Content after conversion:
 	ls -lrt
-	rm g4_0000.*
+	#rm g4_0000.eps
+	
+	# temp line remove later
+	mv g4_0000.eps $pdfFileName
 }
 
 [[ -v testType ]] && echo Running $testType tests || TestTypeNotDefined
@@ -149,7 +154,6 @@ for jc in $=jcards
 do
 	echo
 	echo Running gemc using jcards $jc
-	# RunGemc $jc
 	[[ $testType == 'dawn' ]] && gemc $jc -dawn || gemc $jc
 	exitCode=$?
 	if [[ $exitCode != 0 ]]; then
