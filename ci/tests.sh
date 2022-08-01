@@ -124,7 +124,7 @@ PublishDawn () {
 	
 	# temp line remove later
 	echo aaa > a.tmp
-	mv a.tpm $pdfFileName
+	mv a.tmp $pdfFileName
 	# end of temp lines
 	
 	echo Content after conversion:
