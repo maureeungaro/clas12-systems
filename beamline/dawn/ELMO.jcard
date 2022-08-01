@@ -12,7 +12,7 @@
 	],
 
 	"g4view": {
-		"segsPerCircle": 50
+		"segsPerCircle": 100
 	},
 
 	"g4camera": {

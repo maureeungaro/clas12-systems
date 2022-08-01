@@ -119,13 +119,13 @@ PublishDawn () {
 	pdfFileName=$outputScreenshotDir/$jcardRoot".pdf"
 	echo
 	echo Converting g4_0000.eps to $pdfFileName
-	#gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
-	#rm g4_0000.eps
+	gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
+	rm g4_0000.*
 	
 	# temp line remove later
-	echo aaa > a.tmp
-	ls -lrt
-	mv a.tmp $pdfFileName
+	#echo aaa > a.tmp
+	#ls -lrt
+	#mv a.tmp $pdfFileName
 	# end of temp lines
 	
 	echo Content of screenshots:
