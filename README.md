@@ -18,6 +18,40 @@ To create volume parameters for a system, run the groovy scripts through the run
   `runFactories.sh systemName`
 
 
+## CLAS12 Screenshots
+
+The screenshots are produced by the ci screpts
+
+- Targets
+
+	[al27](screenshots/targets/al27.pdf) [apollo_nd3](screenshots/targets/apollo_nd3.pdf)
+  - [apollo_nh3](screenshots/targets/apollo_nh3.pdf)
+  - [bonus](screenshots/targets/bonus.pdf)
+  - [c12](screenshots/targets/c12.pdf)
+  - [cu63](screenshots/targets/cu63.pdf)
+  - [hdice](screenshots/targets/hdice.pdf)
+  - [ld2](screenshots/targets/ld2.pdf)
+  - [lh2](screenshots/targets/lh2.pdf)
+  - [longitudinal](screenshots/targets/longitudinal.pdf)
+  - [nd3](screenshots/targets/nd3.pdf)
+  - [nh3](screenshots/targets/nh3.pdf)
+  - [pb208](screenshots/targets/pb208.pdf)
+  - [pb_test](screenshots/targets/pb_test.pdf)
+  - [pol_targ](screenshots/targets/pol_targ.pdf)
+  - [sn118](screenshots/targets/sn118.pdf)
+  - [transverse](screenshots/targets/transverse.pdf)
+
+- Beamline
+
+  - [ELMO](screenshots/beamline/ELMO.pdf)
+  - [FTOff](screenshots/beamline/FTOff.pdf)
+  - [FTOn](screenshots/beamline/FTOn.pdf)
+  - [TransverseUpstreamBeampipe](screenshots/beamline/TransverseUpstreamBeampipe.pdf)
+  - [rghFTOn](screenshots/beamline/rghFTOn.pdf)
+  - [rghFTOut](screenshots/beamline/rghFTOut.pdf)
+  
+  
+  
 ## CLAS12 Systems Validation
 
 The validation performed for the CLAS12 systems includes the following workflows
@@ -26,16 +60,7 @@ The validation performed for the CLAS12 systems includes the following workflows
 - Overlap tests
 - Tests specific to each system
 - Validation against gemc2 geometry 
-- Run dawn and produce a pdf screenshot for each variations in all systems
-
-
-## CLAS12 Screenshots
-
-- Beamline:
-
-  - [elmo](screenshots/beamline/ELMO.pdf)
-
-
+- Run dawn and archive a pdf screenshot for each variations in all systems
 
 
 [![Build Geo](https://github.com/gemc/clas12-systems/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/build.yml)
