@@ -114,18 +114,20 @@ RunGemc () {
 
 PublishDawn () {
 	outputScreenshotDir=screenshots/$detector
-	[[ -d $outputScreenshotDir ]] && $mkdir outputScreenshotDir
+	[[ -d $outputScreenshotDir ]] && mkdir $outputScreenshotDir
 	jcardRoot=$(echo $1 | awk -F'.jcard' '{print $1}' | awk -F\/ '{print $NF}')
 	pdfFileName=$outputScreenshotDir/$jcardRoot".pdf"
 	echo
 	echo Converting g4_0000.eps to $pdfFileName
 	#gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
-	echo Content after conversion:
-	ls -lrt
 	#rm g4_0000.eps
 	
 	# temp line remove later
 	mv g4_0000.eps $pdfFileName
+	echo Content after conversion:
+	ls -lrt screenshots
+	ls -lrt $outputScreenshotDir
+	
 }
 
 [[ -v testType ]] && echo Running $testType tests || TestTypeNotDefined
