@@ -148,7 +148,13 @@ export GEMCDB_ENV=systemsTxtDB
 for jc in $=jcards
 do
 	echo Running gemc using jcards $jc
-	RunGemc $jc
+	# RunGemc $jc
+	[[ $testType == 'dawn' ]] && gemc $jc -dawn || gemc $jc
+	exitCode=$?
+	if [[ $exitCode != 0 ]]; then
+		cat *.err
+		exit $exitCode
+	fi
 
 	[[ $testType == 'dawn' ]] && PublishDawn $jc || exit 0
 
