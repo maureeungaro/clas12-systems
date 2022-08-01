@@ -1,5 +1,3 @@
-# clas12-systems
-
 Software to build CLAS12 systems geometry and digitization plugins
 
 ## Geometry service
@@ -16,6 +14,8 @@ To create volume parameters for a system, run the groovy scripts through the run
   `cd groovyFactories` 
   
   `runFactories.sh systemName`
+
+<br/> 
 
 
 ## CLAS12 Screenshots
