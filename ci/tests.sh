@@ -89,6 +89,29 @@ JcardsToRun () {
 }
 
 
+# need to check code twice
+# This was done by this one liner:
+# [[ $testType == 'dawn' ]] && gemc $jc -dawn || gemc $jc
+# but the exist code of that is the test [[ $testType == 'dawn' ]] not the gemc run
+
+RunGemc () {
+	if [[ $testType == 'dawn' ]]; then
+		gemc $1 -dawn ||
+		exitCode=$?
+		if [[ $exitCode != 0 ]]; then
+			cat *.err
+			exit $exitCode
+		fi
+	else
+		gemc $1
+		exitCode=$?
+		if [[ $exitCode != 0 ]]; then
+			cat *.err
+			exit $exitCode
+		fi
+	fi
+}
+
 PublishDawn () {
 	jcardRoot=$(echo $1 | awk -F'.jcard' '{print $1}')
 	pdfFileName=$jcardRoot".pdf"
@@ -97,6 +120,7 @@ PublishDawn () {
 	gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
 	echo Content after conversion:
 	ls -lrt
+	rm g4_0000.*
 }
 
 [[ -v testType ]] && echo Running $testType tests || TestTypeNotDefined
@@ -124,13 +148,7 @@ export GEMCDB_ENV=systemsTxtDB
 for jc in $=jcards
 do
 	echo Running gemc using jcards $jc
-
-	[[ $testType == 'dawn' ]] && gemc $jc -dawn || gemc $jc
-	exitCode=$?
-	if [[ $exitCode != 0 ]]; then
-		cat *.err
-		exit $exitCode
-	fi
+	RunGemc $jc
 
 	[[ $testType == 'dawn' ]] && PublishDawn $jc
 
