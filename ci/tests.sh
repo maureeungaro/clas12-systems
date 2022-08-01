@@ -150,6 +150,6 @@ do
 	echo Running gemc using jcards $jc
 	RunGemc $jc
 
-	[[ $testType == 'dawn' ]] && PublishDawn $jc
+	[[ $testType == 'dawn' ]] && PublishDawn $jc || exit 0
 
 done
