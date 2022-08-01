@@ -67,7 +67,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git diff --name-only
-          git add screenshots
+          #git add screenshots
           #git commit -m 'Re-build package plot' || echo "No changes to commit"
           #git push origin || echo "No changes to commit"
 

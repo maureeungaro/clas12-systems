@@ -26,11 +26,23 @@ The validation performed for the CLAS12 systems includes the following workflows
 - Overlap tests
 - Tests specific to each system
 - Validation against gemc2 geometry 
+- Run dawn and produce a pdf screenshot for each variations in all systems
+
+
+## CLAS12 Screenshots
+
+- Beamline:
+
+  - [elmo](screenshots/beamline/ELMO.pdf)
+
+
+
 
 [![Build Geo](https://github.com/gemc/clas12-systems/actions/workflows/build.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/build.yml)
 [![Test Overlaps](https://github.com/gemc/clas12-systems/actions/workflows/overlaps.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/overlaps.yml)
 [![CLAS12 Tests](https://github.com/gemc/clas12-systems/actions/workflows/tests.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/tests.yml)
 [![Validate Geometry](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml/badge.svg)](https://github.com/gemc/clas12-systems/actions/workflows/validate.yml)
+[![Dawn Screenshot](https://github.com/maureeungaro/clas12-systems/actions/workflows/dawn.yml/badge.svg)](https://github.com/maureeungaro/clas12-systems/actions/workflows/dawn.yml)
 
 ### GEMC validation
 
