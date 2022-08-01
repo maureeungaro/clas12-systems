@@ -128,8 +128,9 @@ PublishDawn () {
 	mv a.tmp $pdfFileName
 	# end of temp lines
 	
-	echo Content after conversion:
+	echo Content of screenshots:
 	ls -lrt screenshots
+	echo Content of $outputScreenshotDir:
 	ls -lrt $outputScreenshotDir
 	
 }
