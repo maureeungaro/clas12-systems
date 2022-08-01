@@ -17,16 +17,18 @@ allSystems=( targets beamline ) # available systems ordered by z position
 for s in $allSystems
 do
 	echo
-	echo "- ${(C)s}\n"
-
-
+	echo "- ${(C)s}"
+	echo
+	echo -n "  | "
 	jcards=`ls $s/dawn/*.jcard`
 
 	for jc in $=jcards
 	do
 		v=$(echo $jc | awk -F'dawn\/' '{print $2}' | awk -F. '{print $1}')
-		echo "  - [$v](screenshots/$s/$v.pdf)"
+		echo -n "[$v](screenshots/$s/$v.pdf) | "
 	done
+	echo
+	echo
 done
 echo
 echo
