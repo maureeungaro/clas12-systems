@@ -114,7 +114,7 @@ RunGemc () {
 
 PublishDawn () {
 	outputScreenshotDir=screenshots/$detector
-	[[ -d $outputScreenshotDir ]] && mkdir -p $outputScreenshotDir
+	[[ ! -d $outputScreenshotDir ]] && mkdir -p $outputScreenshotDir
 	jcardRoot=$(echo $1 | awk -F'.jcard' '{print $1}' | awk -F\/ '{print $NF}')
 	pdfFileName=$outputScreenshotDir/$jcardRoot".pdf"
 	echo
