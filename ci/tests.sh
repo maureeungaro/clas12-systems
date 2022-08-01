@@ -114,7 +114,7 @@ RunGemc () {
 
 PublishDawn () {
 	outputScreenshotDir=screenshots/$detector
-	[[ -d $outputScreenshotDir ]] && mkdir $outputScreenshotDir
+	[[ -d $outputScreenshotDir ]] && mkdir -p $outputScreenshotDir
 	jcardRoot=$(echo $1 | awk -F'.jcard' '{print $1}' | awk -F\/ '{print $NF}')
 	pdfFileName=$outputScreenshotDir/$jcardRoot".pdf"
 	echo
@@ -123,7 +123,10 @@ PublishDawn () {
 	#rm g4_0000.eps
 	
 	# temp line remove later
-	mv g4_0000.eps $pdfFileName
+	echo aaa > a.tmp
+	mv a.tpm $pdfFileName
+	# end of temp lines
+	
 	echo Content after conversion:
 	ls -lrt screenshots
 	ls -lrt $outputScreenshotDir
