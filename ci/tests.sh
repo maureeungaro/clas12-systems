@@ -124,6 +124,7 @@ PublishDawn () {
 	
 	# temp line remove later
 	echo aaa > a.tmp
+	ls -lrt
 	mv a.tmp $pdfFileName
 	# end of temp lines
 	
