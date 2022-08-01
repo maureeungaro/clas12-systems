@@ -1,0 +1,23 @@
+{
+	# Run check overlaps for al27 target
+
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 1,
+	
+	"+gsystem": [
+		{
+			"system":   "./clas12Target", "factory": "text", "variation": "al27"
+		}
+	],
+
+	"g4view": {
+		"segsPerCircle": 100
+	},
+
+	"g4camera": {
+		"theta": "160*deg",
+		"phi": "30*deg"
+	}
+}

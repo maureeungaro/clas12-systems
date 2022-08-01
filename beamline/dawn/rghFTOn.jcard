@@ -1,0 +1,23 @@
+{
+	# Run check overlaps for beamline rghFTOn
+
+	# verbosities
+	"verbosity": 2,
+	"gsystemv": 2,
+	"g4systemv": 2,
+
+	"+gsystem": [
+		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
+		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOn" },
+		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
+	],
+
+	"g4view": {
+		"segsPerCircle": 100
+	},
+
+	"g4camera": {
+		"theta": "160*deg",
+		"phi": "30*deg"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	# Run check overlaps for beamline FTOn
+
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 1,
+
+	"+gsystem": [
+		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
+		{ "system": "./beamline",              "factory": "text", "variation": "FTOn" },
+		{ "system": "./clas12Target",          "factory": "text", "variation": "lh2" }
+	],
+
+	
+	"checkOverlaps": 1
+}

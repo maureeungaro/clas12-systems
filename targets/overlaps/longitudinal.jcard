@@ -1,0 +1,16 @@
+{
+	# Run check overlaps for longitudinal target
+
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 1,
+	
+	"+gsystem": [
+		{
+			"system":   "./clas12Target", "factory": "text", "variation": "longitudinal"
+		}
+	],
+
+	"checkOverlaps": 1
+}

@@ -5,13 +5,19 @@
 # Container run:
 # docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
+# git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/validateAgainstGemc2.sh -s ftof
 
-# load environment if we're on the container
-# notice the extra argument to the source command
-TERM=xterm # source script use tput for colors, TERM needs to be specified
-FILE=/etc/profile.d/jlab.sh
-test -f $FILE && source $FILE keepmine
+if [[ -z "${G3CLAS12_VERSION}" ]]; then
+	# load environment if we're on the container
+	# notice the extra argument to the source command
+	TERM=xterm # source script use tput for colors, TERM needs to be specified
+	FILE=/etc/profile.d/jlab.sh
+	test -f $FILE && source $FILE keepmine
+else
+  echo clas12-systems ci/validateAgainstGemc2: environment already defined
+fi
+
 
 startDir=`pwd`
 GEMC3_DATA_DIR=$startDir/systemsTxtDB

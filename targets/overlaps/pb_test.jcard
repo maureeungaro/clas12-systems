@@ -1,0 +1,16 @@
+{
+	# Run check overlaps for pb_test target
+
+	# verbosities
+	"verbosity": 1,
+	"gsystemv": 1,
+	"g4systemv": 1,
+	
+	"+gsystem": [
+		{
+			"system":   "./clas12Target", "factory": "text", "variation": "pb_test"
+		}
+	],
+
+	"checkOverlaps": 1
+}

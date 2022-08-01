@@ -88,7 +88,6 @@ def build_rgh_beamline(configuration):
 	gvolume.publish(configuration)
 
 	# vacuum inside,  this is inside ROOT
-	secondVacuumIR = 28.52
 	gvolume = GVolume('vacuumInPipe3')
 	gvolume.description = 'vacuumPipe3 straightVacuumPipe vacuum inside'
 	gvolume.makeG4Tubs(0, secondVacuumIR, pipeLength, 0, 360)

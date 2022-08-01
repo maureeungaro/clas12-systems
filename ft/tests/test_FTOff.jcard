@@ -1,12 +1,14 @@
 {
 	# Run simulation with 3 different outputs, including JLABSRO
 	# no nthreads specified: runs on all available threads
-
+	# uncomment this line to specify number of threads
+	# "nthreads": 4,
+	
 	# verbosities
 	"verbosity": 2,
 	"grunv": 2,
 	"gframestreamv": 2,
-	"eventDistributionv": 2,
+	"runweightsv": 2,
 	"gsensitivityv": 1,
 
 	# uncomment to set maximum number of events / sub run different than the default of 100
@@ -35,7 +37,7 @@
 		}
 	],
 
-	"digitizationVariation": "rga_spring2018_mc",
+	"dVariation": "rga_spring2018_mc",
 	"n": 1000,
 	"eventTimeSize": "2*us",
 	"+gparticle": [

@@ -1,10 +1,11 @@
 {
 	# Run check overlaps for FTOF
 
-	# nthreads must be 1 to run checkOverlaps
-	"nthreads": 1,
-
-	# the CLAS12 Forward Time-Of-Flight system
+	# verbosities
+	"verbosity": 2,
+	"gsystemv": 1,
+	"g4systemv": 1,
+		
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
 		{ "system": "./ftof",                  "factory": "text", "variation": "rga_fall2018" }

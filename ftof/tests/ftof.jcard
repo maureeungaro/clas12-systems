@@ -1,10 +1,13 @@
 {
 	# no nthreads specified: runs on all available threads
+	# uncomment this line to specify number of threads
+	# "nthreads": 4,
+	
 
 	# verbosities
 	"verbosity": 2,
 	"grunv": 2,
-	"eventDistributionv": 2,
+	"runweightsv": 2,
 	"gsensitivityv": 1,
 
 	# uncomment to set maximum number of events / sub run different than the default of 100
@@ -29,7 +32,7 @@
 		}
 	],
 
-	"digitizationVariation": "rga_spring2018_mc",
+	"dVariation": "rga_spring2018_mc",
 	"n": 1000,
 	"+gparticle": [
 		{ "pname": "e-", "multiplicity": 1,  "p": 2300,  "theta": 23.0, "delta_phi": 180.0}

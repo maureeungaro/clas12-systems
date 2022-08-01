@@ -28,7 +28,8 @@ def main():
 	# Provides the -h, --help message
 	desc_str = "   Will create the Forward Tagger Calorimeter (ft_cal), Hodoscope (ft_hodo) and Tracker (ft_trk) geometries\n"
 	parser = argparse.ArgumentParser(description=desc_str)
-	
+	args = parser.parse_args()
+
 	# loop over all the defined builder functions
 	for variation in VARIATIONS:
 	
