@@ -3,6 +3,8 @@
 
 	# verbosities
 	"verbosity": 1,
+	"g4displayv": 2,
+	"g4displayv": 2,
 	"gsystemv": 1,
 	"g4systemv": 1,
 
@@ -11,7 +13,8 @@
 		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOut" },
 		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
 	],
-	
+
+
 	"g4view": {
 		"segsPerCircle": 100
 	},
@@ -19,5 +22,16 @@
 	"g4camera": {
 		"theta": "160*deg",
 		"phi": "30*deg"
-	}
+	},
+
+	# dawn seems not able to support string larger than 21 chars
+	# so putting whole title in 2 entries
+	"+scenetext": [
+		{ "text": "CLAS12",            "size": 20, "x": -0.8, "y": 0.9, "color": "black" },
+		{ "text": "Beamline: rghFTOut", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
+	],
+
+	"+viewtext": [
+		{ "text": "CLAS12 Center", "size": 10, "x": 5, "y": 5, "z": 0, "color": "red" }
+	]
 }

@@ -7,12 +7,13 @@
 allSystems=( targets beamline ) # available systems ordered by z position
 #allSystems=( targets beamline ftof ft fc pcal ) # available systems ordered by z position
 
-#for s in $=allSystems
-#do
-#	echo Running dawn for $s
-#	./ci/tests.sh -s $s -d
-#
-#done
+for s in $=allSystems
+do
+
+	echo Running dawn for $s
+	./ci/tests.sh -s $s -d
+
+done
 
 for s in $allSystems
 do
@@ -21,7 +22,6 @@ do
 	echo
 	echo -n "  | "
 	jcards=`ls $s/dawn/*.jcard`
-
 	for jc in $=jcards
 	do
 		v=$(echo $jc | awk -F'dawn\/' '{print $2}' | awk -F. '{print $1}')
