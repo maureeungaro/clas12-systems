@@ -1,0 +1,22 @@
+
+
+open $CLHEP_BASE_DIR/lib
+
+	- libCLHEP-2.4.4.2.dylib
+
+
+CONFIGURATION_BUILD_DIR = $MYBUILDDIR set on glibrary/settings to be at home:
+
+open /Users/ungaro/builds
+
+	- gdata
+	- gdynamicDigitization
+	- ghit
+	- gtouchable
+	- gtranslationTable
+	- guts
+
+
+open $CCDB_HOME/lib/
+
+	- libccdb.dylib
