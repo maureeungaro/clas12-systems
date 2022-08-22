@@ -114,6 +114,11 @@ case $detector in
 		gemc2_filename_prefix=$detector
 		gemc3_filename_prefix=$detector
 		;;
+	ec)
+		subsystem_template_name=$detector
+		gemc2_filename_prefix=$detector
+		gemc3_filename_prefix=$detector
+		;;
 	beamline)
 		subsystem_template_name=$detector
 		gemc2_filename_prefix=$detector
