@@ -126,7 +126,7 @@ case $detector in
 		;;
 	*) # Invalid option
 		# Order of choices is along z direction
-    	echo Detector $detector not supported. Possible choices: targets, beamline, ft, fc, ftof, pcal
+    	echo Detector $detector not supported. Possible choices: targets, beamline, ft, fc, ftof, pcal, ec
     	exit 1
         ;;
    esac
