@@ -87,7 +87,7 @@ PrintFlag () {
 
 # put same-root longer names first to avoid abcde triggering the abc system
 # for example ftof changes would trigger ft if 'ft' is placed before ftof
-allSystems=( targets beamline ftof ft fc pcal ) # available systems ordered by z position
+allSystems=( targets beamline ftof ft fc pcal ec) # available systems ordered by z position
 systemsChanged=()                 # list of system changed in last PR or push
 breakLoop=0                       # set in CheckSystem to break main loop if changes in the core files are detected
 
