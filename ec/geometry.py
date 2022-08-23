@@ -30,14 +30,14 @@ def process_ec(volume: VolumeParams) -> VolumeParams:
     # first stainless cover - Last-a-Foam layer - second stainless steel cover
     if name.startswith("eclid"):
         parsed_data = _parse_name(r"eclid(?P<layer>\d)_s(?P<sector>\d)$")
-        layer_parsed = parsed_data['layer']
+        layer_parsed = int(parsed_data['layer'])
         if layer_parsed == 2:
             volume.material = "LastaFoam"
-            volume.color = "eed18c"
+            volume.color = "EED18C"
             volume.description = f"LastaFoam"
         else:
             volume.material = "G4_STAINLESS-STEEL"
-            volume.color = "fcfff0"
+            volume.color = "FCFFF0"
             volume.description = f"Stainless Steel Skin {layer_parsed}"
         volume.style = 1
 
@@ -57,7 +57,7 @@ def process_ec(volume: VolumeParams) -> VolumeParams:
         "W": "33ffcc",
     }
     if name.find("scintillator") != -1:
-        parsed_data = _parse_name(r"(?P<type>[UVW])-scintillator_(?P<layer>\d{1,2})_s(?P<sector>\d)_view_(?P<view>\d)_stack_(?P<stack>\d)$"))
+        parsed_data = _parse_name(r"(?P<type>[UVW])-scintillator_(?P<layer>\d{1,2})_s(?P<sector>\d)_view_(?P<view>\d)_stack_(?P<stack>\d)$")
         volume.material = "G4_AIR"
         volume.color = color_map_layers[parsed_data['type']]
         volume.description = f"Forward Calorimeter scintillator layer ${parsed_data['layer']}"
@@ -78,14 +78,14 @@ def process_ec(volume: VolumeParams) -> VolumeParams:
         "W": ("6600ff", 3),
     }
     if name.find("strip") != -1:
-        parsed_data = _parse_name(r"(?P<type>[UVW])_strip_(?P<layer>\d{1,2})_(?P<strip>\d{1,2})_s(?P<sector>\d)_stack_(?P<stack>\d)$"))
+        parsed_data = _parse_name(r"(?P<type>[UVW])_strip_(?P<layer>\d{1,2})_(?P<strip>\d{1,2})_s(?P<sector>\d)_stack_(?P<stack>\d)$")
         volume.material = "scintillator"
         color, view = color_map_strips[parsed_data['type']]
         volume.color = color
         volume.style = 1
         volume.digitization = "ecal"
         volume.description = f"Forward Calorimeter scintillator layer {parsed_data['layer']} strip {parsed_data['strip']} view {view}"
-        hipo_layer = view + parsed_data['stack']*3
+        hipo_layer = view + int(parsed_data['stack']) * 3
         volume.identifier = f"sector: {parsed_data['sector']}, layer: {hipo_layer}, strip: {parsed_data['strip']}"
     return volume
 
