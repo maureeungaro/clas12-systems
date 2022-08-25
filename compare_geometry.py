@@ -507,6 +507,11 @@ def get_pairs_to_compare(
         "rga_fall2018": "rga_fall2018"
     }
 
+    map_gemc2_to_gemc3_ec = {
+        "default": "default",
+        "rga_fall2018": "rga_fall2018"
+    }
+
     map_gemc2_to_gemc3_beamline = {
         "ELMO": "ELMO",
         "FTOff": "FTOff",
@@ -523,6 +528,7 @@ def get_pairs_to_compare(
         "forward_carriage": map_gemc2_to_gemc3_forward_carriage,
         "ftof": map_gemc2_to_gemc3_ftof,
         "pcal": map_gemc2_to_gemc3_pcal,
+        "ec": map_gemc2_to_gemc3_ec,
     }
 
     return [
@@ -552,7 +558,7 @@ def _create_argument_parser() -> argparse.ArgumentParser:
         "--template-subsystem",
         dest="template_subsystem",
         help="Detector subsystem used to populate the template",
-        choices=["target", "beamline", "ft", "forward_carriage", "ftof", "pcal"],
+        choices=["target", "beamline", "ft", "forward_carriage", "ftof", "pcal", "ec"],
         default="target",
     )
     parser.add_argument("-v", "--verbose", help="Print volume being validated", action='store_true')
