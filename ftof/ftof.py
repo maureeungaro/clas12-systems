@@ -35,13 +35,13 @@ def main():
         # Define GConfiguration name, factory and description. Initialize it.
         configuration = GConfiguration('ftof', 'TEXT', 'CLAS12 FTOF')
         configuration.setVariation(var_key)
-        configuration.init_geom_file()
-        configuration.init_mats_file()
 
         # define materials
         define_materials(configuration)
+        configuration.init_mats_file()
 
         # run geometry file bulder for selected variation
+        configuration.init_geom_file()
         apply_configuration(f'{basepath}/{file_name}', configuration)
         # print out the GConfiguration
         configuration.printC()

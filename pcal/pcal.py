@@ -35,13 +35,13 @@ def main():
         # Define GConfiguration name, factory and description. Initialize it.
         configuration = GConfiguration('pcal', 'TEXT', 'CLAS12 PCAL')
         configuration.setVariation(var_key)
-        configuration.init_geom_file()
-        configuration.init_mats_file()
 
         # define materials
+        configuration.init_mats_file()
         define_materials(configuration)
 
         # run geometry file bulder for selected variation
+        configuration.init_geom_file()
         apply_configuration(f'{basepath}/{file_name}', configuration)
         # print out the GConfiguration
         configuration.printC()
