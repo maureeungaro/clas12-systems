@@ -1,5 +1,5 @@
 //============================================================
-// This script prints volumes for PCAL detector
+// This script prints volumes for EC detector
 //============================================================
 import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;

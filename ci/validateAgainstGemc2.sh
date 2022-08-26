@@ -114,6 +114,11 @@ case $detector in
 		gemc2_filename_prefix=$detector
 		gemc3_filename_prefix=$detector
 		;;
+	ec)
+		subsystem_template_name=$detector
+		gemc2_filename_prefix=$detector
+		gemc3_filename_prefix=$detector
+		;;
 	beamline)
 		subsystem_template_name=$detector
 		gemc2_filename_prefix=$detector
@@ -121,7 +126,7 @@ case $detector in
 		;;
 	*) # Invalid option
 		# Order of choices is along z direction
-    	echo Detector $detector not supported. Possible choices: targets, beamline, ft, fc, ftof, pcal
+    	echo Detector $detector not supported. Possible choices: targets, beamline, ft, fc, ftof, pcal, ec
     	exit 1
         ;;
    esac
