@@ -4,8 +4,8 @@
 # Runs all detector dawn test
 # Produce a log with the links to paste onto the README
 
-allSystems=( targets beamline ) # available systems ordered by z position
-#allSystems=( targets beamline ftof ft fc pcal ) # available systems ordered by z position
+allSystems=( targets beamline ft fc ) # available systems ordered by z position
+#allSystems=(   ftof   pcal ec ) # available systems ordered by z position
 
 for s in $=allSystems
 do
@@ -28,6 +28,8 @@ do
 		echo -n "[$v](screenshots/$s/$v.pdf) | "
 	done
 	echo
+	echo
+		echo "<br/> "
 	echo
 done
 echo

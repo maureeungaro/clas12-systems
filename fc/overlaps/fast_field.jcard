@@ -9,7 +9,7 @@
 		{
 			"system":   "./clas12ForwardCarriage",
 			"factory": "text",
-			"variation": "original"
+			"variation": "fast_field"
 		}
 	],
 
