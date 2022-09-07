@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for lh2 target
+	# Add scene to dawn for lh2 target
 
 	# verbosities
 	"verbosity": 1,

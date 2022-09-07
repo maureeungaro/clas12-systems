@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for pol_targ target
+	# Add scene to dawn for pol_targ target
 
 	# verbosities
 	"verbosity": 1,

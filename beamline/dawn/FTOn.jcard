@@ -1,9 +1,8 @@
 {
-	# Run check overlaps for beamline FTOn
+	# Add scene to dawn for beamline FTOn
 
 	# verbosities
 	"verbosity": 1,
-	"g4displayv": 2,
 	"g4displayv": 2,
 	"gsystemv": 1,
 	"g4systemv": 1,

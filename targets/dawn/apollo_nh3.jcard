@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for apollo_nh3 target
+	# Add scene to dawn for apollo_nh3 target
 
 	# verbosities
 	"verbosity": 1,

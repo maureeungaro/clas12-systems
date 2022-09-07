@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for longitudinal target
+	# Add scene to dawn for longitudinal target
 
 	# verbosities
 	"verbosity": 1,

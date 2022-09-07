@@ -1,5 +1,5 @@
 {
-	# Run check overlaps for al27 target
+	# Add scene to dawn for al27 target
 
 	# verbosities
 	"verbosity": 1,

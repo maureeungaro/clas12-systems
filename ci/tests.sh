@@ -99,12 +99,6 @@ PublishDawn () {
 	gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
 	rm g4_0000.*
 	
-	# temp line remove later
-	#echo aaa > a.tmp
-	#ls -lrt
-	#mv a.tmp $pdfFileName
-	# end of temp lines
-	
 	echo Content of screenshots:
 	ls -lrt screenshots
 	echo Content of $outputScreenshotDir:

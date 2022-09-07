@@ -1,9 +1,8 @@
 {
-	# Run check overlaps for beamline rghFTOn
+	# Add scene to dawn for beamline rghFTOn
 
 	# verbosities
 	"verbosity": 1,
-	"g4displayv": 2,
 	"g4displayv": 2,
 	"gsystemv": 2,
 	"g4systemv": 2,

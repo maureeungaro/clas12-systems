@@ -1,16 +1,14 @@
 {
-	# Add scene to dawn for c12 target
+	# Add scene to dawn for FT FTOn
 
 	# verbosities
 	"verbosity": 1,
 	"g4displayv": 2,
 	"gsystemv": 1,
 	"g4systemv": 1,
-	
+
 	"+gsystem": [
-		{
-			"system":   "./clas12Target", "factory": "text", "variation": "c12"
-		}
+		{ "system": "./ft", "factory": "text", "variation": "FTOn" }
 	],
 
 	"g4view": {
@@ -23,10 +21,11 @@
 	},
 
 	"+scenetext": [
-		{ "text": "CLAS12 Target: c12", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
+		{ "text": "CLAS12 FT: FTOn", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
 	],
 
 	"+viewtext": [
 		{ "text": "CLAS12 Center", "size": 10, "x": 5, "y": 5, "z": 0, "color": "red" }
 	]
+
 }
