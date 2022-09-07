@@ -148,7 +148,7 @@ function run_comparison {
 
 	./compare_geometry.py --template-subsystem "$subsystem_template_name" \
 								 --gemc2-path "${_gemc2_files_path}/${gemc2_filename_prefix}__geometry_{}.txt" \
-								 --gemc3-path "${_gemc3_files_path}/${gemc3_filename_prefix}__geometry_{}.txt" $verbosity
+								 --gemc3-path "${_gemc3_files_path}/${gemc3_filename_prefix}__geometry_{}.txt" -v
 }
 
 ./ci/build.sh -s $detector

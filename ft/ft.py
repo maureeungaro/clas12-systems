@@ -26,27 +26,24 @@ def main():
 	logging.basicConfig(level=logging.DEBUG)
 	
 	# Provides the -h, --help message
-	desc_str = "   Will create the Forward Tagger Calorimeter (ft_cal), Hodoscope (ft_hodo) and Tracker (ft_trk) geometries\n"
+	desc_str = "   Will create the Forward Tagger Calorimeter (ft_cal), Hodoscope (ft_hodo) and Tracker (ft_trk) systems\n"
 	parser = argparse.ArgumentParser(description=desc_str)
 	args = parser.parse_args()
 
 	# loop over all the defined builder functions
 	for variation in VARIATIONS:
-	
-		basepath = os.environ["GPLUGIN_PATH"]
-	
-		_logger.info(f"Building ft configuration for variation {variation}")
-		# Define GConfiguration name, factory and description. Initialize it.
+		
+		_logger.info(f"Building ft for variation {variation}")
+		# Define GConfiguration name, factory and description.
 		configuration = GConfiguration('ft', 'TEXT', 'The CLAS12 Forward Tagger Calorimeter, Hodoscope and Tracker')
 		configuration.setVariation(variation)
 		configuration.init_geom_file()
-		configuration.init_mats_file()
 	
 		# define materials
+		configuration.init_mats_file()
 		define_materials(configuration)
 	
 		# build geometry
-
 		if variation == "KPP" :
 			make_ft_pipe(configuration)
 		else:

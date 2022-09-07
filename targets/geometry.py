@@ -1,9 +1,7 @@
 import sys
 
-from gemc_api_geometry import *
-
+from gemc_api_geometry import GVolume
 import math
-
 
 def _make_full_tube(gvolume, r_in, r_out, half_length):
 	gvolume.makeG4Tubs(r_in, r_out, half_length, 0.0, 360.0)

@@ -20,9 +20,9 @@ def main():
         # Define GConfiguration name, factory and description. Initialize it.
         configuration = GConfiguration('clas12ForwardCarriage', 'TEXT', 'CLAS12 Forward Carriage')
         configuration.setVariation(mfield_key)
-        configuration.init_geom_file()
 
         # run the selected builder function
+        configuration.init_geom_file()
         builder(configuration)
         # print out the GConfiguration
         configuration.printC()

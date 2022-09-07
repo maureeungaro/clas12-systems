@@ -1,8 +1,9 @@
 {
-	# Run check overlaps for al27 target
+	# Add scene to dawn for al27 target
 
 	# verbosities
 	"verbosity": 1,
+	"g4displayv": 2,
 	"gsystemv": 1,
 	"g4systemv": 1,
 	
@@ -19,5 +20,13 @@
 	"g4camera": {
 		"theta": "160*deg",
 		"phi": "30*deg"
-	}
+	},
+
+	"+scenetext": [
+		{ "text": "CLAS12 Target: al27", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
+	],
+
+	"+viewtext": [
+		{ "text": "CLAS12 Center", "size": 10, "x": 5, "y": 5, "z": 0, "color": "red" }
+	]
 }

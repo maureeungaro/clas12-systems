@@ -29,26 +29,24 @@ def main():
 	logging.basicConfig(level=logging.DEBUG)
 	
 	# Provides the -h, --help message
-	desc_str = "   Will create the CLAS12 Beamline geometries\n"
+	desc_str = "   Will create the CLAS12 Beamline system\n"
 	parser = argparse.ArgumentParser(description=desc_str)
 	args = parser.parse_args()
 
 	# loop over all the defined builder functions
 	for variation in VARIATIONS:
-	
-		basepath = os.environ["GPLUGIN_PATH"]
-	
+		
 		_logger.info(f"Building beamline configuration for variation {variation}")
 		# Define GConfiguration name, factory and description. Initialize it.
 		configuration = GConfiguration('beamline', 'TEXT', 'The CLAS12 Beamline')
 		configuration.setVariation(variation)
-		configuration.init_geom_file()
-		configuration.init_mats_file()
 	
 		# define materials
 		define_materials(configuration)
+		configuration.init_mats_file()
 	
 		# build geometry
+		configuration.init_geom_file()
 		if variation == "FTOn" or variation == "FTOff":
 			build_rgab_beamline(configuration)
 		elif variation == "ELMO":

@@ -89,29 +89,6 @@ JcardsToRun () {
 }
 
 
-# need to check code twice
-# This was done by this one liner:
-# [[ $testType == 'dawn' ]] && gemc $jc -dawn || gemc $jc
-# but the exist code of that is the test [[ $testType == 'dawn' ]] not the gemc run
-
-RunGemc () {
-	if [[ $testType == 'dawn' ]]; then
-		gemc $1 -dawn ||
-		exitCode=$?
-		if [[ $exitCode != 0 ]]; then
-			cat *.err
-			exit $exitCode
-		fi
-	else
-		gemc $1
-		exitCode=$?
-		if [[ $exitCode != 0 ]]; then
-			cat *.err
-			exit $exitCode
-		fi
-	fi
-}
-
 PublishDawn () {
 	outputScreenshotDir=screenshots/$detector
 	[[ ! -d $outputScreenshotDir ]] && mkdir -p $outputScreenshotDir
@@ -121,12 +98,6 @@ PublishDawn () {
 	echo Converting g4_0000.eps to $pdfFileName
 	gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$pdfFileName g4_0000.eps
 	rm g4_0000.*
-	
-	# temp line remove later
-	#echo aaa > a.tmp
-	#ls -lrt
-	#mv a.tmp $pdfFileName
-	# end of temp lines
 	
 	echo Content of screenshots:
 	ls -lrt screenshots
@@ -161,9 +132,9 @@ for jc in $=jcards
 do
 	echo
 	echo Running gemc using jcards $jc
-	[[ $testType == 'dawn' ]] && gemc $jc -dawn || gemc $jc
-	exitCode=$?
+	[[ $testType == 'dawn' ]] && gemc $jc -dawn ; exitCode=$? || gemc $jc ; exitCode=$?
 	if [[ $exitCode != 0 ]]; then
+		ls *.err
 		cat *.err
 		exit $exitCode
 	fi

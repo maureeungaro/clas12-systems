@@ -1,6 +1,7 @@
 {
 	# verbosities
 	"verbosity": 1,
+	"g4displayv": 2,
 	"gsystemv": 1,
 	"g4systemv": 1,
 	
@@ -8,7 +9,7 @@
 		{
 			"system":   "./clas12ForwardCarriage",
 			"factory": "text",
-			"variation": "original"
+			"variation": "fast_field"
 		}
 	],
 

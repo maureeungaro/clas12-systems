@@ -8,15 +8,15 @@
 	"verbosity": 2,
 	"grunv": 2,
 	"gframestreamv": 2,
-	"runweightsv": 2,
+	"edistv": 2,
 	"gsensitivityv": 1,
-	
+
 	# uncomment to set maximum number of events / sub run different than the default of 100
 	# this number controls how often the outputs are written out
 	# "maxebuffer": 1000,
 
 	"+gsystem": [
-		{ "system": "./ft", "factory": "text", "variation": "FTOn" }
+		{ "system": "./ft", "factory": "text", "variation": "FTOff" }
 	],
 
 	"+goutput": [

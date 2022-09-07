@@ -3,6 +3,7 @@
 
 	# verbosities
 	"verbosity": 1,
+	"g4displayv": 2,
 	"gsystemv": 1,
 	"g4systemv": 1,
 
