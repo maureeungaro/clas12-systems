@@ -1,5 +1,5 @@
 {
-	# Add scene to dawn for clas12ForwardCarriage torus_symmetric
+	# Add scene to dawn for pcal rga_fall2018
 
 	# verbosities
 	"verbosity": 1,
@@ -8,11 +8,8 @@
 	"g4systemv": 1,
 
 	"+gsystem": [
-		{
-			"system":   "./clas12ForwardCarriage",
-			"factory": "text",
-			"variation": "torus_symmetric"
-		}
+		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
+		{ "system": "./ec",                    "factory": "text", "variation": "rga_fall2018" }
 	],
 
 	"g4view": {
@@ -27,8 +24,8 @@
 	# dawn seems not able to support string larger than 21 chars
 	# so putting whole title in 2 entries
 	"+scenetext": [
-		{ "text": "CLAS12",              "size": 20, "x": -0.8, "y": 0.9, "color": "black" },
-		{ "text": "FC: torus_symmetric", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
+		{ "text": "CLAS12",            "size": 20, "x": -0.8, "y": 0.9, "color": "black" },
+		{ "text": "ec: rga_fall2018",  "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
 	],
 
 	"+viewtext": [

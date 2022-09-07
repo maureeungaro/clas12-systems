@@ -28,7 +28,7 @@
 	# so putting whole title in 2 entries
 	"+scenetext": [
 		{ "text": "CLAS12",            "size": 20, "x": -0.8, "y": 0.9, "color": "black" },
-		{ "text": "Beamline: rghFTOn", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
+		{ "text": "FC: fast_field",    "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
 	],
 
 	"+viewtext": [

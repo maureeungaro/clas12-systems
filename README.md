@@ -47,8 +47,28 @@ The ci produce a pdf screenshot for each variations in all systems:
 
   | [fast_field](screenshots/fc/fast_field.pdf) | [original](screenshots/fc/original.pdf) | [torus_symmetric](screenshots/fc/torus_symmetric.pdf) |
 
+<br/>
 
-<br/> 
+
+- Ftof
+
+  | [rga_fall2018](screenshots/ftof/rga_fall2018.pdf) |
+
+<br/>
+
+
+- Pcal
+
+  | [rga_fall2018](screenshots/pcal/rga_fall2018.pdf) |
+
+<br/>
+
+
+- Ec
+
+  | [rga_fall2018](screenshots/ec/rga_fall2018.pdf) |
+
+<br/>
 
 ## CLAS12 Systems Validation
 
