@@ -42,8 +42,8 @@ def main():
 		configuration.setVariation(variation)
 	
 		# define materials
-		define_materials(configuration)
 		configuration.init_mats_file()
+		define_materials(configuration)
 	
 		# build geometry
 		configuration.init_geom_file()

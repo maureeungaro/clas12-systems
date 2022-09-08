@@ -4,7 +4,7 @@
 # Runs all detector dawn test
 # Produce a log with the links to paste onto the README
 
-allSystems=( targets beamline ft fc ftof pcal ec) # available systems ordered by z position
+allSystems=( targets beamline ft fc ftof pcal ec ) # available systems ordered by z position
 
 for s in $=allSystems
 do
