@@ -132,13 +132,25 @@ for jc in $=jcards
 do
 	echo
 	echo Running gemc using jcards $jc
-	[[ $testType == 'dawn' ]] && gemc $jc -dawn ; exitCode=$? || gemc $jc ; exitCode=$?
+	if [[ $testType == 'dawn' ]]; then
+		gemc $jc -dawn
+		exitCode=$?
+	else
+		gemc $jc
+		exitCode=$?
+	fi
+	
+	echo
+	echo exitCode: $exitCode
+	echo
+	
 	if [[ $exitCode != 0 ]]; then
-		ls *.err
-		cat *.err
+		ls -l MasterGeant4.err MasterGeant4.log
+		cat MasterGeant4.log MasterGeant4.err
 		exit $exitCode
 	fi
 
 	[[ $testType == 'dawn' ]] && PublishDawn $jc || echo gemc run using jcards $jc completed
+	echo
 
 done
