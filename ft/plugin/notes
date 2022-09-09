@@ -1,11 +1,12 @@
 
+CONFIGURATION_BUILD_DIR = $MYBUILDDIR set on glibrary/settings to be at the clas12-systems workspace top level
+
+
+Link to lbraries:
 
 open $CLHEP_BASE_DIR/lib
 
-	- libCLHEP-2.4.4.2.dylib
-
-
-CONFIGURATION_BUILD_DIR = $MYBUILDDIR set on glibrary/settings to be at home:
+	- libCLHEP-version.dylib
 
 open /Users/ungaro/builds
 
@@ -15,7 +16,6 @@ open /Users/ungaro/builds
 	- gtouchable
 	- gtranslationTable
 	- guts
-
 
 open $CCDB_HOME/lib/
 

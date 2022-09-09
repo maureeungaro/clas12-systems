@@ -37,8 +37,8 @@ def main():
         configuration.setVariation(var_key)
 
         # define materials
-        define_materials(configuration)
         configuration.init_mats_file()
+        define_materials(configuration)
 
         # run geometry file bulder for selected variation
         configuration.init_geom_file()
