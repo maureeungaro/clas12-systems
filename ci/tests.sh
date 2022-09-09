@@ -88,7 +88,6 @@ JcardsToRun () {
 	echo List of jcards in $testType: $=jcards
 }
 
-
 PublishDawn () {
 	outputScreenshotDir=screenshots/$detector
 	[[ ! -d $outputScreenshotDir ]] && mkdir -p $outputScreenshotDir
