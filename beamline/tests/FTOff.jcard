@@ -6,7 +6,7 @@
 	
 	# verbosities
 	"verbosity": 2,
-	"grunv": 2,
+	"grunv": 1,
 	"gframestreamv": 2,
 	"edistv": 2,
 
