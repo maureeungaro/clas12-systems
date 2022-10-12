@@ -105,6 +105,7 @@ CompileAndCopyPlugin() {
 	echo Compiling $detector plugin with options: "$copt"
 	echo
 	cd plugin
+	scons -c
 	scons SHOWENV=1 SHOWBUILD=1 $copt
 	gpls=$(ls *.gplugin)
 	for gpl in $gpls;

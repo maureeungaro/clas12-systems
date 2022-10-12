@@ -5,8 +5,6 @@
 	
 	# verbosities
 	"verbosity": 2,
-	"grunv": 1,
-	"edistv": 2,
 
 	# uncomment to set maximum number of events / sub run different than the default of 100
 	# this number controls how often the outputs are written out
