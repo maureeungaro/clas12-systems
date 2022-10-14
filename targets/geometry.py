@@ -4,7 +4,7 @@ from gemc_api_geometry import GVolume
 import math
 
 def _make_full_tube(gvolume, r_in, r_out, half_length):
-	gvolume.makeG4Tubs(r_in, r_out, half_length, 0.0, 360.0)
+	gvolume.make_tube(r_in, r_out, half_length, 0.0, 360.0)
 
 
 def _build_nuclear_target_foil(
@@ -1044,7 +1044,7 @@ def build_geometry_hdice(configuration):
 		gvolume.mother = "root"
 		gvolume.description = "Target Container"
 		gvolume.color =  "22ff22"
-		gvolume.makeG4Box(160.0, 160.0, 800.0)
+		gvolume.make_box(160.0, 160.0, 800.0)
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
 		gvolume.mfield = "hdicefield"
@@ -1287,7 +1287,7 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "VacuumVolume"
 		gvolume.description = "LHe bath walls"
 		gvolume.color = "aaaaaa"
-		gvolume.makeG4Box(dx, dy, dz)
+		gvolume.make_box(dx, dy, dz)
 		gvolume.setPosition(0,0,bath_z0)
 		gvolume.material = "AmmoniaCellWalls"
 		return gvolume
@@ -1298,7 +1298,7 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "HeliumBathWalls"
 		gvolume.description = "LHe bath"
 		gvolume.color = "0099ff"
-		gvolume.makeG4Box(bath_dx, bath_dy, bath_dz)
+		gvolume.make_box(bath_dx, bath_dy, bath_dz)
 		gvolume.setPosition(0,0,0)
 		gvolume.material = "lHeCoolant"
 		return gvolume
@@ -1311,7 +1311,7 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "HeliumBath"
 		gvolume.description = "LHe bath window"
 		gvolume.color = "aaaaaa"
-		gvolume.makeG4Box(bath_dx, bath_dy, dz)
+		gvolume.make_box(bath_dx, bath_dy, dz)
 		gvolume.setPosition(0,0,z_center)
 		gvolume.material = "G4_Al"
 		return gvolume

@@ -19,7 +19,7 @@ def buildHodoscope(configuration):
 	gvolume = GVolume('ft_hodo_innervol')
 	gvolume.mother      = 'ft_hodo'
 	gvolume.description = 'ft scintillation hodoscope inner volume'
-	gvolume.makeG4Tubs(VETO_RING_OR, VETO_OR, VETO_TN, 0.0, 360.0)
+	gvolume.make_tube(VETO_RING_OR, VETO_OR, VETO_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_AIR'
 	gvolume.setPosition(0, 0, VETO_Z)
 	gvolume.color       = '3399FF'
@@ -30,7 +30,7 @@ def buildHodoscope(configuration):
 	gvolume = GVolume('ft_hodo_ring')
 	gvolume.mother      = 'ft_hodo'
 	gvolume.description = 'ft hodoscope support ring'
-	gvolume.makeG4Tubs(VETO_RING_IR, VETO_RING_OR, VETO_RING_TN, 0.0, 360.0)
+	gvolume.make_tube(VETO_RING_IR, VETO_RING_OR, VETO_RING_TN, 0.0, 360.0)
 	gvolume.material    = 'ft_peek'
 	gvolume.setPosition(0, 0, VETO_RING_Z)
 	gvolume.color       = 'cccccc'
@@ -47,7 +47,7 @@ def buildHodoscope(configuration):
 		gvolume = GVolume(f'ft_hodo_L{L}')
 		gvolume.mother      = 'ft_hodo_innervol'
 		gvolume.description = f'ft_hodo layer {L} support'
-		gvolume.makeG4Tubs(VETO_RING_OR, VETO_OR, LS_TN, 0.0, 360.0)
+		gvolume.make_tube(VETO_RING_OR, VETO_OR, LS_TN, 0.0, 360.0)
 		gvolume.material    = 'carbonFiber'
 		gvolume.setPosition(0, 0, LS_Z)
 		gvolume.color       = 'EFEFFB'
@@ -98,7 +98,7 @@ def buildHodoscope(configuration):
 				gvolume.mother      = 'ft_hodo_innervol'
 				gvolume.description = f'{TNAME} {S} {L} {I}'
 				gvolume.setPosition(p_X, p_Y, p_Z)
-				gvolume.makeG4Box(WW_PAINT, WW_PAINT, LS_TN)
+				gvolume.make_box(WW_PAINT, WW_PAINT, LS_TN)
 				gvolume.material    = 'G4_MYLAR'
 				gvolume.color       = TCOLOR
 				gvolume.publish(configuration)
@@ -106,7 +106,7 @@ def buildHodoscope(configuration):
 				gvolume = GVolume(f'{TTNAME}{S}{L}{I}')
 				gvolume.mother       = f'{TNAME}{S}{L}{I}'
 				gvolume.description  = f'{TTNAME} {S} {L} {I}'
-				gvolume.makeG4Box(WW_TILE, WW_TILE, TILE_TN)
+				gvolume.make_box(WW_TILE, WW_TILE, TILE_TN)
 				gvolume.material     = 'scintillator'
 				gvolume.color        = 'BCA9F5'
 				gvolume.digitization = 'ft_hodo'
@@ -147,7 +147,7 @@ def buildHodoscope(configuration):
 				gvolume.mother      = 'ft_hodo_innervol'
 				gvolume.description = f'{TNAME} {S} {L} {I}'
 				gvolume.setPosition(p_X, p_Y, p_Z)
-				gvolume.makeG4Box(WW_PAINT, WW_PAINT, LS_TN)
+				gvolume.make_box(WW_PAINT, WW_PAINT, LS_TN)
 				gvolume.material    = 'G4_MYLAR'
 				gvolume.color       = TCOLOR
 				gvolume.publish(configuration)
@@ -155,7 +155,7 @@ def buildHodoscope(configuration):
 				gvolume = GVolume(f'{TTNAME}{S}{L}{I}')
 				gvolume.mother       = f'{TNAME}{S}{L}{I}'
 				gvolume.description  = f'{TTNAME} {S} {L} {I}'
-				gvolume.makeG4Box(WW_TILE, WW_TILE, TILE_TN)
+				gvolume.make_box(WW_TILE, WW_TILE, TILE_TN)
 				gvolume.material     = 'scintillator'
 				gvolume.color        = 'BCA9F5'
 				gvolume.digitization = 'ft_hodo'

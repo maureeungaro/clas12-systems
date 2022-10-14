@@ -100,7 +100,7 @@ class SolidParams:
         return map_type_to_method[self.solid_type](gvolume)
 
     def process_box(self, gvolume):
-        gvolume.makeG4Box(
+        gvolume.make_box(
             *self.numbers,
             lunit=_ensure_single_unit(self.units),
         )
@@ -109,7 +109,7 @@ class SolidParams:
         length_units = self.units[:3]
         angle_units = self.units[3:]
         
-        gvolume.makeG4Tubs(
+        gvolume.make_tube(
             *self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)

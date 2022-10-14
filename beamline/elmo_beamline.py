@@ -23,7 +23,7 @@ def build_elmo_beamline(configuration):
 
 	gvolume = GVolume('vacuumPipe1')
 	gvolume.description = 'first straightVacuumPipe steel'
-	gvolume.makeG4Tubs(0, firstVacuumOR, pipeLength, 0, 360)
+	gvolume.make_tube(0, firstVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.setPosition(0, 0, zpos)
 	gvolume.color       = 'aaffff'
@@ -32,7 +32,7 @@ def build_elmo_beamline(configuration):
 	gvolume = GVolume('vacuumInPipe1')
 	gvolume.mother      = 'vacuumPipe1'
 	gvolume.description = 'first straightVacuumPipe vacuum inside'
-	gvolume.makeG4Tubs(0, firstVacuumIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, firstVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -46,7 +46,7 @@ def build_elmo_beamline(configuration):
 
 	gvolume = GVolume('vacuumPipe2')
 	gvolume.description = 'second straightVacuumPipe steel'
-	gvolume.makeG4Tubs(0, secondVacuumOR, pipeLength, 0, 360)
+	gvolume.make_tube(0, secondVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.setPosition(0, 0, zpos)
 	gvolume.color       = 'aaffff'
@@ -55,7 +55,7 @@ def build_elmo_beamline(configuration):
 	gvolume = GVolume('vacuumInPipe2')
 	gvolume.mother      = 'vacuumPipe2'
 	gvolume.description = 'second straightVacuumPipe vacuum inside'
-	gvolume.makeG4Tubs(0, secondVacuumIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, secondVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -67,7 +67,7 @@ def build_elmo_beamline(configuration):
 
 	gvolume = GVolume('vacuumPipe3')
 	gvolume.description = 'third straightVacuumPipe steel'
-	gvolume.makeG4Tubs(firstVacuumIR, firstVacuumOR, pipeLength, 0, 360)
+	gvolume.make_tube(firstVacuumIR, firstVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.setPosition(0, 0, zpos)
 	gvolume.color       = 'aaffff'
@@ -76,7 +76,7 @@ def build_elmo_beamline(configuration):
 	# vacuum inside,  this is inside ROOT
 	gvolume = GVolume('vacuumInPipe3')
 	gvolume.description = 'third straightVacuumPipe vacuum inside'
-	gvolume.makeG4Tubs(0, firstVacuumIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, firstVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.setPosition(0, 0, zpos)
 	gvolume.color       = '000000'
@@ -115,7 +115,7 @@ def build_elmo_beamline(configuration):
 	gvolume = GVolume('vacuumPipeToAlcove')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'vacuumPipeToAlcove steel'
-	gvolume.makeG4Tubs(0, thirdPipeOR, pipeLength, 0, 360)
+	gvolume.make_tube(0, thirdPipeOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.setPosition(0, 0, zpos)
 	gvolume.color       = 'aaffff'
@@ -124,7 +124,7 @@ def build_elmo_beamline(configuration):
 	gvolume = GVolume('vacuumInPipeToAlcove')
 	gvolume.mother      = 'vacuumPipeToAlcove'
 	gvolume.description = 'vacuumPipeToAlcove vacuum inside'
-	gvolume.makeG4Tubs(0, thirdPipeIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, thirdPipeIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -140,7 +140,7 @@ def build_elmo_beamline(configuration):
 	gvolume = GVolume('leadInsideApex')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'lead inside apex'
-	gvolume.makeG4Tubs(apexIR, apexOR, apexLength, 0, 360)
+	gvolume.make_tube(apexIR, apexOR, apexLength, 0, 360)
 	gvolume.material    = 'G4_Pb'
 	gvolume.setPosition(0, 0, zpos)
 	gvolume.color       = '4499ff'
