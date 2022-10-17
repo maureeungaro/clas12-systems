@@ -119,7 +119,7 @@ class SolidParams:
         length_units = self.units[:2]
         angle_units = self.units[2:]
         
-        gvolume.makeG4Sphere(
+        gvolume.make_shpere(
             *self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)
@@ -154,7 +154,7 @@ class SolidParams:
         )
 
     def process_trd(self, gvolume):
-        gvolume.makeG4Trd(
+        gvolume.make_trapezoid(
             *self.numbers,
             lunit=_ensure_single_unit(self.units)
         )
@@ -163,7 +163,7 @@ class SolidParams:
         length_units = self.units[0:1] + self.units[3:6] + self.units[7:10]
         angle_units = self.units[1:3] + [self.units[6], self.units[10]]
         
-        gvolume.makeG4Trap(
+        gvolume.make_trap(
             self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)

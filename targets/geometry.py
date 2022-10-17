@@ -452,7 +452,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume.description = "PolTarg Heat Shield Exit window Shere"
 		gvolume.setPosition(0,0,z_center)
 		gvolume.color = "aaaaaa"
-		gvolume.makeG4Sphere(r_in, r_out, 0, 360, 0, 90)
+		gvolume.make_shpere(r_in, r_out, 0, 360, 0, 90)
 		gvolume.material = "G4_Al"
 		return gvolume
 
@@ -1273,7 +1273,7 @@ def build_geometry_apollo(configuration):
 		gvolume.description = "Vacuum half sphere volume"
 		gvolume.setPosition(0,0,spheres_center)
 		gvolume.color = "ffffff"
-		gvolume.makeG4Sphere(r_in, r_out, phi_start, dphi, theta_start, dtheta)
+		gvolume.make_shpere(r_in, r_out, phi_start, dphi, theta_start, dtheta)
 		gvolume.material = "G4_Galactic"
 		gvolume.visible = 0
 		return gvolume
@@ -1501,7 +1501,7 @@ def build_geometry_apollo(configuration):
 		sphere.mother = "VacuumSphere"
 		sphere.description = f"{name} sphere"
 		sphere.setPosition(0,0,0)
-		sphere.makeG4Sphere(
+		sphere.make_shpere(
 			r_in,
 			r_out,
 			0,
@@ -1514,7 +1514,7 @@ def build_geometry_apollo(configuration):
 		window.description = f"{name} window"
 		window.mother = "VacuumSphere"
 		window.setPosition(0,0,0)
-		window.makeG4Sphere(
+		window.make_shpere(
 			r_in,
 			r_out_window,
 			0,
