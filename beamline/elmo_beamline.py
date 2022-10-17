@@ -25,7 +25,7 @@ def build_elmo_beamline(configuration):
 	gvolume.description = 'first straightVacuumPipe steel'
 	gvolume.make_tube(0, firstVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -48,7 +48,7 @@ def build_elmo_beamline(configuration):
 	gvolume.description = 'second straightVacuumPipe steel'
 	gvolume.make_tube(0, secondVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -69,7 +69,7 @@ def build_elmo_beamline(configuration):
 	gvolume.description = 'third straightVacuumPipe steel'
 	gvolume.make_tube(firstVacuumIR, firstVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -78,7 +78,7 @@ def build_elmo_beamline(configuration):
 	gvolume.description = 'third straightVacuumPipe vacuum inside'
 	gvolume.make_tube(0, firstVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
 
@@ -117,7 +117,7 @@ def build_elmo_beamline(configuration):
 	gvolume.description = 'vacuumPipeToAlcove steel'
 	gvolume.make_tube(0, thirdPipeOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -142,7 +142,7 @@ def build_elmo_beamline(configuration):
 	gvolume.description = 'lead inside apex'
 	gvolume.make_tube(apexIR, apexOR, apexLength, 0, 360)
 	gvolume.material    = 'G4_Pb'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '4499ff'
 	gvolume.publish(configuration)
 

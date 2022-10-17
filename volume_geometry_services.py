@@ -119,7 +119,7 @@ class SolidParams:
         length_units = self.units[:2]
         angle_units = self.units[2:]
         
-        gvolume.make_shpere(
+        gvolume.make_sphere(
             *self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)
@@ -217,7 +217,7 @@ class VolumeParams:
 
     def build_gvolume(self):
         gvolume = GVolume(self.name)
-        gvolume.setPosition(
+        gvolume.set_position(
             *self._position.numbers,
             lunit=_ensure_single_unit(self._position.units),
         )
@@ -226,7 +226,7 @@ class VolumeParams:
             rotation_kwargs["lunit"] = self._rotation.single_unit
         if self._rotation.order is not None:
             rotation_kwargs["order"] = self._rotation.order
-        gvolume.setRotation(
+        gvolume.set_rotation(
             *self._rotation.numbers,
             **rotation_kwargs,
         )

@@ -27,7 +27,7 @@ def build_rgab_beamline(configuration):
 	gvolume.description = 'first straightVacuumPipe steel'
 	gvolume.make_tube(0, firstVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -50,7 +50,7 @@ def build_rgab_beamline(configuration):
 	gvolume.description = 'second straightVacuumPipe steel'
 	gvolume.make_tube(0, secondVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -71,7 +71,7 @@ def build_rgab_beamline(configuration):
 	gvolume.description = 'third straightVacuumPipe steel'
 	gvolume.make_tube(connectingIR, secondVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -80,7 +80,7 @@ def build_rgab_beamline(configuration):
 	gvolume.description = 'third straightVacuumPipe vacuum inside'
 	gvolume.make_tube(0, firstVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
 
@@ -119,7 +119,7 @@ def build_rgab_beamline(configuration):
 	gvolume.description = 'vacuumPipeToAlcove steel'
 	gvolume.make_tube(0, thirdPipeOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -144,7 +144,7 @@ def build_rgab_beamline(configuration):
 	gvolume.description = 'lead inside apex'
 	gvolume.make_tube(apexIR, apexOR, apexLength, 0, 360)
 	gvolume.material    = 'G4_Pb'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '4499ff'
 	gvolume.publish(configuration)
 
@@ -169,7 +169,7 @@ def build_rgab_beamline(configuration):
 	gvolume = GVolume('airPipe')
 	gvolume.description = 'airgap between target and shield to limit e- steps'
 	gvolume.makeG4Polycone('0', '360', z_plane_airpipe, zradius_airpipe, oradius_airpipe)
-	gvolume.setPosition(0, 0, ztart)
+	gvolume.set_position(0, 0, ztart)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
@@ -180,6 +180,6 @@ def build_rgab_beamline(configuration):
 	gvolume.description = 'airgap2 between target and shield to limit e- steps'
 	gvolume.make_tube(0, 10, innerAirpipeDimension, 0, 360)
 	gvolume.material    = 'G4_AIR'
-	gvolume.setPosition(0, 0, innerAirpipeDimension)
+	gvolume.set_position(0, 0, innerAirpipeDimension)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)

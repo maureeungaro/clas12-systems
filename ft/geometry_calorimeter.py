@@ -87,7 +87,7 @@ def buildCrystals(configuration):
 				gvolume.description = f'Mother Volume for crystal h:{iX}, v:{iY}'
 				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'G4_AIR'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = '838EDE'
 				gvolume.style       = 0
 				gvolume.publish(configuration)
@@ -102,7 +102,7 @@ def buildCrystals(configuration):
 				gvolume.description = f'apd for crystal h:{iX}, v:{iY}'
 				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'ft_peek'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = '99CC66'
 				gvolume.publish(configuration)
 
@@ -118,7 +118,7 @@ def buildCrystals(configuration):
 				gvolume.description = f'wrapping for crystal h:{iX}, v:{iY}'
 				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'G4_MYLAR'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = '838EDE'
 				gvolume.publish(configuration)
 
@@ -134,10 +134,10 @@ def buildCrystals(configuration):
 				gvolume.description  = f'PbWO4 crystal h:{iX}, v:{iY}'
 				gvolume.make_box(dX, dY, dZ)
 				gvolume.material     = 'G4_PbWO4'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color        = '836FFF'
 				gvolume.digitization = 'ft_cal'
-				gvolume.setIdentifier('ih', iX, 'iv', iY)
+				gvolume.set_identifier('ih', iX, 'iv', iY)
 				gvolume.publish(configuration)
 
 				# LED housing
@@ -152,7 +152,7 @@ def buildCrystals(configuration):
 				gvolume.description = f'Led Housing for crystal h:{iX}, v:{iY}'
 				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'ft_peek'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = 'EEC900'
 				gvolume.publish(configuration)
 
@@ -164,7 +164,7 @@ def buildCalCopper(configuration):
 	gvolume.description = 'ft calorimeter back copper'
 	gvolume.make_tube(Bdisk_IR, Bdisk_OR, Bdisk_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Bdisk_Z)
+	gvolume.set_position(0, 0, Bdisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# front
@@ -173,7 +173,7 @@ def buildCalCopper(configuration):
 	gvolume.description = 'calorimeter front copper'
 	gvolume.make_tube(Fdisk_IR, Fdisk_OR, Fdisk_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Fdisk_Z)
+	gvolume.set_position(0, 0, Fdisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# inner
@@ -182,7 +182,7 @@ def buildCalCopper(configuration):
 	gvolume.description = 'calorimeterinnerouter copper'
 	gvolume.make_tube(Idisk_IR, Idisk_OR, Idisk_LT, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Odisk_Z)
+	gvolume.set_position(0, 0, Odisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# outer
@@ -191,7 +191,7 @@ def buildCalCopper(configuration):
 	gvolume.description = 'calorimeter outer copper'
 	gvolume.make_tube(Odisk_IR, Odisk_OR, Odisk_LT, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Odisk_Z)
+	gvolume.set_position(0, 0, Odisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# Preamp Space
@@ -200,7 +200,7 @@ def buildCalCopper(configuration):
 	gvolume.description = 'calorimeter preamp space back_plate'
 	gvolume.make_tube(BPlate_IR, BPlate_OR, BPlate_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_AIR'
-	gvolume.setPosition(0, 0, BPlate_Z)
+	gvolume.set_position(0, 0, BPlate_Z)
 	gvolume.color       = '7F9A65'
 	gvolume.publish(configuration)
 
@@ -211,7 +211,7 @@ def buildCalMotherBoard(configuration):
 	gvolume.description = 'calorimeter back motherboard'
 	gvolume.make_tube(Bmtb_IR, Bmtb_OR, Bmtb_TN, 0.0, 360.0)
 	gvolume.material    = 'pcboard'
-	gvolume.setPosition(0, 0, Bmtb_Z)
+	gvolume.set_position(0, 0, Bmtb_Z)
 	gvolume.color       = '0B3B0B'
 	gvolume.publish(configuration)
 
@@ -223,8 +223,8 @@ def buildCalMotherBoard(configuration):
 		gvolume.description = f'back motherboard  h:{i}'
 		gvolume.make_box(Bmtb_hear_LN, Bmtb_hear_WD, Bmtb_TN)
 		gvolume.material    = 'pcboard'
-		gvolume.setPosition(Bmtb_hear_DX, Bmtb_hear_DY, Bmtb_Z)
-		gvolume.setRotation(0, 0, Bmtb_angle[i])
+		gvolume.set_position(Bmtb_hear_DX, Bmtb_hear_DY, Bmtb_Z)
+		gvolume.set_rotation(0, 0, Bmtb_angle[i])
 		gvolume.color       = '0B3B0B'
 		gvolume.publish(configuration)
 
@@ -236,7 +236,7 @@ def buildCalLed(configuration):
 	gvolume.description = 'ft calorimeter LED Assembly'
 	gvolume.make_tube(LED_IR, LED_OR, LED_TN, 0.0, 360.0)
 	gvolume.material    = 'ft_peek'
-	gvolume.setPosition(0, 0, LED_Z)
+	gvolume.set_position(0, 0, LED_Z)
 	gvolume.color       = '333333'
 	gvolume.publish(configuration)
 
@@ -310,9 +310,9 @@ def make_ft_cal_flux(configuration):
 	gvolume.description = 'ft flux'
 	gvolume.make_tube(Flux_IR, Flux_OR, Flux_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_Galactic'
-	gvolume.setPosition(0, 0, Flux_Z)
+	gvolume.set_position(0, 0, Flux_Z)
 	gvolume.color       = 'aa0088'
-	gvolume.setIdentifier('id', 3)  # identifier for ft_cal_flux
+	gvolume.set_identifier('id', 3)  # identifier for ft_cal_flux
 	gvolume.digitization = 'flux'
 	gvolume.publish(configuration)
 
@@ -334,10 +334,10 @@ def make_ft_moellerdisk(configuration):
 		gvolume.description = f'Moller disk {n}'
 		gvolume.make_tube(disk_iradius[n], disk_oradius[n], 0.05, 0.0, 360.0)
 		gvolume.material    = 'G4_Galactic'
-		gvolume.setPosition(0, 0, disk_zpos[n])
+		gvolume.set_position(0, 0, disk_zpos[n])
 		gvolume.color       = 'aa0088'
 		gvolume.visible     = 0
-		gvolume.setIdentifier('id', idisk)  # identifier for moller_disk
+		gvolume.set_identifier('id', idisk)  # identifier for moller_disk
 		gvolume.digitization = 'flux'
 		gvolume.publish(configuration)
 
@@ -352,7 +352,7 @@ def buildCalInsulation(configuration):
 	gvolume.description = 'Inner Insulation'
 	gvolume.make_tube(I_Ins_IR, I_Ins_OR, I_Ins_LT, 0.0, 360.0)
 	gvolume.material    = 'insfoam'
-	gvolume.setPosition(0, 0, I_Ins_Z)
+	gvolume.set_position(0, 0, I_Ins_Z)
 	gvolume.color       = 'F5F6CE'
 	gvolume.publish(configuration)
 
