@@ -30,7 +30,7 @@ def buildTracker(configuration):
 
 def make_ft_trk_mother(configuration):
 	gvolume = GVolume('ft_trk')
-	gvolume.makeG4Polycone('0', '360', MVftt_zpos, MVftt_iradius, MVftt_oradius)
+	gvolume.make_polycone('0', '360', MVftt_zpos, MVftt_iradius, MVftt_oradius)
 	gvolume.material     = 'G4_AIR'
 	gvolume.description = 'FT Tracker Micromegas'
 	gvolume.color       = 'aaaaff'

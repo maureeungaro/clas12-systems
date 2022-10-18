@@ -105,7 +105,7 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('vacuumPipe')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'vacuumPipe steel'
-	gvolume.makeG4Polycone('0', '360', z_plane_vbeam, vradius_vbeam, oradius_vbeam)
+	gvolume.make_polycone('0', '360', z_plane_vbeam, vradius_vbeam, oradius_vbeam)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
@@ -114,7 +114,7 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('vacuumInPipe')
 	gvolume.mother      = 'vacuumPipe'
 	gvolume.description = 'vacuumPipe vacuum'
-	gvolume.makeG4Polycone('0', '360', z_plane_vbeam, vradius_vbeam, iradius_vbeam)
+	gvolume.make_polycone('0', '360', z_plane_vbeam, vradius_vbeam, iradius_vbeam)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -169,7 +169,7 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('Airpipe')
 	gvolume.mother      = 'hdIce_mother'
 	gvolume.description = 'airgap between target and shield to limit e- steps'
-	gvolume.makeG4Polycone('0', '360', z_plane_airpipe, iradius_airpipe, oradius_airpipe)
+	gvolume.make_polycone('0', '360', z_plane_airpipe, iradius_airpipe, oradius_airpipe)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)

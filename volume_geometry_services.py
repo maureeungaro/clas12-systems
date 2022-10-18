@@ -147,7 +147,7 @@ class SolidParams:
         ]
         angle_units = self.units[:2]
         length_units = self.units[3:]
-        gvolume.makeG4Polycone(
+        gvolume.make_polycone(
             *args,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)

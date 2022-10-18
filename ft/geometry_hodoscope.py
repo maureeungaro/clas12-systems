@@ -9,7 +9,7 @@ def buildHodoscope(configuration):
 	gvolume = GVolume('ft_hodo')
 	gvolume.mother      = 'root'
 	gvolume.description = 'ft scintillation hodoscope'
-	gvolume.makeG4Polycone('0', '360', VETO_zpos, VETO_iradius, VETO_oradius)
+	gvolume.make_polycone('0', '360', VETO_zpos, VETO_iradius, VETO_oradius)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = '3399FF'
 	gvolume.style       = 0

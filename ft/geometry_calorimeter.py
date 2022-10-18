@@ -34,7 +34,7 @@ def buildCalMotherVolume(configuration):
 
 	# a G4Polycone is built with the same geant4 constructor parameters, in the same order.
 	# an additional argument at the end can be given to specify the length units (default is mm)
-	gvolume.makeG4Polycone('0', '360', z_plane_FT, iradius_FT, oradius_FT)
+	gvolume.make_polycone('0', '360', z_plane_FT, iradius_FT, oradius_FT)
 	gvolume.material     = 'G4_AIR'
 	gvolume.description = 'Calorimeter Mother Volume'
 	gvolume.color       = '1437f4'
@@ -52,7 +52,7 @@ def buildCrystalsMother(configuration):
 	gvolume = GVolume('ft_calCrystalsMother')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Calorimeter Crystal Volume'
-	gvolume.makeG4Polycone('0', '360', z_plane_FT_CRY, iradius_FT_CRY, oradius_FT_CRY)
+	gvolume.make_polycone('0', '360', z_plane_FT_CRY, iradius_FT_CRY, oradius_FT_CRY)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = '1437f4'
 	gvolume.style       = 0
@@ -250,7 +250,7 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_back')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'tungsten cup and cone at the back of the ft, back part'
-	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.make_polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
 	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)
@@ -263,7 +263,7 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_plate')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'stainless steel plate at the back of the ft'
-	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.make_polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = 'cccccc'
 	gvolume.publish(configuration)
@@ -275,7 +275,7 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_front')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'tungsten cup and cone at the back of the ft, front part'
-	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.make_polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
 	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)
@@ -293,7 +293,7 @@ def buildCalTungstenCup(configuration):
 		gvolume = GVolume(f'ft_cal_tcup_m{i+1}')
 		gvolume.mother      = 'ft_cal'
 		gvolume.description = f'tungsten cup and cone at the back of the ft, medium part {i+1}'
-		gvolume.makeG4Polycone(biangle, bdangle, z_plane_TCup, iradius_TCup, oradius_TCup)
+		gvolume.make_polycone(biangle, bdangle, z_plane_TCup, iradius_TCup, oradius_TCup)
 		gvolume.material    = 'ft_W'
 		gvolume.color       = 'ff0000'
 		gvolume.publish(configuration)
@@ -363,7 +363,7 @@ def buildCalInsulation(configuration):
 	gvolume = GVolume('ft_cal_outer_ins_f')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Insulation front'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+	gvolume.make_polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
 	gvolume.material    = 'insfoam'
 	gvolume.color       = 'F5F6CE'
 	gvolume.publish(configuration)
@@ -375,7 +375,7 @@ def buildCalInsulation(configuration):
 	gvolume = GVolume('ft_cal_outer_ins_b')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Insulation back'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+	gvolume.make_polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
 	gvolume.material    = 'insfoam'
 	gvolume.color       = 'F5F6CE'
 	gvolume.publish(configuration)
@@ -391,7 +391,7 @@ def buildCalInsulation(configuration):
 		gvolume.description = f'Outer Insulation medium {i+1}'
 		biangle = BCup_iangle[i]
 		bdangle = BCup_dangle[i]
-		gvolume.makeG4Polycone(biangle, bdangle, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+		gvolume.make_polycone(biangle, bdangle, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
 		gvolume.material    = 'insfoam'
 		gvolume.color       = 'F5F6CE'
 		gvolume.publish(configuration)
@@ -408,7 +408,7 @@ def buildCalShell(configuration):
 	gvolume = GVolume('ft_cal_outer_shell_f')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Shell front'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+	gvolume.make_polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
 	gvolume.material    = 'carbonFiber'
 	gvolume.color       = 'F5DA81'
 	gvolume.publish(configuration)
@@ -420,7 +420,7 @@ def buildCalShell(configuration):
 	gvolume = GVolume('ft_cal_outer_shell_b')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Shell back'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+	gvolume.make_polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
 	gvolume.material    = 'carbonFiber'
 	gvolume.color       = 'F5DA81'
 	gvolume.publish(configuration)
@@ -435,7 +435,7 @@ def buildCalShell(configuration):
 		gvolume.description = f'Outer Shell medium{i+1}'
 		biangle = BCup_iangle[i]
 		bdangle = BCup_dangle[i]
-		gvolume.makeG4Polycone(biangle, bdangle, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+		gvolume.make_polycone(biangle, bdangle, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
 		gvolume.material    = 'carbonFiber'
 		gvolume.color       = 'F5DA81'
 		gvolume.publish(configuration)
@@ -452,7 +452,7 @@ def buildCalBeamline(configuration):
 	gvolume = GVolume('ft_cal_tplate')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'ft tungsten plate'
-	gvolume.makeG4Polycone(0, 360, z_plane_TPlate, iradius_TPlate, oradius_TPlate)
+	gvolume.make_polycone(0, 360, z_plane_TPlate, iradius_TPlate, oradius_TPlate)
 	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)

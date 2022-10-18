@@ -91,7 +91,7 @@ def build_elmo_beamline(configuration):
 	gvolume = GVolume('vacuumPipe')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'vacuumPipe steel'
-	gvolume.makeG4Polycone('0', '360', z_plane_vbeam, vradius_vbeam, oradius_vbeam)
+	gvolume.make_polycone('0', '360', z_plane_vbeam, vradius_vbeam, oradius_vbeam)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
@@ -100,7 +100,7 @@ def build_elmo_beamline(configuration):
 	gvolume = GVolume('vacuumInPipe')
 	gvolume.mother      = 'vacuumPipe'
 	gvolume.description = 'vacuumPipe vacuum'
-	gvolume.makeG4Polycone('0', '360', z_plane_vbeam, vradius_vbeam, iradius_vbeam)
+	gvolume.make_polycone('0', '360', z_plane_vbeam, vradius_vbeam, iradius_vbeam)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -156,7 +156,7 @@ def build_elmo_beamline(configuration):
 	oradius_tcone  = ( or1_tcone, orm_tcone, orm_tcone, or2_tcone )
 	gvolume = GVolume('ElmoTungstenCone')
 	gvolume.description = 'Tungsten moller shield - ELMO configuration'
-	gvolume.makeG4Polycone('0', '360', zplane_tcone, iradius_tcone, oradius_tcone)
+	gvolume.make_polycone('0', '360', zplane_tcone, iradius_tcone, oradius_tcone)
 	gvolume.material    = 'beamline_W'
 	gvolume.color       = 'dd8648'
 	gvolume.publish(configuration)
@@ -167,7 +167,7 @@ def build_elmo_beamline(configuration):
 	oradius_ttip = [ 41.2, oradius_tcone[0] ]
 	gvolume = GVolume('ElmoTungstenTip')
 	gvolume.description = 'Tungsten tip - ELMO configuration'
-	gvolume.makeG4Polycone('0', '360', zplane_ttip, iradius_ttip, oradius_ttip)
+	gvolume.make_polycone('0', '360', zplane_ttip, iradius_ttip, oradius_ttip)
 	gvolume.material    = 'beamline_W'
 	gvolume.color       = 'dd8648'
 	gvolume.publish(configuration)
@@ -178,7 +178,7 @@ def build_elmo_beamline(configuration):
 	zplane_pb1 = [ 1357.35, 1802.71 ]
 	gvolume = GVolume('ElmoPbCylinder1')
 	gvolume.description = 'Lead Cylinder 1 - ELMO configuration'
-	gvolume.makeG4Polycone('0', '360', zplane_pb1, iradius_lc1, oradius_lc1)
+	gvolume.make_polycone('0', '360', zplane_pb1, iradius_lc1, oradius_lc1)
 	gvolume.material    = 'G4_Pb'
 	gvolume.color       = '999966'
 	gvolume.publish(configuration)
@@ -187,7 +187,7 @@ def build_elmo_beamline(configuration):
 	zplane_pb2 = [ 1809.06, 2240.86 ]
 	gvolume = GVolume('ElmoPbCylinder2')
 	gvolume.description = 'Lead Cylinder 2 - ELMO configuration'
-	gvolume.makeG4Polycone('0', '360', zplane_pb2, iradius_lc1, oradius_lc1)
+	gvolume.make_polycone('0', '360', zplane_pb2, iradius_lc1, oradius_lc1)
 	gvolume.material    = 'G4_Pb'
 	gvolume.color       = '999966'
 	gvolume.publish(configuration)
@@ -198,7 +198,7 @@ def build_elmo_beamline(configuration):
 	oradius_steel = [           109.54,           109.54 ]
 	gvolume = GVolume('ElmoSteelCase')
 	gvolume.description = 'Steel Case - ELMO configuration'
-	gvolume.makeG4Polycone('0', '360', zplane_steel, iradius_steel, oradius_steel)
+	gvolume.make_polycone('0', '360', zplane_steel, iradius_steel, oradius_steel)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = '666666'
 	gvolume.publish(configuration)
@@ -211,7 +211,7 @@ def build_elmo_beamline(configuration):
 	oradius_stube = [ iradius_tcone[2], iradius_tcone[2], oradius_tcone[3], oradius_tcone[3] ]
 	gvolume = GVolume('ElmoSupportPipe')
 	gvolume.description = 'Support pipe - ELMO configuration'
-	gvolume.makeG4Polycone('0', '360', zplane_stube, iradius_stube, oradius_stube)
+	gvolume.make_polycone('0', '360', zplane_stube, iradius_stube, oradius_stube)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = '669966'
 	gvolume.publish(configuration)
@@ -223,7 +223,7 @@ def build_elmo_beamline(configuration):
 	oradius_apipe = [ 30,  30, 25.46, oradius_ttip[0] ]
 	gvolume = GVolume('ElmoAirPipe')
 	gvolume.description = 'Air pipe - ELMO configuration'
-	gvolume.makeG4Polycone('0', '360', zplane_apipe, iradius_apipe, oradius_apipe)
+	gvolume.make_polycone('0', '360', zplane_apipe, iradius_apipe, oradius_apipe)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
