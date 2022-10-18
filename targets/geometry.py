@@ -4,7 +4,7 @@ from gemc_api_geometry import GVolume
 import math
 
 def _make_full_tube(gvolume, r_in, r_out, half_length):
-	gvolume.makeG4Tubs(r_in, r_out, half_length, 0.0, 360.0)
+	gvolume.make_tube(r_in, r_out, half_length, 0.0, 360.0)
 
 
 def _build_nuclear_target_foil(
@@ -24,7 +24,7 @@ def _build_nuclear_target_foil(
 		gvolume.material = material
 		gvolume.color = color
 		_make_full_tube(gvolume, r_in, r_out, half_length)
-		gvolume.setPosition(0., 0., z_center)
+		gvolume.set_position(0., 0., z_center)
 		return gvolume
 
 
@@ -51,7 +51,7 @@ def build_geometry_lhydrogen(configuration):
 		# Vacuum Target Container
 		gvolume = GVolume('target')
 		gvolume.description = f'Liquid Hydrogen Target Container for variation {variation}'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = 'G4_Galactic'	# from GEANT4 materials database
 		gvolume.color = '22ff22'
 		gvolume.style = 0
@@ -67,7 +67,7 @@ def build_geometry_lhydrogen(configuration):
 		gvolume = GVolume("lh2")
 		gvolume.mother = "target"
 		gvolume.description = f'Liquid Hydrogen Target Cell for variation {variation}'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = material_varmap[variation]
 		gvolume.color = 'aa0000'
 		return gvolume
@@ -102,7 +102,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume.mother = "PolTarg"
 		gvolume.description = "LHe between target cells"
 		gvolume.color = "0000ff"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "lHeCoolant"
 		return gvolume
@@ -115,7 +115,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("NH3Targ")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Upstream NH3 target cell"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "f000f0"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "NH3target"
@@ -129,7 +129,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("NH3Cup")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Upstream NH3 Target cup"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -143,7 +143,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("NH3CupDSRing")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Upstream NH3 Target cup downstream ring"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -157,7 +157,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("NH3CupUSRing")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Upstream NH3 Target cup Upstream ring"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -171,7 +171,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("NH3CupWindowFrame_20")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Upstream NH3 Target cup Window frame"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -185,7 +185,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("NH3CupUSWindow_20")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Upstream NH3 Target cup Upstream Window"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -199,7 +199,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("NH3CupDSWindow")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Upstream NH3 Target cup Downstream Window"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -213,7 +213,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ND3Targ")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Downstream ND3 target cell"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "f000f0"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "ND3target"
@@ -227,7 +227,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ND3Cup")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Downstream ND3 Target cup"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -241,7 +241,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ND3CupDSRing")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Downstream ND3 Target cup downstream ring"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -255,7 +255,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ND3CupUSRing")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Downstrem ND3 Target cup Upstream ring"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -269,7 +269,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ND3CupWindowFrame_20")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Downstream ND3 Target cup Window frame"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "ffffff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
@@ -283,7 +283,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ND3CupUSWindow_20")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Downstream ND3 Target cup Upstream Window"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -297,7 +297,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ND3CupDSWindow")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Downstream ND3 Target cup Downstream Window"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -311,7 +311,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("InsertBathEntranceWindow_7a")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Insert Bath Entrance window part 7 a"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -325,7 +325,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("InsertBathEntranceWindow_7b")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Insert Bath Entrence window part 7 b"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -339,7 +339,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("InsertBathEntranceWindow_7c")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Insert Bath Entrence window part 7 c"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -353,7 +353,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("InsertBathEntranceWindow_7d")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Insert Bath Entrence window part 7 d"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -367,7 +367,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ShimCoilCarrier")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Shim coil Carrier"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -381,7 +381,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ShimUpUpS")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Shim Up Upstream Coil"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "a00000"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "ShimCoil"
@@ -395,7 +395,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ShimUpS")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Shim coil upstream"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "a00000"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "ShimCoil"
@@ -409,7 +409,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ShimDownS")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Shim coil downstream"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "a00000"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "ShimCoil"
@@ -423,7 +423,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("ShimDownDownS")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Shim coil Down downstream"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "a00000"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "ShimCoil"
@@ -437,7 +437,7 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("HeatShieldTube")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "PolTarg Heat Shield Tube"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -450,9 +450,9 @@ def build_geometry_pol_targ(configuration):
 		gvolume = GVolume("HeatShieldSphere")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "PolTarg Heat Shield Exit window Shere"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
-		gvolume.makeG4Sphere(r_in, r_out, 0, 360, 0, 90)
+		gvolume.make_sphere(r_in, r_out, 0, 360, 0, 90)
 		gvolume.material = "G4_Al"
 		return gvolume
 
@@ -537,7 +537,7 @@ def build_geometry_bonus(configuration):
 		gvolume.mother = "bonusTarget"
 		gvolume.description = "Bonus Target Al end cap ring"
 		gvolume.color =  "000000"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
 		return gvolume
@@ -551,7 +551,7 @@ def build_geometry_bonus(configuration):
 		gvolume.mother = "bonusTarget"
 		gvolume.description = "Bonus Target Al end cap wall"
 		gvolume.color =  "000000"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
 		return gvolume
@@ -581,7 +581,7 @@ def build_geometry_pb_test(configuration):
 		gvolume.mother = "root"
 		gvolume.description ="Helium cell"
 		gvolume.color =  "5511111"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, cell_half_length)
 		gvolume.material = "G4_He"
 		return gvolume
@@ -596,7 +596,7 @@ def build_geometry_pb_test(configuration):
 		gvolume.mother = "targetCell"
 		gvolume.description ="Pb target"
 		gvolume.color =  "004488"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Pb"
 		return gvolume
@@ -611,7 +611,7 @@ def build_geometry_pb_test(configuration):
 		gvolume.mother = "targetCell"
 		gvolume.description ="Aluminum Upstream Foil"
 		gvolume.color =  "aaaaaa"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
 		return gvolume
@@ -627,7 +627,7 @@ def build_geometry_pb_test(configuration):
 		gvolume.description ="Aluminum Downstream Foil"
 		gvolume.color =  "aaaaaa"
 		gvolume.material = "G4_Al"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		return gvolume
 
@@ -641,11 +641,11 @@ def build_geometry_pb_test(configuration):
 		gvolume.mother = "root"
 		gvolume.description = "Flux detector"
 		gvolume.color = "009900"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_AIR"
 		gvolume.digitization = 'flux'
-		gvolume.setIdentifier('id',1)
+		gvolume.set_identifier('id',1)
 		return gvolume
 
 	for builder in [
@@ -756,7 +756,7 @@ def build_geometry_c12(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'C12 Target Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = 'G4_Galactic'	
 		gvolume.color = '22ff22'
 		gvolume.style = 0
@@ -815,7 +815,7 @@ def build_geometry_al27(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -874,7 +874,7 @@ def build_geometry_cu63(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -933,7 +933,7 @@ def build_geometry_sn118(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -992,7 +992,7 @@ def build_geometry_pb208(configuration):
 
 		gvolume = GVolume('target')
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -1044,7 +1044,7 @@ def build_geometry_hdice(configuration):
 		gvolume.mother = "root"
 		gvolume.description = "Target Container"
 		gvolume.color =  "22ff22"
-		gvolume.makeG4Box(160.0, 160.0, 800.0)
+		gvolume.make_box(160.0, 160.0, 800.0)
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
 		gvolume.mfield = "hdicefield"
@@ -1069,7 +1069,7 @@ def build_geometry_longitudinal(configuration):
 
 		gvolume = GVolume('ltarget') 
 		gvolume.description = 'Vacuum Container'
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.color =  "22ff22"
 		gvolume.material = "G4_Galactic"
 		gvolume.style = 0
@@ -1084,7 +1084,7 @@ def build_geometry_longitudinal(configuration):
 		gvolume.mother = "ltarget"
 		gvolume.description = "5 mm radius aluminum window upstream"
 		gvolume.color =  "aaaaff"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
 		return gvolume
@@ -1099,7 +1099,7 @@ def build_geometry_longitudinal(configuration):
 		gvolume.description = "1/8 in radius aluminum window downstream" 
 		gvolume.color =  "aaaaff"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
 		return gvolume
@@ -1155,7 +1155,7 @@ def build_geometry_transverse(configuration):
 		gvolume.description = "25 mm thick aluminum window downstream"
 		gvolume.color =  "aaaaff"
 		_make_full_tube(gvolume, r_in, r_out, foil_half_half_length)
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.material = "G4_Al"
 		return gvolume
 
@@ -1169,7 +1169,7 @@ def build_geometry_transverse(configuration):
 		gvolume.description = "25 mm thick aluminum window upstream"
 		gvolume.color =  "aaaaff"
 		_make_full_tube(gvolume, r_in, r_out, foil_half_half_length)
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.material = "G4_Al"
 		return gvolume
 
@@ -1237,7 +1237,7 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume("PolTarg")
 		gvolume.description = "PolTarg Region"
 		gvolume.color = "123456"
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = "G4_AIR"
 		gvolume.visible = 0 
 		return gvolume
@@ -1254,8 +1254,8 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Vacuum cylindrical volume"
 		gvolume.color = "ffffff"
-		gvolume.setPosition(0,0,target_center)
-		gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+		gvolume.set_position(0,0,target_center)
+		gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 		gvolume.material = "G4_Galactic"
 		gvolume.visible = 0
 		return gvolume
@@ -1271,9 +1271,9 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume("VacuumSphere")
 		gvolume.mother = "PolTarg"
 		gvolume.description = "Vacuum half sphere volume"
-		gvolume.setPosition(0,0,spheres_center)
+		gvolume.set_position(0,0,spheres_center)
 		gvolume.color = "ffffff"
-		gvolume.makeG4Sphere(r_in, r_out, phi_start, dphi, theta_start, dtheta)
+		gvolume.make_sphere(r_in, r_out, phi_start, dphi, theta_start, dtheta)
 		gvolume.material = "G4_Galactic"
 		gvolume.visible = 0
 		return gvolume
@@ -1287,8 +1287,8 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "VacuumVolume"
 		gvolume.description = "LHe bath walls"
 		gvolume.color = "aaaaaa"
-		gvolume.makeG4Box(dx, dy, dz)
-		gvolume.setPosition(0,0,bath_z0)
+		gvolume.make_box(dx, dy, dz)
+		gvolume.set_position(0,0,bath_z0)
 		gvolume.material = "AmmoniaCellWalls"
 		return gvolume
 
@@ -1298,8 +1298,8 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "HeliumBathWalls"
 		gvolume.description = "LHe bath"
 		gvolume.color = "0099ff"
-		gvolume.makeG4Box(bath_dx, bath_dy, bath_dz)
-		gvolume.setPosition(0,0,0)
+		gvolume.make_box(bath_dx, bath_dy, bath_dz)
+		gvolume.set_position(0,0,0)
 		gvolume.material = "lHeCoolant"
 		return gvolume
 		
@@ -1311,8 +1311,8 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "HeliumBath"
 		gvolume.description = "LHe bath window"
 		gvolume.color = "aaaaaa"
-		gvolume.makeG4Box(bath_dx, bath_dy, dz)
-		gvolume.setPosition(0,0,z_center)
+		gvolume.make_box(bath_dx, bath_dy, dz)
+		gvolume.set_position(0,0,z_center)
 		gvolume.material = "G4_Al"
 		return gvolume
 		
@@ -1324,7 +1324,7 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume(f'{name_varmap[variation]}Targ')
 		gvolume.mother = "HeliumBath"
 		gvolume.description = f'{name_varmap[variation]} target cell'
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.color = "f000f0"
 		gvolume.material = material_varmap[variation]
@@ -1340,7 +1340,7 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "HeliumBath"
 		gvolume.description = "NH3 Target cup"
 		gvolume.color = "ffffff"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "AmmoniaCellWalls"
 		return gvolume
@@ -1354,7 +1354,7 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume("NH3USWindow")
 		gvolume.mother = "HeliumBath"
 		gvolume.description = "NH3 Target cup Upstream Window"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -1369,7 +1369,7 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume("NH3DSWindow")
 		gvolume.mother = "HeliumBath"
 		gvolume.description = "NH3 Target cup Downstream Window"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -1387,7 +1387,7 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "HeliumBath"
 		gvolume.description = "Beam Entrance Vacuum"
 		gvolume.color = "ffffff"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Galactic"
 		return gvolume
@@ -1403,7 +1403,7 @@ def build_geometry_apollo(configuration):
 		gvolume.mother = "HeliumBath"
 		gvolume.description = "Beam Entrance Pipe"
 		gvolume.color = "595959"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
 		return gvolume
@@ -1420,7 +1420,7 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume("BeamEntrance")
 		gvolume.mother = "BeamEntranceVacuum"
 		gvolume.description = "Beam entrance window"
-		gvolume.setPosition(0,0,z_center)
+		gvolume.set_position(0,0,z_center)
 		gvolume.color = "aaaaaa"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "G4_Al"
@@ -1486,8 +1486,8 @@ def build_geometry_apollo(configuration):
 		tube = GVolume(f"{name}Tube")
 		tube.mother = "VacuumVolume"
 		tube.description = f"{name} tube"
-		tube.setPosition(0,0,target_center)
-		tube.makeG4Polycone(
+		tube.set_position(0,0,target_center)
+		tube.make_polycone(
 			0,
 			360,
 			[-volume_length, spheres_center],
@@ -1500,8 +1500,8 @@ def build_geometry_apollo(configuration):
 		sphere = GVolume(f"{name}Sphere")
 		sphere.mother = "VacuumSphere"
 		sphere.description = f"{name} sphere"
-		sphere.setPosition(0,0,0)
-		sphere.makeG4Sphere(
+		sphere.set_position(0,0,0)
+		sphere.make_sphere(
 			r_in,
 			r_out,
 			0,
@@ -1513,8 +1513,8 @@ def build_geometry_apollo(configuration):
 		window = GVolume(f"{name}Window")
 		window.description = f"{name} window"
 		window.mother = "VacuumSphere"
-		window.setPosition(0,0,0)
-		window.makeG4Sphere(
+		window.set_position(0,0,0)
+		window.make_sphere(
 			r_in,
 			r_out_window,
 			0,
@@ -1543,7 +1543,7 @@ def build_geometry_apollo(configuration):
 		gvolume = GVolume(f"ShimCoil{num}")
 		gvolume.mother = "VacuumVolume"
 		gvolume.description = f"Shim Coil {num}"
-		gvolume.setPosition(0, 0, z_center)
+		gvolume.set_position(0, 0, z_center)
 		gvolume.color = "a00000"
 		_make_full_tube(gvolume, r_in, r_out, half_length)
 		gvolume.material = "ShimCoil"

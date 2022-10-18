@@ -12,16 +12,16 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('vacuumPipe1_1')
 	gvolume.mother      = 'hdIce_mother'
 	gvolume.description = 'first straightVacuumPipe 2.75 inch OD 0.065 thick '
-	gvolume.makeG4Tubs(0, firstVacuumOR, pipeLength, 0, 360)
+	gvolume.make_tube(0, firstVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
 	gvolume = GVolume('vacuumInPipe1_1')
 	gvolume.mother      = 'vacuumPipe1_1'
 	gvolume.description = 'first straightVacuumPipe vacuum inside'
-	gvolume.makeG4Tubs(0, firstVacuumIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, firstVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -35,16 +35,16 @@ def build_rgh_beamline(configuration):
 
 	gvolume = GVolume('vacuumPipe1_2')
 	gvolume.description = 'second straightVacuumPipe steel'
-	gvolume.makeG4Tubs(0, secondVacuumOR, pipeLength, 0, 360)
+	gvolume.make_tube(0, secondVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
 	gvolume = GVolume('vacuumInPipe1_2')
 	gvolume.mother      = 'vacuumPipe1_2'
 	gvolume.description = 'second straightVacuumPipe vacuum inside'
-	gvolume.makeG4Tubs(0, secondVacuumIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, secondVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -57,9 +57,9 @@ def build_rgh_beamline(configuration):
 
 	gvolume = GVolume('vacuumPipe2')
 	gvolume.description = 'vacuumPipe2 straightVacuumPipe steel'
-	gvolume.makeG4Tubs(0, secondVacuumOR, pipeLength, 0, 360)
+	gvolume.make_tube(0, secondVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
@@ -67,7 +67,7 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('vacuumInPipe2')
 	gvolume.mother      = 'vacuumPipe2'
 	gvolume.description = 'vacuumPipe2 straightVacuumPipe vacuum inside'
-	gvolume.makeG4Tubs(0, secondVacuumIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, secondVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -81,18 +81,18 @@ def build_rgh_beamline(configuration):
 
 	gvolume = GVolume('vacuumPipe3')
 	gvolume.description = 'vacuumPipe3 straightVacuumPipe steel'
-	gvolume.makeG4Tubs(secondVacuumIR, secondVacuumOR, pipeLength, 0, 360)
+	gvolume.make_tube(secondVacuumIR, secondVacuumOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
 	# vacuum inside,  this is inside ROOT
 	gvolume = GVolume('vacuumInPipe3')
 	gvolume.description = 'vacuumPipe3 straightVacuumPipe vacuum inside'
-	gvolume.makeG4Tubs(0, secondVacuumIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, secondVacuumIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
 
@@ -105,7 +105,7 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('vacuumPipe')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'vacuumPipe steel'
-	gvolume.makeG4Polycone('0', '360', z_plane_vbeam, vradius_vbeam, oradius_vbeam)
+	gvolume.make_polycone('0', '360', z_plane_vbeam, vradius_vbeam, oradius_vbeam)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
@@ -114,7 +114,7 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('vacuumInPipe')
 	gvolume.mother      = 'vacuumPipe'
 	gvolume.description = 'vacuumPipe vacuum'
-	gvolume.makeG4Polycone('0', '360', z_plane_vbeam, vradius_vbeam, iradius_vbeam)
+	gvolume.make_polycone('0', '360', z_plane_vbeam, vradius_vbeam, iradius_vbeam)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -129,16 +129,16 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('vacuumPipeToAlcove')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'vacuumPipeToAlcove steel'
-	gvolume.makeG4Tubs(0, thirdPipeOR, pipeLength, 0, 360)
+	gvolume.make_tube(0, thirdPipeOR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
 
 	gvolume = GVolume('vacuumInPipeToAlcove')
 	gvolume.mother      = 'vacuumPipeToAlcove'
 	gvolume.description = 'vacuumPipeToAlcove vacuum inside'
-	gvolume.makeG4Tubs(0, thirdPipeIR, pipeLength, 0, 360)
+	gvolume.make_tube(0, thirdPipeIR, pipeLength, 0, 360)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '000000'
 	gvolume.publish(configuration)
@@ -153,9 +153,9 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('leadInsideApex')
 	gvolume.mother      = 'fc'
 	gvolume.description = 'lead inside apex'
-	gvolume.makeG4Tubs(apexIR, apexOR, apexLength, 0, 360)
+	gvolume.make_tube(apexIR, apexOR, apexLength, 0, 360)
 	gvolume.material    = 'G4_Pb'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '4499ff'
 	gvolume.publish(configuration)
 
@@ -169,7 +169,7 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('Airpipe')
 	gvolume.mother      = 'hdIce_mother'
 	gvolume.description = 'airgap between target and shield to limit e- steps'
-	gvolume.makeG4Polycone('0', '360', z_plane_airpipe, iradius_airpipe, oradius_airpipe)
+	gvolume.make_polycone('0', '360', z_plane_airpipe, iradius_airpipe, oradius_airpipe)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = 'aaffff'
 	gvolume.publish(configuration)
@@ -182,9 +182,9 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('Tungstentip')
 	gvolume.mother      = 'hdIce_mother'
 	gvolume.description = 'AngelaBrenna Tungsten Tip'
-	gvolume.makeG4Cons(39, 41.2, 39.0, 54.02, 73.21, 0, 360)
+	gvolume.make_cone(39, 41.2, 39.0, 54.02, 73.21, 0, 360)
 	gvolume.material    = 'G4_W'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'f69552'
 	gvolume.publish(configuration)
 
@@ -193,27 +193,27 @@ def build_rgh_beamline(configuration):
 	gvolume = GVolume('Cone1_1')
 	gvolume.mother      = 'hdIce_mother'
 	gvolume.description = 'AngelaBrenna Cone1_1'
-	gvolume.makeG4Cons(38.1, 54.02, 38.1, 61.3313, 41.79, 0, 360)
+	gvolume.make_cone(38.1, 54.02, 38.1, 61.3313, 41.79, 0, 360)
 	gvolume.material    = 'G4_W'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'dd8648'
 	gvolume.publish(configuration)
 
 	zpos = 1013.25
 	gvolume = GVolume('Cone1_2')
 	gvolume.description = 'AngelaBrenna Cone1_2'
-	gvolume.makeG4Cons(38.1, 61.3313, 38.1, 98.64, 213.25, 0, 360)
+	gvolume.make_cone(38.1, 61.3313, 38.1, 98.64, 213.25, 0, 360)
 	gvolume.material    = 'G4_W'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'dd8648'
 	gvolume.publish(configuration)
 
 	zpos = 1290.05
 	gvolume = GVolume('Cone2')
 	gvolume.description = 'AngelaBrenna Cone2'
-	gvolume.makeG4Cons(47.62, 98.64, 47.62, 109.76, 63.55, 0, 360)
+	gvolume.make_cone(47.62, 98.64, 47.62, 109.76, 63.55, 0, 360)
 	gvolume.material    = 'G4_W'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'dd8648'
 	gvolume.publish(configuration)
 
@@ -229,9 +229,9 @@ def build_rgh_beamline(configuration):
 
 	gvolume = GVolume('Cylinder')
 	gvolume.description = 'AngelaBrenna Moller Shield Pb pipe on beamline, NW80 flange is 2.87 inch inner diameter'
-	gvolume.makeG4Cons(47.63, 109.76, 47.63, 109.76, clength, 0, 360)
+	gvolume.make_cone(47.63, 109.76, 47.63, 109.76, clength, 0, 360)
 	gvolume.material    = 'G4_Pb'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'c57742'
 	gvolume.publish(configuration)
 
@@ -245,9 +245,9 @@ def build_rgh_beamline(configuration):
 
 	gvolume = GVolume('SupportTube')
 	gvolume.description = 'AngelaBrenna 2nd Moller Shield Cone outside beam pipe '
-	gvolume.makeG4Cons(38.1, 47.6, 38.1, 47.6, clength, 0, 360)
+	gvolume.make_cone(38.1, 47.6, 38.1, 47.6, clength, 0, 360)
 	gvolume.material    = 'G4_Pb'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = 'ac6839'
 	gvolume.publish(configuration)
 
@@ -258,9 +258,9 @@ def build_rgh_beamline(configuration):
 
 		gvolume = GVolume('FTPreShieldCylinder')
 		gvolume.description = 'AngelaBrenna Shield before FT on beamline '
-		gvolume.makeG4Cons(35.0, 108.5, 35.0, 108.5, clength, 0, 360)
+		gvolume.make_cone(35.0, 108.5, 35.0, 108.5, clength, 0, 360)
 		gvolume.material    = 'G4_Pb'
-		gvolume.setPosition(0, 0, zpos)
+		gvolume.set_position(0, 0, zpos)
 		gvolume.color       = '945931'
 		gvolume.publish(configuration)
 
@@ -275,9 +275,9 @@ def build_rgh_beamline(configuration):
 
 	gvolume = GVolume('FTflangeShieldCylinder')
 	gvolume.description = 'AngelaBrenna Shield around beam pipe flange '
-	gvolume.makeG4Cons(125.4, 130, 125.4, 130.0, clength, 0, 360)
+	gvolume.make_cone(125.4, 130, 125.4, 130.0, clength, 0, 360)
 	gvolume.material    = 'G4_Pb'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '999966'
 	gvolume.publish(configuration)
 
@@ -285,8 +285,8 @@ def build_rgh_beamline(configuration):
 	zpos    = 2550.0
 	gvolume = GVolume('TorusConnector')
 	gvolume.description = 'AngelaBrenna Shield around Shield support before FT on beamline '
-	gvolume.makeG4Cons(97, 104, 97, 104.0, 101.3, 0, 360)
+	gvolume.make_cone(97, 104, 97, 104.0, 101.3, 0, 360)
 	gvolume.material    = 'G4_Pb'
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.color       = '999966'
 	gvolume.publish(configuration)

@@ -1,1 +1,1 @@
-hdIce_mother | root | G4Box | 160.0*mm, 160.0*mm, 800.0*mm | G4_Galactic | 0*mm, 0*mm, 0*mm | 0*deg, 0*deg, 0*deg | hdicefield | 1 | 0 | 22ff22 | na | na | na | na | na | na | 1 | Target Container |
+ hdIce_mother | root | G4Box | 160.0*mm, 160.0*mm, 800.0*mm | G4_Galactic | 0*mm, 0*mm, 0*mm | 0*deg, 0*deg, 0*deg | hdicefield | 1 | 0 | 22ff22 | na | na | na | na | na | na | 1 | Target Container |

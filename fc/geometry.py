@@ -26,7 +26,7 @@ def build_geometry_forward_carriage(configuration):
 	gvolume = GVolume('fc')
 	gvolume.mother = "root"
 	gvolume.description = 'Forward Carriage (FC) detector envelope to hold the torus magnet and the FC detectors'
-	gvolume.makeG4Polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
+	gvolume.make_polycone(phi_start, phi_total, z_plane, inner_radius, outer_radius)
 	gvolume.material = "G4_AIR"
 	gvolume.color = '88aa88'
 	gvolume.visible = 0

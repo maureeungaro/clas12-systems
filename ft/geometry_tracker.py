@@ -30,7 +30,7 @@ def buildTracker(configuration):
 
 def make_ft_trk_mother(configuration):
 	gvolume = GVolume('ft_trk')
-	gvolume.makeG4Polycone('0', '360', MVftt_zpos, MVftt_iradius, MVftt_oradius)
+	gvolume.make_polycone('0', '360', MVftt_zpos, MVftt_iradius, MVftt_oradius)
 	gvolume.material     = 'G4_AIR'
 	gvolume.description = 'FT Tracker Micromegas'
 	gvolume.color       = 'aaaaff'
@@ -49,9 +49,9 @@ def make_ft_trk_mother(configuration):
 		gvolume = GVolume(f'ft_trk_support_R{ring_no}')
 		gvolume.mother      = 'ft_trk'
 		gvolume.description = f'ft tracker centering support for ring {ring_no}'
-		gvolume.makeG4Tubs(PRmin, PRmax, PDz, 0.0, 360.0)
+		gvolume.make_tube(PRmin, PRmax, PDz, 0.0, 360.0)
 		gvolume.material    = 'G4_Al'
-		gvolume.setPosition(0, 0, zpos)
+		gvolume.set_position(0, 0, zpos)
 		gvolume.color       = alu_color
 		gvolume.publish(configuration)
 
@@ -72,9 +72,9 @@ def place_assembly(configuration):
 		gvolume = GVolume(f'ft_trk_assembly_R{ring_no}')
 		gvolume.mother      = 'ft_trk'
 		gvolume.description = f'ft tracker assembly for ring {ring_no}'
-		gvolume.makeG4Tubs(PRMin[ring], PRMax[ring], PDz[ring], PSPhi, PDPhi)
+		gvolume.make_tube(PRMin[ring], PRMax[ring], PDz[ring], PSPhi, PDPhi)
 		gvolume.material    = 'G4_Al'
-		gvolume.setPosition(0, 0, z)
+		gvolume.set_position(0, 0, z)
 		gvolume.color       = alu_color
 		gvolume.publish(configuration)
 
@@ -93,9 +93,9 @@ def place_assembly(configuration):
 		gvolume = GVolume(f'ft_trk_assembly_B{branch_no}')
 		gvolume.mother      = 'ft_trk'
 		gvolume.description = f'ft tracker assembly for branch {ring_no}'
-		gvolume.setPosition(x, y, z)
-		gvolume.setRotation(0, 0, -rot)
-		gvolume.makeG4Box(Px, Py, Pz)
+		gvolume.set_position(x, y, z)
+		gvolume.set_rotation(0, 0, -rot)
+		gvolume.make_box(Px, Py, Pz)
 		gvolume.material    = 'G4_Al'
 		gvolume.color       = alu_color
 		gvolume.publish(configuration)
@@ -117,9 +117,9 @@ def make_ft_trk_fee_boxes(configuration):
 		gvolume = GVolume(f'ft_trk_fee_box_{i}')
 		gvolume.mother      = 'ft_cal'
 		gvolume.description = f'ft tracker fee box {i}'
-		gvolume.setPosition(FEE_X, FEE_Y, FEE_Z)
-		gvolume.setRotation(FEE_azimuthal_angle[i], 0, 0, order='zyx')
-		gvolume.makeG4Box(FEE_HT, FEE_WD, FEE_LN)
+		gvolume.set_position(FEE_X, FEE_Y, FEE_Z)
+		gvolume.set_rotation(FEE_azimuthal_angle[i], 0, 0, order='zyx')
+		gvolume.make_box(FEE_HT, FEE_WD, FEE_LN)
 		gvolume.material    = 'G4_Al'
 		gvolume.color       = '999999'
 		gvolume.publish(configuration)
@@ -127,7 +127,7 @@ def make_ft_trk_fee_boxes(configuration):
 		gvolume = GVolume(f'ft_trk_fee_air_{i}')
 		gvolume.mother      = f'ft_trk_fee_box_{i}'
 		gvolume.description = f'ft tracker fee air in box {i}'
-		gvolume.makeG4Box(FEE_A_HT, FEE_A_WD, FEE_A_LN)
+		gvolume.make_box(FEE_A_HT, FEE_A_WD, FEE_A_LN)
 		gvolume.material    = 'G4_AIR'
 		gvolume.color       = 'CCFFFF'
 		gvolume.publish(configuration)
@@ -140,11 +140,11 @@ def make_ft_trk_fee_boxes(configuration):
 		gvolume = GVolume(f'ft_trk_fee_flux_1_{i}')
 		gvolume.mother      = f'ft_trk_fee_air_{i}'
 		gvolume.description = f'ft tracker fee flux 1 in air in box {i}'
-		gvolume.makeG4Box(flux_FEE_HT, flux_FEE_WD, flux_FEE_LN)
-		gvolume.setPosition(0, 0, flux_FEE_Z)
+		gvolume.make_box(flux_FEE_HT, flux_FEE_WD, flux_FEE_LN)
+		gvolume.set_position(0, 0, flux_FEE_Z)
 		gvolume.material    = 'G4_Galactic'
 		gvolume.color       = 'aa0088'
-		gvolume.setIdentifier('id', 4)  
+		gvolume.set_identifier('id', 4)  
 		gvolume.digitization = 'flux'
 		gvolume.publish(configuration)
 
@@ -155,11 +155,11 @@ def make_ft_trk_fee_boxes(configuration):
 		gvolume = GVolume(f'ft_trk_fee_flux_2_{i}')
 		gvolume.mother      = f'ft_trk_fee_air_{i}'
 		gvolume.description = f'ft tracker fee flux 2 in air in box {i}'
-		gvolume.makeG4Box(flux_FEE_HT, flux_FEE_WD, flux_FEE_LN)
-		gvolume.setPosition(0, flux_FEE_Y, 0)
+		gvolume.make_box(flux_FEE_HT, flux_FEE_WD, flux_FEE_LN)
+		gvolume.set_position(0, flux_FEE_Y, 0)
 		gvolume.material    = 'G4_Galactic'
 		gvolume.color       = 'aa0088'
-		gvolume.setIdentifier('id', 5)
+		gvolume.set_identifier('id', 5)
 		gvolume.digitization = 'flux'
 		gvolume.publish(configuration)
 
@@ -171,8 +171,8 @@ def make_ft_trk_fee_boxes(configuration):
 		gvolume = GVolume(f'ft_trk_fee_dose_{i}')
 		gvolume.mother      = f'ft_trk_fee_air_{i}'
 		gvolume.description = f'ft tracker fee dose in air in box {i}'
-		gvolume.makeG4Box(dose_FEE_HT, dose_FEE_WD, dose_FEE_LN)
-		gvolume.setPosition(0, dose_FEE_Y, 0)
+		gvolume.make_box(dose_FEE_HT, dose_FEE_WD, dose_FEE_LN)
+		gvolume.set_position(0, dose_FEE_Y, 0)
 		gvolume.material    = 'scintillator'
 		gvolume.color       = '003300'
 		gvolume.publish(configuration)
@@ -201,9 +201,9 @@ def place_epoxy(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(InnerRadius, OuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(InnerRadius, OuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = epoxy_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = epoxy_color
 	gvolume.publish(configuration)
 
@@ -230,9 +230,9 @@ def place_pcboard(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(InnerRadius, OuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(InnerRadius, OuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = pcboard_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = pcboard_color
 	gvolume.publish(configuration)
 
@@ -262,9 +262,9 @@ def place_strips(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = strips_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = strips_color
 	gvolume.publish(configuration)
 
@@ -300,9 +300,9 @@ def place_kapton(configuration, l, type):
 		gvolume = GVolume(vname)
 		gvolume.description = descriptio
 		gvolume.mother      = 'ft_trk'
-		gvolume.makeG4Tubs(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
+		gvolume.make_tube(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
 		gvolume.material    = kapton_material
-		gvolume.setPosition(0, 0, z)
+		gvolume.set_position(0, 0, z)
 		gvolume.color       = pcboard_color
 		gvolume.publish(configuration)
 
@@ -331,9 +331,9 @@ def place_resiststrips(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = resistive_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = strips_color
 	gvolume.publish(configuration)
 
@@ -362,9 +362,9 @@ def place_gas1(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = gas_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = gas_color
 	gvolume.publish(configuration)
 
@@ -401,9 +401,9 @@ def place_photoresist(configuration, l, type):
 		gvolume = GVolume(vname)
 		gvolume.description = descriptio
 		gvolume.mother      = 'ft_trk'
-		gvolume.makeG4Tubs(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
+		gvolume.make_tube(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
 		gvolume.material    = photoresist_material
-		gvolume.setPosition(0, 0, z)
+		gvolume.set_position(0, 0, z)
 		gvolume.color       = photoresist_color
 		gvolume.publish(configuration)
 
@@ -429,9 +429,9 @@ def place_mesh(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(InnerRadius, OuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(InnerRadius, OuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = mesh_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = mesh_color
 	gvolume.publish(configuration)
 
@@ -460,12 +460,12 @@ def place_gas2(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = gas_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = gas_color
 	gvolume.digitization = 'ft_trk'
-	gvolume.setIdentifier('superlayer', layer_no, 'type', type, 'segment', 1, 'strip', 1)
+	gvolume.set_identifier('superlayer', layer_no, 'type', type, 'segment', 1, 'strip', 1)
 	gvolume.publish(configuration)
 
 def place_driftelectrode(configuration, l, type):
@@ -493,9 +493,9 @@ def place_driftelectrode(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(SInnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = strips_color
 	gvolume.publish(configuration)
 
@@ -523,9 +523,9 @@ def place_drift(configuration, l, type):
 	gvolume = GVolume(vname)
 	gvolume.description = descriptio
 	gvolume.mother      = 'ft_trk'
-	gvolume.makeG4Tubs(InnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
+	gvolume.make_tube(InnerRadius, SOuterRadius, PDz, PSPhi, PDPhi)
 	gvolume.material    = pcboard_material
-	gvolume.setPosition(0, 0, z)
+	gvolume.set_position(0, 0, z)
 	gvolume.color       = pcboard_color
 	gvolume.publish(configuration)
 
@@ -560,9 +560,9 @@ def place_rings(configuration, l, type):
 		gvolume = GVolume(vname)
 		gvolume.description = descriptio
 		gvolume.mother      = 'ft_trk'
-		gvolume.makeG4Tubs(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
+		gvolume.make_tube(PRMin[ring], PRMax[ring], PDz, PSPhi, PDPhi)
 		gvolume.material    = 'G4_Al'
-		gvolume.setPosition(0, 0, z)
+		gvolume.set_position(0, 0, z)
 		gvolume.color       = alu_color
 		gvolume.publish(configuration)
 
@@ -589,9 +589,9 @@ def place_rings(configuration, l, type):
 		gvolume = GVolume(vname)
 		gvolume.description = descriptio
 		gvolume.mother      = 'ft_trk'
-		gvolume.makeG4Tubs(PRMax[1], OuterRadius, PDz, PSPhi, PDPhi)
+		gvolume.make_tube(PRMax[1], OuterRadius, PDz, PSPhi, PDPhi)
 		gvolume.material    = 'G4_Al'
-		gvolume.setPosition(0, 0, z)
+		gvolume.set_position(0, 0, z)
 		gvolume.color       = alu_color
 		gvolume.publish(configuration)
 

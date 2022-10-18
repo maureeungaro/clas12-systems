@@ -34,7 +34,7 @@ def buildCalMotherVolume(configuration):
 
 	# a G4Polycone is built with the same geant4 constructor parameters, in the same order.
 	# an additional argument at the end can be given to specify the length units (default is mm)
-	gvolume.makeG4Polycone('0', '360', z_plane_FT, iradius_FT, oradius_FT)
+	gvolume.make_polycone('0', '360', z_plane_FT, iradius_FT, oradius_FT)
 	gvolume.material     = 'G4_AIR'
 	gvolume.description = 'Calorimeter Mother Volume'
 	gvolume.color       = '1437f4'
@@ -52,7 +52,7 @@ def buildCrystalsMother(configuration):
 	gvolume = GVolume('ft_calCrystalsMother')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Calorimeter Crystal Volume'
-	gvolume.makeG4Polycone('0', '360', z_plane_FT_CRY, iradius_FT_CRY, oradius_FT_CRY)
+	gvolume.make_polycone('0', '360', z_plane_FT_CRY, iradius_FT_CRY, oradius_FT_CRY)
 	gvolume.material    = 'G4_AIR'
 	gvolume.color       = '1437f4'
 	gvolume.style       = 0
@@ -85,9 +85,9 @@ def buildCrystals(configuration):
 				gvolume = GVolume(f'ft_cal_cr_motherVolume_h{iX}_v{iY}')
 				gvolume.mother      = 'ft_calCrystalsMother'
 				gvolume.description = f'Mother Volume for crystal h:{iX}, v:{iY}'
-				gvolume.makeG4Box(dX, dY, dZ)
+				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'G4_AIR'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = '838EDE'
 				gvolume.style       = 0
 				gvolume.publish(configuration)
@@ -100,9 +100,9 @@ def buildCrystals(configuration):
 				gvolume = GVolume(f'ft_cal_cr_apd_h{iX}_v{iY}')
 				gvolume.mother      = 'ft_calCrystalsMother'
 				gvolume.description = f'apd for crystal h:{iX}, v:{iY}'
-				gvolume.makeG4Box(dX, dY, dZ)
+				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'ft_peek'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = '99CC66'
 				gvolume.publish(configuration)
 
@@ -116,9 +116,9 @@ def buildCrystals(configuration):
 				gvolume = GVolume(f'ft_cal_cr_wrap_h{iX}_v{iY}')
 				gvolume.mother      = f'ft_cal_cr_motherVolume_h{iX}_v{iY}'
 				gvolume.description = f'wrapping for crystal h:{iX}, v:{iY}'
-				gvolume.makeG4Box(dX, dY, dZ)
+				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'G4_MYLAR'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = '838EDE'
 				gvolume.publish(configuration)
 
@@ -132,12 +132,12 @@ def buildCrystals(configuration):
 				gvolume = GVolume(f'ft_cal_cr_h{iX}_v{iY}')
 				gvolume.mother       = f'ft_cal_cr_wrap_h{iX}_v{iY}'
 				gvolume.description  = f'PbWO4 crystal h:{iX}, v:{iY}'
-				gvolume.makeG4Box(dX, dY, dZ)
+				gvolume.make_box(dX, dY, dZ)
 				gvolume.material     = 'G4_PbWO4'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color        = '836FFF'
 				gvolume.digitization = 'ft_cal'
-				gvolume.setIdentifier('ih', iX, 'iv', iY)
+				gvolume.set_identifier('ih', iX, 'iv', iY)
 				gvolume.publish(configuration)
 
 				# LED housing
@@ -150,9 +150,9 @@ def buildCrystals(configuration):
 				gvolume = GVolume(f'ft_cal_cr_ledHousing_h{iX}_v{iY}')
 				gvolume.mother      = f'ft_cal_cr_wrap_h{iX}_v{iY}'
 				gvolume.description = f'Led Housing for crystal h:{iX}, v:{iY}'
-				gvolume.makeG4Box(dX, dY, dZ)
+				gvolume.make_box(dX, dY, dZ)
 				gvolume.material    = 'ft_peek'
-				gvolume.setPosition(locX, locY, locZ)
+				gvolume.set_position(locX, locY, locZ)
 				gvolume.color       = 'EEC900'
 				gvolume.publish(configuration)
 
@@ -162,45 +162,45 @@ def buildCalCopper(configuration):
 	gvolume = GVolume('ft_cal_back_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'ft calorimeter back copper'
-	gvolume.makeG4Tubs(Bdisk_IR, Bdisk_OR, Bdisk_TN, 0.0, 360.0)
+	gvolume.make_tube(Bdisk_IR, Bdisk_OR, Bdisk_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Bdisk_Z)
+	gvolume.set_position(0, 0, Bdisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# front
 	gvolume = GVolume('ft_cal_front_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'calorimeter front copper'
-	gvolume.makeG4Tubs(Fdisk_IR, Fdisk_OR, Fdisk_TN, 0.0, 360.0)
+	gvolume.make_tube(Fdisk_IR, Fdisk_OR, Fdisk_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Fdisk_Z)
+	gvolume.set_position(0, 0, Fdisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# inner
 	gvolume = GVolume('ft_cal_inner_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'calorimeterinnerouter copper'
-	gvolume.makeG4Tubs(Idisk_IR, Idisk_OR, Idisk_LT, 0.0, 360.0)
+	gvolume.make_tube(Idisk_IR, Idisk_OR, Idisk_LT, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Odisk_Z)
+	gvolume.set_position(0, 0, Odisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# outer
 	gvolume = GVolume('ft_cal_outer_copper')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'calorimeter outer copper'
-	gvolume.makeG4Tubs(Odisk_IR, Odisk_OR, Odisk_LT, 0.0, 360.0)
+	gvolume.make_tube(Odisk_IR, Odisk_OR, Odisk_LT, 0.0, 360.0)
 	gvolume.material    = 'G4_Cu'
-	gvolume.setPosition(0, 0, Odisk_Z)
+	gvolume.set_position(0, 0, Odisk_Z)
 	gvolume.color       = 'CC6600'
 	gvolume.publish(configuration)
 	# Preamp Space
 	gvolume = GVolume('ft_cal_back_plate')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'calorimeter preamp space back_plate'
-	gvolume.makeG4Tubs(BPlate_IR, BPlate_OR, BPlate_TN, 0.0, 360.0)
+	gvolume.make_tube(BPlate_IR, BPlate_OR, BPlate_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_AIR'
-	gvolume.setPosition(0, 0, BPlate_Z)
+	gvolume.set_position(0, 0, BPlate_Z)
 	gvolume.color       = '7F9A65'
 	gvolume.publish(configuration)
 
@@ -209,9 +209,9 @@ def buildCalMotherBoard(configuration):
 	gvolume = GVolume('ft_cal_back_mtb')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'calorimeter back motherboard'
-	gvolume.makeG4Tubs(Bmtb_IR, Bmtb_OR, Bmtb_TN, 0.0, 360.0)
+	gvolume.make_tube(Bmtb_IR, Bmtb_OR, Bmtb_TN, 0.0, 360.0)
 	gvolume.material    = 'pcboard'
-	gvolume.setPosition(0, 0, Bmtb_Z)
+	gvolume.set_position(0, 0, Bmtb_Z)
 	gvolume.color       = '0B3B0B'
 	gvolume.publish(configuration)
 
@@ -221,10 +221,10 @@ def buildCalMotherBoard(configuration):
 		gvolume = GVolume(f'ft_cal_back_mtb_h{i}')
 		gvolume.mother      = 'ft_cal'
 		gvolume.description = f'back motherboard  h:{i}'
-		gvolume.makeG4Box(Bmtb_hear_LN, Bmtb_hear_WD, Bmtb_TN)
+		gvolume.make_box(Bmtb_hear_LN, Bmtb_hear_WD, Bmtb_TN)
 		gvolume.material    = 'pcboard'
-		gvolume.setPosition(Bmtb_hear_DX, Bmtb_hear_DY, Bmtb_Z)
-		gvolume.setRotation(0, 0, Bmtb_angle[i])
+		gvolume.set_position(Bmtb_hear_DX, Bmtb_hear_DY, Bmtb_Z)
+		gvolume.set_rotation(0, 0, Bmtb_angle[i])
 		gvolume.color       = '0B3B0B'
 		gvolume.publish(configuration)
 
@@ -234,9 +234,9 @@ def buildCalLed(configuration):
 	gvolume = GVolume('ft_cal_led')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'ft calorimeter LED Assembly'
-	gvolume.makeG4Tubs(LED_IR, LED_OR, LED_TN, 0.0, 360.0)
+	gvolume.make_tube(LED_IR, LED_OR, LED_TN, 0.0, 360.0)
 	gvolume.material    = 'ft_peek'
-	gvolume.setPosition(0, 0, LED_Z)
+	gvolume.set_position(0, 0, LED_Z)
 	gvolume.color       = '333333'
 	gvolume.publish(configuration)
 
@@ -250,7 +250,7 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_back')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'tungsten cup and cone at the back of the ft, back part'
-	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.make_polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
 	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)
@@ -263,7 +263,7 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_plate')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'stainless steel plate at the back of the ft'
-	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.make_polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
 	gvolume.material    = 'G4_STAINLESS-STEEL'
 	gvolume.color       = 'cccccc'
 	gvolume.publish(configuration)
@@ -275,7 +275,7 @@ def buildCalTungstenCup(configuration):
 	gvolume = GVolume('ft_cal_tcup_front')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'tungsten cup and cone at the back of the ft, front part'
-	gvolume.makeG4Polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
+	gvolume.make_polycone('0', '360', z_plane_TCup, iradius_TCup, oradius_TCup)
 	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)
@@ -293,7 +293,7 @@ def buildCalTungstenCup(configuration):
 		gvolume = GVolume(f'ft_cal_tcup_m{i+1}')
 		gvolume.mother      = 'ft_cal'
 		gvolume.description = f'tungsten cup and cone at the back of the ft, medium part {i+1}'
-		gvolume.makeG4Polycone(biangle, bdangle, z_plane_TCup, iradius_TCup, oradius_TCup)
+		gvolume.make_polycone(biangle, bdangle, z_plane_TCup, iradius_TCup, oradius_TCup)
 		gvolume.material    = 'ft_W'
 		gvolume.color       = 'ff0000'
 		gvolume.publish(configuration)
@@ -308,11 +308,11 @@ def make_ft_cal_flux(configuration):
 	gvolume = GVolume('ft_cal_flux')
 	gvolume.mother      = 'ft_calCrystalsMother'
 	gvolume.description = 'ft flux'
-	gvolume.makeG4Tubs(Flux_IR, Flux_OR, Flux_TN, 0.0, 360.0)
+	gvolume.make_tube(Flux_IR, Flux_OR, Flux_TN, 0.0, 360.0)
 	gvolume.material    = 'G4_Galactic'
-	gvolume.setPosition(0, 0, Flux_Z)
+	gvolume.set_position(0, 0, Flux_Z)
 	gvolume.color       = 'aa0088'
-	gvolume.setIdentifier('id', 3)  # identifier for ft_cal_flux
+	gvolume.set_identifier('id', 3)  # identifier for ft_cal_flux
 	gvolume.digitization = 'flux'
 	gvolume.publish(configuration)
 
@@ -332,12 +332,12 @@ def make_ft_moellerdisk(configuration):
 		gvolume = GVolume(f'moller_disk_{n}')
 		gvolume.mother      = 'root'
 		gvolume.description = f'Moller disk {n}'
-		gvolume.makeG4Tubs(disk_iradius[n], disk_oradius[n], 0.05, 0.0, 360.0)
+		gvolume.make_tube(disk_iradius[n], disk_oradius[n], 0.05, 0.0, 360.0)
 		gvolume.material    = 'G4_Galactic'
-		gvolume.setPosition(0, 0, disk_zpos[n])
+		gvolume.set_position(0, 0, disk_zpos[n])
 		gvolume.color       = 'aa0088'
 		gvolume.visible     = 0
-		gvolume.setIdentifier('id', idisk)  # identifier for moller_disk
+		gvolume.set_identifier('id', idisk)  # identifier for moller_disk
 		gvolume.digitization = 'flux'
 		gvolume.publish(configuration)
 
@@ -350,9 +350,9 @@ def buildCalInsulation(configuration):
 	gvolume = GVolume('ft_cal_inner_ins')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Inner Insulation'
-	gvolume.makeG4Tubs(I_Ins_IR, I_Ins_OR, I_Ins_LT, 0.0, 360.0)
+	gvolume.make_tube(I_Ins_IR, I_Ins_OR, I_Ins_LT, 0.0, 360.0)
 	gvolume.material    = 'insfoam'
-	gvolume.setPosition(0, 0, I_Ins_Z)
+	gvolume.set_position(0, 0, I_Ins_Z)
 	gvolume.color       = 'F5F6CE'
 	gvolume.publish(configuration)
 
@@ -363,7 +363,7 @@ def buildCalInsulation(configuration):
 	gvolume = GVolume('ft_cal_outer_ins_f')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Insulation front'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+	gvolume.make_polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
 	gvolume.material    = 'insfoam'
 	gvolume.color       = 'F5F6CE'
 	gvolume.publish(configuration)
@@ -375,7 +375,7 @@ def buildCalInsulation(configuration):
 	gvolume = GVolume('ft_cal_outer_ins_b')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Insulation back'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+	gvolume.make_polycone(0, 360, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
 	gvolume.material    = 'insfoam'
 	gvolume.color       = 'F5F6CE'
 	gvolume.publish(configuration)
@@ -391,7 +391,7 @@ def buildCalInsulation(configuration):
 		gvolume.description = f'Outer Insulation medium {i+1}'
 		biangle = BCup_iangle[i]
 		bdangle = BCup_dangle[i]
-		gvolume.makeG4Polycone(biangle, bdangle, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
+		gvolume.make_polycone(biangle, bdangle, z_plane_O_Ins, iradius_O_Ins, oradius_O_Ins)
 		gvolume.material    = 'insfoam'
 		gvolume.color       = 'F5F6CE'
 		gvolume.publish(configuration)
@@ -408,7 +408,7 @@ def buildCalShell(configuration):
 	gvolume = GVolume('ft_cal_outer_shell_f')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Shell front'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+	gvolume.make_polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
 	gvolume.material    = 'carbonFiber'
 	gvolume.color       = 'F5DA81'
 	gvolume.publish(configuration)
@@ -420,7 +420,7 @@ def buildCalShell(configuration):
 	gvolume = GVolume('ft_cal_outer_shell_b')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'Outer Shell back'
-	gvolume.makeG4Polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+	gvolume.make_polycone(0, 360, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
 	gvolume.material    = 'carbonFiber'
 	gvolume.color       = 'F5DA81'
 	gvolume.publish(configuration)
@@ -435,7 +435,7 @@ def buildCalShell(configuration):
 		gvolume.description = f'Outer Shell medium{i+1}'
 		biangle = BCup_iangle[i]
 		bdangle = BCup_dangle[i]
-		gvolume.makeG4Polycone(biangle, bdangle, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
+		gvolume.make_polycone(biangle, bdangle, z_plane_O_Shell, iradius_O_Shell, oradius_O_Shell)
 		gvolume.material    = 'carbonFiber'
 		gvolume.color       = 'F5DA81'
 		gvolume.publish(configuration)
@@ -452,7 +452,7 @@ def buildCalBeamline(configuration):
 	gvolume = GVolume('ft_cal_tplate')
 	gvolume.mother      = 'ft_cal'
 	gvolume.description = 'ft tungsten plate'
-	gvolume.makeG4Polycone(0, 360, z_plane_TPlate, iradius_TPlate, oradius_TPlate)
+	gvolume.make_polycone(0, 360, z_plane_TPlate, iradius_TPlate, oradius_TPlate)
 	gvolume.material    = 'ft_W'
 	gvolume.color       = 'ff0000'
 	gvolume.publish(configuration)

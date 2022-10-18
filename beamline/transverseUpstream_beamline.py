@@ -9,8 +9,8 @@ def build_transverseUpstream_beamline(configuration):
 
 	gvolume = GVolume('upstreamTransverseMagnetVacuumPipe1')
 	gvolume.description = 'upstreamTransverseMagnetVacuumPipe1 volume upstream of the target'
-	gvolume.makeG4Tubs(0, firstVacuumOR, pipeLength, 0, 360)
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.make_tube(0, firstVacuumOR, pipeLength, 0, 360)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '334488'
 	gvolume.publish(configuration)
@@ -23,8 +23,8 @@ def build_transverseUpstream_beamline(configuration):
 
 	gvolume = GVolume('upstreamTransverseMagnetVacuumPipe2')
 	gvolume.description = 'upstreamTransverseMagnetVacuumPipe2 volume upstream of the target'
-	gvolume.makeG4Tubs(0, firstVacuumOR, pipeLength, 0, 360)
-	gvolume.setPosition(0, 0, zpos)
+	gvolume.make_tube(0, firstVacuumOR, pipeLength, 0, 360)
+	gvolume.set_position(0, 0, zpos)
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '334488'
 	gvolume.publish(configuration)

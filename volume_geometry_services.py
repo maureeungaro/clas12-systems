@@ -100,7 +100,7 @@ class SolidParams:
         return map_type_to_method[self.solid_type](gvolume)
 
     def process_box(self, gvolume):
-        gvolume.makeG4Box(
+        gvolume.make_box(
             *self.numbers,
             lunit=_ensure_single_unit(self.units),
         )
@@ -109,7 +109,7 @@ class SolidParams:
         length_units = self.units[:3]
         angle_units = self.units[3:]
         
-        gvolume.makeG4Tubs(
+        gvolume.make_tube(
             *self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)
@@ -119,7 +119,7 @@ class SolidParams:
         length_units = self.units[:2]
         angle_units = self.units[2:]
         
-        gvolume.makeG4Sphere(
+        gvolume.make_sphere(
             *self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)
@@ -147,14 +147,14 @@ class SolidParams:
         ]
         angle_units = self.units[:2]
         length_units = self.units[3:]
-        gvolume.makeG4Polycone(
+        gvolume.make_polycone(
             *args,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)
         )
 
     def process_trd(self, gvolume):
-        gvolume.makeG4Trd(
+        gvolume.make_trapezoid(
             *self.numbers,
             lunit=_ensure_single_unit(self.units)
         )
@@ -163,7 +163,7 @@ class SolidParams:
         length_units = self.units[0:1] + self.units[3:6] + self.units[7:10]
         angle_units = self.units[1:3] + [self.units[6], self.units[10]]
         
-        gvolume.makeG4Trap(
+        gvolume.make_trap(
             self.numbers,
             lunit1=_ensure_single_unit(length_units),
             lunit2=_ensure_single_unit(angle_units)
@@ -217,7 +217,7 @@ class VolumeParams:
 
     def build_gvolume(self):
         gvolume = GVolume(self.name)
-        gvolume.setPosition(
+        gvolume.set_position(
             *self._position.numbers,
             lunit=_ensure_single_unit(self._position.units),
         )
@@ -226,7 +226,7 @@ class VolumeParams:
             rotation_kwargs["lunit"] = self._rotation.single_unit
         if self._rotation.order is not None:
             rotation_kwargs["order"] = self._rotation.order
-        gvolume.setRotation(
+        gvolume.set_rotation(
             *self._rotation.numbers,
             **rotation_kwargs,
         )
