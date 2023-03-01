@@ -6,9 +6,7 @@ Some CLAS12 systems use the coatjava geometry service to share geometry
 between simulation and recontruction. Those systems use groovy to import 
 the geometry parameters. To install coatjava:
 
-- Download coatjava:
-
-  `installClas12Coatjava.sh`
+`./installClas12Coatjava.sh`
 
 To create volume parameters for a system, run the groovy scripts 
 through the runFactories script:

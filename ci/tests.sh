@@ -11,14 +11,19 @@
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/tests.sh -s ftof -o
 
-if [[ -z "${G3CLAS12_VERSION}" ]]; then
-	# load environment if we're on the container
-	# notice the extra argument to the source command
-	TERM=xterm # source script use tput for colors, TERM needs to be specified
-	FILE=/etc/profile.d/jlab.sh
-	test -f $FILE && source $FILE keepmine
+# if we are in the docker container, we need to load the modules
+if [[ -z "${DISTTAG}" ]]; then
+    echo "\nNot in container"
 else
-  echo clas12-systems ci/tests: environment already defined
+    echo "\nIn container: ${DISTTAG}"
+    TERM=xterm # source script use tput for colors, TERM needs to be specified
+    source /usr/share/Modules/init/sh
+    source /work/ceInstall/setup.sh
+    module load gemc3/1.0
+    if [[ $? != 0 ]]; then
+        echo "Error loading gemc3 module"
+	    exit 1
+    fi
 fi
 
 Help()
@@ -107,25 +112,20 @@ PublishDawn () {
 
 [[ -v testType ]] && echo Running $testType tests || TestTypeNotDefined
 
-startDir=`pwd`
-GPLUGIN_PATH=$startDir/systemsTxtDB
-cp $GLIBRARY/lib/gstreamer*.gplugin $GPLUGIN_PATH
-jcards=no
-
 ./ci/build.sh -s $detector
-if [ $? -ne 0 ]; then
-	echo building system $detector failed
-	exit 1
-fi
-
-# sets the list of jcards to run
-JcardsToRun
 
 # for some reason DYLD_LIBRARY_PATH is not passed to this script
 export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
-# location of database
-export GEMCDB_ENV=systemsTxtDB
+# location of geometry database - notice we need to set it here again
+startDir=`pwd`
+export GEMCDB_ENV="$(pwd)/systemsTxtDB"
+
+echo "BUILD.SH: GLIBRARY is $GLIBRARY, GPLUGIN_PATH is $GPLUGIN_PATH"
+
+# sets the list of jcards to run
+jcards=no
+JcardsToRun
 
 for jc in $=jcards
 do
