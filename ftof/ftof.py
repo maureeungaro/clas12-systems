@@ -29,7 +29,7 @@ def main():
     # loop over all the defined builder functions
     for var_key, file_name in VARIATION_MAP.items():
 
-        basepath = os.environ["GPLUGIN_PATH"]
+        basepath = os.environ["GEMCDB_ENV"]
 
         _logger.info(f"Building ftof configuration for variation {var_key}")
         # Define GConfiguration name, factory and description. Initialize it.

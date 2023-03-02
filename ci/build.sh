@@ -11,14 +11,12 @@
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -s ftof
 
-if [[ -z "${G3CLAS12_VERSION}" ]]; then
-	# load environment if we're on the container
-	# notice the extra argument to the source command
-	TERM=xterm # source script use tput for colors, TERM needs to be specified
-	FILE=/etc/profile.d/jlab.sh
-	test -f $FILE && source $FILE keepmine
+# if we are in the docker container, we need to load the modules
+if [[ -z "${DISTTAG}" ]]; then
+    echo "\nNot in container"
 else
-  echo clas12-systems ci/build: environment already defined
+    echo "\nIn container: ${DISTTAG}"
+    source  /app/localSetup.sh
 fi
 
 Help()
@@ -34,6 +32,8 @@ Help()
 	echo "-a: build geometry and plugin for all supported systems"
 	echo
 }
+
+
 
 if [ $# -eq 0 ]; then
 	Help
@@ -91,9 +91,8 @@ CreateAndCopyDetectorTXTs() {
 	subDir=$(basename $system)
 	filesToCopy=$(ls | grep \.txt | grep "$subdir")
 	echo
-	echo Moving $=filesToCopy to $GPLUGIN_PATH and cleaning up
-	echo
-	mv $=filesToCopy $GPLUGIN_PATH
+	echo "Moving $=filesToCopy to $GEMCDB_ENV"
+	mv $=filesToCopy $GEMCDB_ENV/
 	# cleaning up
 	test -d __pycache__ && rm -rf __pycache__
 }
@@ -105,8 +104,12 @@ CompileAndCopyPlugin() {
 	echo Compiling $detector plugin with options: "$copt"
 	echo
 	cd plugin
-	#scons -c
-	scons SHOWENV=1 SHOWBUILD=1 $copt
+	scons SHOWENV=1 SHOWBUILD=1 $copt install
+	if [ $? -ne 0 ]; then
+	    echo "Building plugin for $detector failed"
+	    exit 1
+    fi
+
 	gpls=$(ls *.gplugin)
 	for gpl in $gpls;
 	do
@@ -119,22 +122,20 @@ CompileAndCopyPlugin() {
 		fi
 	done
 	echo
-	echo Moving plugins to $GPLUGIN_PATH
-	mv *.gplugin $GPLUGIN_PATH
+	echo "GPLUGIN_PATH is $GPLUGIN_PATH. Content:"
+	ls -ltrh $GPLUGIN_PATH/
 }
 
 BuildSystem() {
 	system=$1
 	DefineScriptName $system
 	echo
-	echo Building geometry for $system. GPLUGIN_PATH is $GPLUGIN_PATH
+	echo Building geometry for $system.
 	echo
 	pwd
 	cd $system
 	CreateAndCopyDetectorTXTs $system
 	test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
-	echo $GPLUGIN_PATH content:
-	ls -ltrh $GPLUGIN_PATH
 	cd $startDir
 }
 
@@ -145,9 +146,15 @@ BuildAllSystems() {
 	done
 }
 
-startDir=`pwd`
-GPLUGIN_PATH=$startDir/systemsTxtDB
-script=no
+# for some reason DYLD_LIBRARY_PATH is not passed to this script
+export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
+# location of geometry database - notice we need to set it here again
+startDir=`pwd`
+export GEMCDB_ENV="$(pwd)/systemsTxtDB"
+
+echo "BUILD.SH: GLIBRARY is $GLIBRARY, GPLUGIN_PATH is $GPLUGIN_PATH, GEMCDB_ENV is $GEMCDB_ENV"
+
+script=no
 [[ -v buildAll ]] && BuildAllSystems || BuildSystem $detector
 

@@ -8,14 +8,12 @@
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/validateAgainstGemc2.sh -s ftof
 
-if [[ -z "${G3CLAS12_VERSION}" ]]; then
-	# load environment if we're on the container
-	# notice the extra argument to the source command
-	TERM=xterm # source script use tput for colors, TERM needs to be specified
-	FILE=/etc/profile.d/jlab.sh
-	test -f $FILE && source $FILE keepmine
+# if we are in the docker container, we need to load the modules
+if [[ -z "${DISTTAG}" ]]; then
+    echo "\nNot in container"
 else
-  echo clas12-systems ci/validateAgainstGemc2: environment already defined
+    echo "\nIn container: ${DISTTAG}"
+    source  /app/localSetup.sh
 fi
 
 
@@ -152,13 +150,13 @@ function run_comparison {
 }
 
 ./ci/build.sh -s $detector
-if [ $? -ne 0 ]; then
-	echo building system $detector failed
-	exit 1
-fi
+
 
 echo
 echo "Comparing gemc2 and gemc3 geometry for $detector" 
 echo
 run_comparison
-
+if [ $? -ne 0 ]; then
+	echo "Comparing gemc2 and gemc3 geometry for $detector failed"
+	exit 1
+fi
