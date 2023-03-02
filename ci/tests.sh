@@ -10,6 +10,8 @@
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/tests.sh -s ftof -o
+# ./ci/tests.sh -s ftof -t
+# ./ci/tests.sh -s ftof -d
 
 # if we are in the docker container, we need to load the modules
 if [[ -z "${DISTTAG}" ]]; then
