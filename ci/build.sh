@@ -160,7 +160,7 @@ export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
 startDir=`pwd`
 export GEMCDB_ENV="$(pwd)/systemsTxtDB"
 
-echo "BUILD.SH: GLIBRARY is $GLIBRARY, GPLUGIN_PATH is $GPLUGIN_PATH"
+echo "BUILD.SH: GLIBRARY is $GLIBRARY, GPLUGIN_PATH is $GPLUGIN_PATH, GEMCDB_ENV is $GEMCDB_ENV"
 
 script=no
 [[ -v buildAll ]] && BuildAllSystems || BuildSystem $detector
