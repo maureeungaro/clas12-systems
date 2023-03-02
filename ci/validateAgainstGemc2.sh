@@ -157,13 +157,13 @@ function run_comparison {
 }
 
 ./ci/build.sh -s $detector
-if [ $? -ne 0 ]; then
-	echo building system $detector failed
-	exit 1
-fi
+
 
 echo
 echo "Comparing gemc2 and gemc3 geometry for $detector" 
 echo
 run_comparison
-
+if [ $? -ne 0 ]; then
+	echo "Comparing gemc2 and gemc3 geometry for $detector failed"
+	exit 1
+fi

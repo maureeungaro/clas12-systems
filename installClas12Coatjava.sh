@@ -22,4 +22,4 @@ echo Unpacking $COATFILE
 tar -xf $COATFILE
 cp coatjava/lib/clas/* .
 
-#./ci/build.sh -a
+./ci/build.sh -a
