@@ -13,14 +13,7 @@ if [[ -z "${DISTTAG}" ]]; then
     echo "\nNot in container"
 else
     echo "\nIn container: ${DISTTAG}"
-    TERM=xterm # source script use tput for colors, TERM needs to be specified
-    source /usr/share/Modules/init/sh
-    source /work/ceInstall/setup.sh
-    module load gemc3/1.0
-    if [[ $? != 0 ]]; then
-        echo "Error loading gemc3 module"
-	    exit 1
-    fi
+    source  /app/localSetup.sh
 fi
 
 
