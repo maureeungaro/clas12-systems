@@ -9,13 +9,13 @@ rm -rf coat*jar jcsg*jar vecmath*jar
 echo
 
 if [[ `uname` == "Linux" ]]; then
-    mwget="wget -c -nv --no-check-certificate"
+    alias mwget="wget -c -nv --no-check-certificate"
 elif [[ `uname` == "Darwin" ]]; then
-    mwget="wget -qc --show-progress --no-check-certificate"
+    alias mwget="wget -qc --show-progress --no-check-certificate"
 fi
 
 echo "Downloading $COATFILE version $COATJAVA:  $REPO/$COATFILE"
-$mwget --trust-server-names $REPO/$COATFILE -O $COATFILE
+mwget --trust-server-names $REPO/$COATFILE -O $COATFILE
 
 echo
 echo Unpacking $COATFILE

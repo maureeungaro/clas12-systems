@@ -129,7 +129,7 @@ CompileAndCopyPlugin() {
 		fi
 	done
 	echo
-	echo "$GPLUGIN_PATH content:"
+	echo "GPLUGIN_PATH is $GPLUGIN_PATH. Content:"
 	ls -ltrh $GPLUGIN_PATH/
 }
 
