@@ -1,11 +1,6 @@
 {
-	# Add scene to dawn for beamline rghFTOn
-
 	# verbosities
-	"verbosity": 1,
 	"g4displayv": 2,
-	"gsystemv": 2,
-	"g4systemv": 2,
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },

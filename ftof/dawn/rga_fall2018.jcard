@@ -1,15 +1,10 @@
 {
-	# Add scene to dawn for ftof rga_fall2018
-
 	# verbosities
-	"verbosity": 1,
 	"g4displayv": 2,
-	"gsystemv": 1,
-	"g4systemv": 1,
 
 	"+gsystem": [
 		{ "system": "clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
-		{ "system": "./ftof",                  "factory": "TEXT", "variation": "rga_fall2018" }
+		{ "system": "./ftof",                "factory": "TEXT", "variation": "rga_fall2018" }
 	],
 
 	"g4view": {

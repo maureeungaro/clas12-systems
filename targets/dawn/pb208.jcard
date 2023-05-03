@@ -1,11 +1,6 @@
 {
-	# Add scene to dawn for pb208 target
-
 	# verbosities
-	"verbosity": 1,
 	"g4displayv": 2,
-	"gsystemv": 1,
-	"g4systemv": 1,
 	
 	"+gsystem": [
 		{

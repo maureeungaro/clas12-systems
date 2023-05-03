@@ -136,7 +136,7 @@ do
 	fi
 	
 	echo
-	echo exitCode: $exitCode
+	echo Text exitCode: $exitCode
 	echo
 	
 	if [[ $exitCode != 0 ]]; then

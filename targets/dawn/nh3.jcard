@@ -1,10 +1,6 @@
 {
-	# Run check overlaps for apollo_nh3 target
-
 	# verbosities
-	"verbosity": 1,
-	"gsystemv": 1,
-	"g4systemv": 1,
+	"g4displayv": 2,
 	
 	"+gsystem": [
 		{
@@ -12,5 +8,19 @@
 		}
 	],
 
-	"checkOverlaps": 1
-}
+	"g4view": {
+		"segsPerCircle": 100
+	},
+
+	"g4camera": {
+		"theta": "160*deg",
+		"phi": "30*deg"
+	},
+
+	"+scenetext": [
+		{ "text": "CLAS12 Target: apollo_nh3", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
+	],
+
+	"+viewtext": [
+		{ "text": "CLAS12 Center", "size": 10, "x": 5, "y": 5, "z": 0, "color": "red" }
+	]}

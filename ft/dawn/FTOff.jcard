@@ -1,11 +1,6 @@
 {
-	# Add scene to dawn for FT FTOn
-
 	# verbosities
-	"verbosity": 1,
 	"g4displayv": 2,
-	"gsystemv": 1,
-	"g4systemv": 1,
 
 	"+gsystem": [
 		{ "system": "./ft", "factory": "TEXT", "variation": "FTOff" }

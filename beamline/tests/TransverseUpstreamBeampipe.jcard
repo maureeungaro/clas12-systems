@@ -14,9 +14,9 @@
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
-		{ "system": "./ubeamline",             "factory": "text", "variation": "TransverseUpstreamBeampipe" },
-		{ "system": "./beamline",              "factory": "text", "variation": "FTOn" },
-		{ "system": "./clas12Target",          "factory": "text", "variation": "lh2" }
+		{ "system": "./ubeamline",             "factory": "TEXT", "variation": "TransverseUpstreamBeampipe" },
+		{ "system": "./beamline",              "factory": "TEXT", "variation": "FTOn" },
+		{ "system": "./clas12Target",          "factory": "TEXT", "variation": "lh2" }
 	],
 
 	"+goutput": [

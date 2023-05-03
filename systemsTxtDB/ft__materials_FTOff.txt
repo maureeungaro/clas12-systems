@@ -1,13 +1,13 @@
-ft_peek | ft peek plastic 1.31 g/cm3 | 1.31 | G4_C 0.76 G4_H 0.08 G4_O 0.16  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-pcboard | ft pcb 1.86 g/cm3 | 1.86 | G4_Fe 0.3 G4_C 0.4 G4_Si 0.3  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-insfoam | ft insulation foam 34 kg/m3 | 0.034 | G4_C 0.6 G4_H 0.1 G4_N 0.1 G4_O 0.2  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-ft_W | ft tungsten alloy 17.6 g/cm3 | 17.6 | G4_Fe 0.08 G4_W 0.92  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-carbonFiber | ft carbon fiber material is epoxy and carbon - 1.75g/cm3 | 1.75 | G4_C 0.745 epoxy 0.255  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-epoxy | epoxy glue 1.16 g/cm3 | 1.16 | H 32 N 2 O 4 C 15  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-scintillator | ft scintillator material C9H10 1.032 g/cm3 | 1.032 | C 9 H 10  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-myFR4 | ft pcb-FR4 1.86 g/cm3 | 1.86 | G4_C 0.4355 G4_H 0.0365 G4_Si 0.2468 G4_O 0.2812  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-mmgas | ft micromegas gas | 0.0017033499999999997 | G4_Ar 0.95 G4_H 0.0086707 G4_C 0.0413293  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-mmstrips | ft micromegas strips | 9.196422182468694 | G4_Cu 1  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-ResistPaste | ft micromegas resistive strips | 1.0773000000000001 | G4_C 1  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-mmmesh | ft micromegas mesh | 4.3615 | G4_Mn 0.02 G4_Si 0.01 G4_Cr 0.19 G4_Ni 0.1 G4_Fe 0.68  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
-myPhRes | ft micromegas PhotoResist | 1.42 | G4_C 1  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+ft_peek | 1.31 | G4_C 0.76 G4_H 0.08 G4_O 0.16  | ft peek plastic 1.31 g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+pcboard | 1.86 | G4_Fe 0.3 G4_C 0.4 G4_Si 0.3  | ft pcb 1.86 g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+insfoam | 0.034 | G4_C 0.6 G4_H 0.1 G4_N 0.1 G4_O 0.2  | ft insulation foam 34 kg/m3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+ft_W | 17.6 | G4_Fe 0.08 G4_W 0.92  | ft tungsten alloy 17.6 g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+carbonFiber | 1.75 | G4_C 0.745 epoxy 0.255  | ft carbon fiber material is epoxy and carbon - 1.75g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+epoxy | 1.16 | H 32 N 2 O 4 C 15  | epoxy glue 1.16 g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+scintillator | 1.032 | C 9 H 10  | ft scintillator material C9H10 1.032 g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+myFR4 | 1.86 | G4_C 0.4355 G4_H 0.0365 G4_Si 0.2468 G4_O 0.2812  | ft pcb-FR4 1.86 g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+mmgas | 0.0017033499999999997 | G4_Ar 0.95 G4_H 0.0086707 G4_C 0.0413293  | ft micromegas gas | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+mmstrips | 9.196422182468694 | G4_Cu 1  | ft micromegas strips | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+ResistPaste | 1.0773000000000001 | G4_C 1  | ft micromegas resistive strips | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+mmmesh | 4.3615 | G4_Mn 0.02 G4_Si 0.01 G4_Cr 0.19 G4_Ni 0.1 G4_Fe 0.68  | ft micromegas mesh | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+myPhRes | 1.42 | G4_C 1  | ft micromegas PhotoResist | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |

@@ -1,17 +1,12 @@
 {
-	# Add scene to dawn for beamline TransverseUpstreamBeampipe
-
 	# verbosities
-	"verbosity": 1,
 	"g4displayv": 2,
-	"gsystemv": 1,
-	"g4systemv": 1,
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
-		{ "system": "./ubeamline",             "factory": "text", "variation": "TransverseUpstreamBeampipe" },
-		{ "system": "./beamline",              "factory": "text", "variation": "FTOn" },
-		{ "system": "./clas12Target",          "factory": "text", "variation": "lh2" }
+		{ "system": "./ubeamline",             "factory": "TEXT", "variation": "TransverseUpstreamBeampipe" },
+		{ "system": "./beamline",              "factory": "TEXT", "variation": "FTOn" },
+		{ "system": "./clas12Target",          "factory": "TEXT", "variation": "lh2" }
 	],
 
 	"g4view": {

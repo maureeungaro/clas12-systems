@@ -1,11 +1,6 @@
 {
-	# Add scene to dawn for beamline rghFTOut
-
 	# verbosities
-	"verbosity": 1,
 	"g4displayv": 2,
-	"gsystemv": 1,
-	"g4systemv": 1,
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
@@ -26,7 +21,7 @@
 	# dawn seems not able to support string larger than 21 chars
 	# so putting whole title in 2 entries
 	"+scenetext": [
-		{ "text": "CLAS12",            "size": 20, "x": -0.8, "y": 0.9, "color": "black" },
+		{ "text": "CLAS12",             "size": 20, "x": -0.8, "y": 0.9, "color": "black" },
 		{ "text": "Beamline: rghFTOut", "size": 20, "x": -0.5, "y": 0.9, "color": "black" }
 	],
 

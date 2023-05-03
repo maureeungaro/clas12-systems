@@ -1,1 +1,1 @@
-scintillator | ftof scintillator material | 1.032 | C 9 H 10  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+scintillator | 1.032 | C 9 H 10  | ftof scintillator material | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |

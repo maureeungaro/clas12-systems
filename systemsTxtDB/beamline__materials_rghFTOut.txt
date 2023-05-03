@@ -1,1 +1,1 @@
-beamline_W | beamline tungsten alloy 17.6 g/cm3 | 17.6 | G4_Fe 0.08 G4_W 0.92  | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |
+beamline_W | 17.6 | G4_Fe 0.08 G4_W 0.92  | beamline tungsten alloy 17.6 g/cm3 | na | na | na | na | na | na | na | -1 | -1 | -1 | -1 | -1 | -1 | na |

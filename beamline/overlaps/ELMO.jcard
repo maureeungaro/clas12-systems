@@ -8,8 +8,8 @@
 	"g4systemv": 1,
 
 	"+gsystem": [
-		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
-		{ "system": "./beamline", "factory": "text", "variation": "ELMO" }
+		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
+		{ "system": "./beamline",              "factory": "TEXT", "variation": "ELMO" }
 	],
 
 	
