@@ -34,16 +34,12 @@
 
 	# particles generator
 	# every event:
-	# - 1 proton at 5 GeV along z
-	# - 4 electrons at 2.1 GeV at theta=0.2deg, uniform in phi, at z=-2mm
+	# - 1 electron at 2.1 GeV at theta=20deg, uniform in phi
 	# - 1 pion at 1 GeV at theta=90deg, distributed uniformly in phi
 	"+gparticle": [
 
-		# a single 5 GeV proton along the z axis: only pid and p need to be defined
-		{ "pname": "proton", "p": 5000 },
-
-		# Four 2.1 GeV electrons
-		{ "pname": "e-", "multiplicity": 4, "p": 2100, "theta": 0.2, "delta_phi": 180.0, "vz": -2.0},
+		# One 2.1 GeV electrons at 20 degrees in theta
+		{ "pname": "e-", "p": 2100, "theta": 20, "delta_phi": 180.0},
 
 		# one 100 MeV pion at 90 degress in theta uniform in phi
 		{ "pname": "pi-", "p": 1000, "theta": 90, "delta_phi": 180.0 }

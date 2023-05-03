@@ -19,7 +19,7 @@ bool EC_Plugin::loadTT(int runno, string variation)
 	vector<vector<double> > data;
 
 	string database   = "/daq/tt/ec:1";
-	gDLogMessage("PCAL: Loading Translation Table " + database);
+	gDLogMessage("ECAL: Loading Translation Table " + database);
 	data.clear(); calib->GetCalib(data, database);
 
 	// filling translation table
