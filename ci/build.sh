@@ -6,7 +6,7 @@
 # 2. The plugin directory, if existing, must be named 'plugin'
 
 # Container run:
-# docker run -it --rm jeffersonlab/gemc:3.0-clas12 sh
+# docker run -it --rm jeffersonlab/gemc3:1.0c12s sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -s ftof
@@ -82,14 +82,18 @@ DefineScriptName() {
 }
 
 
-CreateAndCopyDetectorTXTs() {
+CreateAndCopyExampleDBs() {
 	system=$1
 	echo
 	echo Running $script
-	$script || { echo "Error when running $script" ; exit 1 }
+	$script
+	if [ $? -ne 0 ]; then
+	  echo "Error when running $script"
+	  exit 1
+  fi
 	ls -ltrh ./
 	subDir=$(basename $system)
-	filesToCopy=$(ls | grep \.txt | grep "$subdir")
+	filesToCopy=$(find ./ -name \*.txt -o -name \*.sqlite)
 	echo
 	echo "Moving $=filesToCopy to $GEMCDB_ENV"
 	mv $=filesToCopy $GEMCDB_ENV/
@@ -130,11 +134,11 @@ BuildSystem() {
 	system=$1
 	DefineScriptName $system
 	echo
-	echo Building geometry for $system.
+	echo Building system $system.
 	echo
 	pwd
 	cd $system
-	CreateAndCopyDetectorTXTs $system
+	CreateAndCopyExampleDBs $system
 	test -d plugin && CompileAndCopyPlugin || echo "No plugin to build."
 	cd $startDir
 }
@@ -153,7 +157,7 @@ export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
 startDir=`pwd`
 export GEMCDB_ENV="$(pwd)/systemsTxtDB"
 
-echo "BUILD.SH: GLIBRARY is $GLIBRARY, GPLUGIN_PATH is $GPLUGIN_PATH, GEMCDB_ENV is $GEMCDB_ENV"
+echo "BUILD.SH: GLIBRARY is $GLIBRARY, GPLUGIN_PATH is $GPLUGIN_PATH, GEMCDB_ENV is $GEMCDB_ENV, SCIG is $SCIG"
 
 script=no
 [[ -v buildAll ]] && BuildAllSystems || BuildSystem $detector

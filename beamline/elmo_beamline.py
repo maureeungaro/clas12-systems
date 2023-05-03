@@ -1,4 +1,4 @@
-from gemc_api_geometry import *
+from gemc_api_geometry import GVolume
 import math
 
 def build_elmo_beamline(configuration):

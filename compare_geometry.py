@@ -70,13 +70,13 @@ class VolumeParams:
 
     def read_gemc3(self, tokens: List[str]):
         self.name = tokens[0]
-        self.mother = tokens[1]
-        self.solid = tokens[2]
-        self.solid_parameters = tokens[3]
+        self.solid = tokens[1]
+        self.solid_parameters = tokens[2]
         sp = SolidParams(self.solid_parameters) 
         self.solid_parameters_numbers = sp.numbers
         self.solid_parameters_units = sp.units
-        self.material = tokens[4]
+        self.material = tokens[3]
+        self.mother = tokens[4]
         self.position = tokens[5]
         pp = SolidParams(self.position)
         self.position_numbers = pp.numbers

@@ -1,4 +1,4 @@
-from gemc_api_geometry import *
+from gemc_api_geometry import GVolume
 import math
 
 def build_transverseUpstream_beamline(configuration):
@@ -14,7 +14,6 @@ def build_transverseUpstream_beamline(configuration):
 	gvolume.material    = 'G4_Galactic'
 	gvolume.color       = '334488'
 	gvolume.publish(configuration)
-
 
 
 	pipeLength    = 148

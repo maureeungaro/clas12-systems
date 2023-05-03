@@ -5,7 +5,6 @@ import sys, os, argparse
 import logging
 import subprocess
 from gemc_api_utils import GConfiguration
-from gemc_api_geometry import *
 
 from rgab_beamline import build_rgab_beamline
 from rgh_beamline import build_rgh_beamline
@@ -58,7 +57,7 @@ def main():
 		configuration.printC()
 
 
-	uconfiguration = GConfiguration('ubeamline', 'TEXT', 'The CLAS12 Beamline')
+	uconfiguration = GConfiguration('beamline', 'TEXT', 'The CLAS12 Beamline')
 	uconfiguration.setVariation("TransverseUpstreamBeampipe")
 	uconfiguration.init_geom_file()
 	uconfiguration.init_mats_file()
