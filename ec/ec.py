@@ -42,7 +42,9 @@ def main():
 
         # run geometry file bulder for selected variation
         configuration.init_geom_file()
-        apply_configuration(f'{basepath}/{file_name}', configuration)
+        # this file is produced by coatjava by running the command: runFactories.sh inside groovyFactories
+        coatjava_produced_volumes = f'{basepath}/{file_name}'
+        apply_configuration(f'{coatjava_produced_volumes}', configuration)
         # print out the GConfiguration
         configuration.printC()
 
