@@ -9,7 +9,7 @@
 	
 	"+gsystem": [
 		{
-			"system":   "./clas12Target", "factory": "text", "variation": "pol_targ"
+			"system":   "./clas12Target", "factory": "TEXT", "variation": "pol_targ"
 		}
 	],
 

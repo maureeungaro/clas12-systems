@@ -8,7 +8,7 @@
 	"g4systemv": 1,
 
 	"+gsystem": [
-		{ "system": "./ft", "factory": "text", "variation": "FTOn" }
+		{ "system": "./ft", "factory": "TEXT", "variation": "FTOn" }
 	],
 
 	"g4view": {

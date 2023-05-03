@@ -13,7 +13,7 @@
 	"+gsystem": [
 		{
 			"system":   "./clas12Target",
-			"factory": "text",
+			"factory": "TEXT",
 			"variation": "apollo_nh3"
 		}
 	],

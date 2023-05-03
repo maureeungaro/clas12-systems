@@ -8,7 +8,7 @@
 	"g4systemv": 1,
 
 	"+gsystem": [
-		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
+		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
 		{ "system": "./ubeamline",             "factory": "text", "variation": "TransverseUpstreamBeampipe" },
 		{ "system": "./beamline",              "factory": "text", "variation": "FTOn" },
 		{ "system": "./clas12Target",          "factory": "text", "variation": "lh2" }

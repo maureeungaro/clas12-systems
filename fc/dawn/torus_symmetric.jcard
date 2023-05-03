@@ -10,7 +10,7 @@
 	"+gsystem": [
 		{
 			"system":   "./clas12ForwardCarriage",
-			"factory": "text",
+			"factory": "TEXT",
 			"variation": "torus_symmetric"
 		}
 	],

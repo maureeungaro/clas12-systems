@@ -9,7 +9,7 @@
 	
 	"+gsystem": [
 		{
-			"system":   "./clas12Target", "factory": "text", "variation": "hdice"
+			"system":   "./clas12Target", "factory": "TEXT", "variation": "hdice"
 		}
 	],
 

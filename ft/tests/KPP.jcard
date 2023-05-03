@@ -13,7 +13,7 @@
 	# "maxebuffer": 1000,
 
 	"+gsystem": [
-		{ "system": "./ft", "factory": "text", "variation": "KPP" }
+		{ "system": "./ft", "factory": "TEXT", "variation": "KPP" }
 	],
 
 	"+goutput": [

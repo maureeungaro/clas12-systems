@@ -15,7 +15,7 @@
 	"maxebuffer": 1000,
 
 	"+gsystem": [
-		{ "system": "./ft", "factory": "text", "variation": "FTOn" }
+		{ "system": "./ft", "factory": "TEXT", "variation": "FTOn" }
 	],
 
 	"+goutput": [

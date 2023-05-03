@@ -13,8 +13,8 @@
 	# "maxebuffer": 1000,
 
 	"+gsystem": [
-		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
-		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOn" },
+		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
+		{ "system": "./beamline",              "factory": "TEXT", "variation": "rghFTOn" },
 		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
 	],
 

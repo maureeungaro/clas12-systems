@@ -8,7 +8,7 @@
 	
 	"+gsystem": [
 		{
-			"system":   "./clas12Target", "factory": "text", "variation": "apollo_nh3"
+			"system":   "./clas12Target", "factory": "TEXT", "variation": "apollo_nh3"
 		}
 	],
 

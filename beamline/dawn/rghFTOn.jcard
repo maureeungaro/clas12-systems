@@ -8,9 +8,9 @@
 	"g4systemv": 2,
 
 	"+gsystem": [
-		{ "system": "./clas12ForwardCarriage", "factory": "text", "variation": "original" },
-		{ "system": "./beamline",              "factory": "text", "variation": "rghFTOn" },
-		{ "system": "./clas12Target",          "factory": "text", "variation": "hdice" }
+		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
+		{ "system": "./beamline",              "factory": "TEXT", "variation": "rghFTOn" },
+		{ "system": "./clas12Target",          "factory": "TEXT", "variation": "hdice" }
 	],
 
 	
