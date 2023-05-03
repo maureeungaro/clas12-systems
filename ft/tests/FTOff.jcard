@@ -1,17 +1,8 @@
 {
-	# Run simulation with 3 different outputs, including JLABSRO
-	# no nthreads specified: runs on all available threads
-	# uncomment this line to specify number of threads
-	# "nthreads": 1,
-
 	# verbosities
 	"verbosity": 1,
-	"gframestreamv": 2,
+	"gsystemv": 1,
 	"edistv": 1,
-	
-	# uncomment to set maximum number of events / sub run different than the default of 100
-	# this number controls how often the outputs are written out
-	# "maxebuffer": 1000,
 
 	"+gsystem": [
 		{ "system": "./ft", "factory": "TEXT", "variation": "FTOff" }
@@ -36,11 +27,27 @@
 	],
 
 	"dVariation": "rga_spring2018_mc",
-	"n": 1000,
-	"eventTimeSize": "2*us",
+    "eventTimeSize": "2*us",
+	# run 5000 events, 5 runs
+	"n": 5000,
+	"maxebuffer": 1000,
+	"physicsList": "FTFP_BERT",
+
+	# particles generator
+	# every event:
+	# - 1 proton at 5 GeV along z
+	# - 4 electrons at 2.1 GeV at theta=0.2deg, uniform in phi, at z=-2mm
+	# - 1 pion at 1 GeV at theta=90deg, distributed uniformly in phi
 	"+gparticle": [
-		{ "pname": "e-",  "multiplicity": 1, "p": 2100, "theta": 3, "delta_phi": 180.0, "delta_theta": 2.0}
+
+		# a single 5 GeV proton along the z axis: only pid and p need to be defined
+		{ "pname": "proton", "p": 5000 },
+
+		# Four 2.1 GeV electrons
+		{ "pname": "e-", "multiplicity": 4, "p": 2100, "theta": 0.2, "delta_phi": 180.0, "vz": -2.0},
+
+		# one 100 MeV pion at 90 degress in theta uniform in phi
+		{ "pname": "pi-", "p": 1000, "theta": 90, "delta_phi": 180.0 }
+
 	]
-
-
 }

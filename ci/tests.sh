@@ -131,7 +131,7 @@ do
 		gemc $jc -dawn
 		exitCode=$?
 	else
-		gemc $jc -showG4ThreadsLog
+		gemc $jc
 		exitCode=$?
 	fi
 	
