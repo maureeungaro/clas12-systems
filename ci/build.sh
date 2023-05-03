@@ -108,7 +108,7 @@ CompileAndCopyPlugin() {
 	if [ $? -ne 0 ]; then
 	    echo "Building plugin for $detector failed"
 	    exit 1
-    fi
+  fi
 
 	gpls=$(ls *.gplugin)
 	for gpl in $gpls;
