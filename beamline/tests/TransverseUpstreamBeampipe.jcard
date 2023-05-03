@@ -6,7 +6,7 @@
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
-		{ "system": "./ubeamline",             "factory": "TEXT", "variation": "TransverseUpstreamBeampipe" },
+		{ "system": "./beamline",              "factory": "TEXT", "variation": "TransverseUpstreamBeampipe" },
 		{ "system": "./beamline",              "factory": "TEXT", "variation": "FTOn" },
 		{ "system": "./clas12Target",          "factory": "TEXT", "variation": "lh2" }
 	],
