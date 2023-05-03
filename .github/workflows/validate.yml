@@ -56,7 +56,7 @@ jobs:
         uses: actions/checkout@main
       - name: Validate ${{ matrix.detector }}
         run: |
-          ./ci/validateAgainstGemc2.sh -s ${{ matrix.detector }} -p /work/clas12_tags/$CLAS12TAG/experiments/clas12
+          ./ci/validateAgainstGemc2.sh -s ${{ matrix.detector }} -p /usr/local/clas12_tags/$CLAS12TAG/experiments/clas12
     env:
       CLAS12TAG: 5.1
 

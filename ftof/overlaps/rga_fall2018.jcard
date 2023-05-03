@@ -1,8 +1,6 @@
 {
-	# Run check overlaps for FTOF
-
 	# verbosities
-	"verbosity": 2,
+	"verbosity": 1,
 	"gsystemv": 1,
 	"g4systemv": 1,
 		

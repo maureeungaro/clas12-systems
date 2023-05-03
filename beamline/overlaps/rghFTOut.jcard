@@ -1,11 +1,9 @@
 {
-	# Run check overlaps for beamline rghFTOut
-
 	# verbosities
 	"verbosity": 1,
-	"g4displayv": 2,
 	"gsystemv": 1,
 	"g4systemv": 1,
+
 
 	"+gsystem": [
 		{ "system": "./clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
