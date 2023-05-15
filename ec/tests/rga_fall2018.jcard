@@ -3,12 +3,10 @@
 	"verbosity": 1,
 	"gsystemv": 1,
 	"edistv": 1,
-	"gsensitivityv": 2,
-	"nthreads": 1,
 
 	"+gsystem": [
 		{ "system": "clas12ForwardCarriage", "factory": "TEXT", "variation": "original" },
-		{ "system": "./ec",                    "factory": "TEXT", "variation": "rga_fall2018" }
+		{ "system": "./ec",                  "factory": "TEXT", "variation": "rga_fall2018" }
 	],
 
 	"+goutput": [
@@ -27,7 +25,7 @@
 	"dVariation": "rga_spring2018_mc",
     "eventTimeSize": "2*us",
 	# run 5000 events, 5 runs
-	"n": 50,
+	"n": 5000,
 	"maxebuffer": 1000,
 	"physicsList": "FTFP_BERT",
 
