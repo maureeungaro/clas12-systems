@@ -6,7 +6,7 @@
 # 2. The plugin directory, if existing, must be named 'plugin'
 
 # Container run:
-# docker run -it --rm jeffersonlab/gemc3:1.0c12s sh
+# docker run -it --rm jeffersonlab/clas12-systems:dev-fedora36 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/build.sh -s ftof

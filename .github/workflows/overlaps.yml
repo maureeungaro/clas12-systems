@@ -44,7 +44,7 @@ jobs:
     if: needs.generate-matrix.outputs.jobtype == '0'
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container: jeffersonlab/gemc3:1.0c12s
+    container: jeffersonlab/clas12-systems:dev-fedora36
     name: Overlaps Test ${{ matrix.detector }}
     strategy:
       fail-fast: false
@@ -57,5 +57,8 @@ jobs:
       - name: Overlaps
         run: |
           ./ci/tests.sh -s ${{ matrix.detector }} -o
-
+      - uses: gitboard-io/gitboard-action@main
+        with:
+          username: maureeungaro
+          key: 3d8e9059-a164-4bea-9541-1cb8789d805b
 

@@ -3,7 +3,7 @@
 # Purpose: compares the geometry implemented in gemc3 to the geometry in gemc2 for selected detector
 
 # Container run:
-# docker run -it --rm jeffersonlab/gemc3:1.0c12s sh
+# docker run -it --rm jeffersonlab/clas12-systems:dev-fedora36 sh
 # git clone http://github.com/gemc/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # git clone http://github.com/maureeungaro/clas12-systems /root/clas12-systems && cd /root/clas12-systems
 # ./ci/validateAgainstGemc2.sh -s ftof
