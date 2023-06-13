@@ -38,7 +38,7 @@ jobs:
       GITHUB_BEFORE: ${{ github.event.before }}
 
 
-  # Run jcard in tests directory
+  # Produce a dawn screenshot
   runTests:
     needs: generate-matrix
     if: needs.generate-matrix.outputs.jobtype == '0'
